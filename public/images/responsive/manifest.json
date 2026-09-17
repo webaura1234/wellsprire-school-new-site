@@ -1,0 +1,716 @@
+[
+  {
+    "source": "/images/academics.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/academics-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 7032
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/academics-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 17029
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/academics-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 28456
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/academics-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 40580
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/academics-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 55740
+      }
+    ]
+  },
+  {
+    "source": "/images/arts.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/arts-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 8892
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/arts-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 22321
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/arts-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 37123
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/arts-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 53031
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/arts-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 71070
+      }
+    ]
+  },
+  {
+    "source": "/images/campus.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/campus-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 11443
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/campus-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 37754
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/campus-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 75238
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/campus-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 114877
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/campus-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 156504
+      }
+    ]
+  },
+  {
+    "source": "/images/character.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/character-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 9277
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/character-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 24321
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/character-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 42325
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/character-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 62143
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/character-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 84057
+      }
+    ]
+  },
+  {
+    "source": "/images/faculty-arts.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/faculty-arts-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 4651
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/faculty-arts-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 11455
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/faculty-arts-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 18785
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/faculty-arts-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 26586
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/faculty-arts-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 35986
+      }
+    ]
+  },
+  {
+    "source": "/images/faculty-biology.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/faculty-biology-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 6941
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/faculty-biology-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 17290
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/faculty-biology-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 28724
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/faculty-biology-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 40967
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/faculty-biology-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 54362
+      }
+    ]
+  },
+  {
+    "source": "/images/faculty-english.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/faculty-english-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 7170
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/faculty-english-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 19482
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/faculty-english-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 33729
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/faculty-english-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 50718
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/faculty-english-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 75144
+      }
+    ]
+  },
+  {
+    "source": "/images/faculty-humanities.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/faculty-humanities-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 5051
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/faculty-humanities-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 11377
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/faculty-humanities-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 18692
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/faculty-humanities-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 27202
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/faculty-humanities-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 39868
+      }
+    ]
+  },
+  {
+    "source": "/images/faculty-mathematics.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/faculty-mathematics-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 7200
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/faculty-mathematics-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 18130
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/faculty-mathematics-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 31870
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/faculty-mathematics-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 53352
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/faculty-mathematics-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 84934
+      }
+    ]
+  },
+  {
+    "source": "/images/faculty-physics.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/faculty-physics-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 6988
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/faculty-physics-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 15994
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/faculty-physics-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 26039
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/faculty-physics-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 36605
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/faculty-physics-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 49421
+      }
+    ]
+  },
+  {
+    "source": "/images/faculty-primary.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/faculty-primary-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 4906
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/faculty-primary-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 12278
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/faculty-primary-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 21164
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/faculty-primary-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 32025
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/faculty-primary-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 45570
+      }
+    ]
+  },
+  {
+    "source": "/images/faculty-sport.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/faculty-sport-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 3906
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/faculty-sport-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 8727
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/faculty-sport-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 15974
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/faculty-sport-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 28301
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/faculty-sport-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 51725
+      }
+    ]
+  },
+  {
+    "source": "/images/farming.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/farming-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 6485
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/farming-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 21706
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/farming-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 58112
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/farming-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 120326
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/farming-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 220406
+      }
+    ]
+  },
+  {
+    "source": "/images/library.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/library-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 13258
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/library-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 38261
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/library-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 71750
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/library-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 108235
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/library-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 157644
+      }
+    ]
+  },
+  {
+    "source": "/images/podcast.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/podcast-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 5730
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/podcast-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 14111
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/podcast-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 24201
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/podcast-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 35372
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/podcast-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 50486
+      }
+    ]
+  },
+  {
+    "source": "/images/science.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/science-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 7422
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/science-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 17842
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/science-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 29183
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/science-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 41333
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/science-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 56600
+      }
+    ]
+  },
+  {
+    "source": "/images/sports.avif",
+    "width": 1600,
+    "height": 1600,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/sports-320.avif",
+        "width": 320,
+        "height": 320,
+        "bytes": 9541
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/sports-640.avif",
+        "width": 640,
+        "height": 640,
+        "bytes": 35122
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/sports-960.avif",
+        "width": 960,
+        "height": 960,
+        "bytes": 63667
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/sports-1280.avif",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 89141
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/sports-1600.avif",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 114411
+      }
+    ]
+  }
+]
