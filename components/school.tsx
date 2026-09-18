@@ -770,9 +770,6 @@ export default function School() {
             </a>
           </div>
         </section>
-        <div className="home-mobile-only">
-          <AdmissionsCallout onOpen={openDialog} anchor={false} />
-        </div>
         <section className="admissions section" id="admissions-process">
           <div className="admission-top">
             <Eyebrow>09 — YOUR NEXT CHAPTER</Eyebrow>

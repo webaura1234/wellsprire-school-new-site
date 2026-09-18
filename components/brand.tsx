@@ -105,10 +105,10 @@ export function Brand({
       aria-label="Wellspire School home"
     >
       <Image
-        src="/images/wellspire-school-logo.jpg"
+        src="/images/wellspire-school-logo.png?v=4"
         alt="Wellspire School — Inspiring Lifelong Learning"
-        width={120}
-        height={120}
+        width={160}
+        height={140}
         className="brand-logo-img"
         unoptimized
         priority

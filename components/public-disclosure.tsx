@@ -156,7 +156,6 @@ function DisclosureBody() {
         </Link>
 
         <header className="mpd-hero">
-          <Brand className="mpd-brand" />
           <p className="eyebrow">CBSE · MANDATORY PUBLIC DISCLOSURE</p>
           <h1>Mandatory Public Disclosure</h1>
           <p className="mpd-lede">
@@ -206,21 +205,6 @@ function DisclosureBody() {
             rows={disclosureInfrastructure}
           />
         </section>
-
-        <div className="mpd-cta-row">
-          <div className="mpd-cta">
-            <p>Please check the age criteria given below.</p>
-            <Link className="mpd-cta-btn" href="/admissions">
-              Explore <ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="mpd-cta">
-            <p>Online fee Payment</p>
-            <Link className="mpd-cta-btn" href="/admissions">
-              Explore <ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
       </div>
       <ScrollTop />
     </div>

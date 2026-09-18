@@ -1865,6 +1865,7 @@ form > .button {
   max-width: 118px;
   object-fit: contain;
   display: block;
+  background: transparent;
   transition: height 0.32s ease, transform 0.32s ease;
 }
 .header.is-scrolled .brand-logo-img {
@@ -4871,7 +4872,7 @@ h1 {
     top: var(--hero-sticky-top, 70px) !important;
     height: calc(100svh - var(--hero-sticky-top, 70px)) !important;
     max-height: none !important;
-    padding: 0 16px !important;
+    padding: 0 10px !important;
     display: flex !important;
     flex-direction: column !important;
     position: sticky !important;
@@ -4881,9 +4882,9 @@ h1 {
   .hero-composition {
     display: flex !important;
     flex-direction: column !important;
-    padding-top: 8px !important;
+    padding-top: 6px !important;
     padding-bottom: 0px !important;
-    gap: 10px !important;
+    gap: 8px !important;
     min-height: 0 !important;
     flex: 1 1 auto !important;
     position: relative !important;
@@ -4994,10 +4995,10 @@ h1 {
     order: 2 !important;
     height: 100% !important;
     flex: 1 1 0% !important;
-    min-height: 160px !important;
-    max-height: 320px !important;
+    min-height: 220px !important;
+    max-height: min(52svh, 440px) !important;
     width: 100% !important;
-    max-width: 280px !important;
+    max-width: min(100%, 420px) !important;
     margin: 0 auto !important;
     padding: 0 !important;
     display: flex !important;
@@ -5009,7 +5010,7 @@ h1 {
     flex: 1 !important;
     height: 100% !important;
     width: 100% !important;
-    min-height: 130px !important;
+    min-height: 200px !important;
     position: relative !important;
     overflow: hidden !important;
     border-radius: 50% 50% 0 0 / 42% 42% 0 0 !important;
@@ -5030,9 +5031,9 @@ h1 {
   }
   
   .hero-seal {
-    bottom: 28px !important;
+    bottom: 22px !important;
     left: 50% !important;
-    transform: translate(-50%, 50%) scale(0.62) !important;
+    transform: translate(-50%, 50%) scale(0.7) !important;
     transform-origin: center center !important;
     z-index: 10 !important;
     display: flex !important;
@@ -5812,7 +5813,10 @@ h1 {
   color: var(--ink);
 }
 .mobile-subpage-main {
-  padding: 88px 0 48px;
+  padding: 12px 0 48px;
+}
+.mobile-subpage-main:has(.mpd-page) {
+  padding: 8px 0 40px;
 }
 .mobile-subpage-intro {
   padding: 8px 22px 28px;
@@ -6071,47 +6075,6 @@ h1 {
 .mpd-staff-sub .mpd-info {
   font-weight: 600;
 }
-.mpd-cta-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 44px;
-}
-.mpd-cta {
-  border: 1px solid rgba(28, 59, 126, 0.14);
-  border-radius: 12px;
-  padding: 22px 20px;
-  background: var(--paper);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: flex-start;
-}
-.mpd-cta p {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 700;
-  color: #222;
-}
-.mpd-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--navy);
-  color: #fff;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 11px 18px;
-  border-radius: 999px;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.mpd-cta-btn:hover {
-  background: #163066;
-  transform: translateY(-1px);
-}
 .mpd-scroll-top {
   position: fixed;
   right: 18px;
@@ -6140,8 +6103,31 @@ h1 {
 .mobile-subpage .mpd-back {
   display: none;
 }
+.mobile-subpage .mpd-hero .mpd-brand,
+.mpd-desktop-shell .mpd-hero .mpd-brand {
+  display: none;
+}
+.mobile-subpage .mpd-inner {
+  padding-top: 8px;
+}
+.mobile-subpage .mpd-hero {
+  margin-bottom: 20px;
+}
+.mobile-subpage .mpd-hero .eyebrow {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.mobile-subpage .mpd-page {
+  background: #ffffff;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-width: 100%;
+}
 .mpd-desktop-shell .mpd-back {
   display: none;
+}
+.mpd-desktop-shell .mpd-inner {
+  padding-top: 20px;
 }
 
 @media (min-width: 768px) {
@@ -6163,7 +6149,10 @@ h1 {
 
 @media (max-width: 767px) {
   .mpd-inner {
-    padding: 8px 16px 56px;
+    padding: 2px 16px 48px;
+  }
+  .mpd-hero {
+    margin-bottom: 20px;
   }
   .mpd-hero h1 {
     font-size: clamp(28px, 8vw, 36px);
@@ -6178,9 +6167,6 @@ h1 {
   .mpd-table th,
   .mpd-table td {
     padding: 10px 8px;
-  }
-  .mpd-cta-row {
-    grid-template-columns: 1fr;
   }
   .mpd-scroll-top {
     right: 14px;
