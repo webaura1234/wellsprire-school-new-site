@@ -8,6 +8,7 @@ An editorial, responsive school website built with Next.js 15 App Router, React 
 npm install
 npm run dev
 npm run typecheck
+
 npm run build
 npm start
 ```
