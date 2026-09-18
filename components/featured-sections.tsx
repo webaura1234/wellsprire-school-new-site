@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   ArrowUpRight,
@@ -7,6 +7,7 @@ import {
   Award,
   GraduationCap,
   CheckCircle2,
+  ArrowRight,
 } from "lucide-react";
 import { Heading } from "./heading";
 import { photos } from "@/lib/content";
@@ -17,6 +18,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 }
 
 export function TrustSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const recognitions = [
     {
       badge: "CURRICULUM",
@@ -44,8 +46,105 @@ export function TrustSection() {
     },
   ];
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const desktop = matchMedia("(min-width: 768px)");
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    let observer: IntersectionObserver | null = null;
+    let scrollCleanup = () => {};
+
+    const teardown = () => {
+      observer?.disconnect();
+      observer = null;
+      scrollCleanup();
+      scrollCleanup = () => {};
+      section.classList.remove("trust-cards-animate");
+      section
+        .querySelectorAll(".trust-card.is-revealed")
+        .forEach((el) => el.classList.remove("is-revealed"));
+    };
+
+    const revealIfVisible = (card: HTMLElement) => {
+      if (card.classList.contains("is-revealed")) return;
+      const rect = card.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const visible = Math.max(
+        0,
+        Math.min(rect.bottom, vh) - Math.max(rect.top, 0),
+      );
+      const visibleRatio = visible / Math.max(rect.height, 1);
+      if (visibleRatio >= 0.2) {
+        card.classList.add("is-revealed");
+      }
+    };
+
+    const setup = () => {
+      teardown();
+      if (desktop.matches || reduced.matches) return;
+
+      section.classList.add("trust-cards-animate");
+      const cards = Array.from(
+        section.querySelectorAll<HTMLElement>(".trust-card"),
+      );
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-revealed");
+            observer?.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -10% 0px" },
+      );
+      cards.forEach((card) => observer?.observe(card));
+
+      const onScroll = () => {
+        cards.forEach((card) => {
+          if (!card.classList.contains("is-revealed")) revealIfVisible(card);
+        });
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      let lenisOff = () => {};
+      const bindLenis = () => {
+        const lenis = (
+          window as Window & { lenis?: { on?: Function; off?: Function } }
+        ).lenis;
+        if (!lenis?.on) return false;
+        lenis.on("scroll", onScroll);
+        lenisOff = () => lenis.off?.("scroll", onScroll);
+        return true;
+      };
+      bindLenis();
+      let tries = 0;
+      const wait = window.setInterval(() => {
+        if (bindLenis() || ++tries > 40) window.clearInterval(wait);
+      }, 100);
+
+      requestAnimationFrame(onScroll);
+      scrollCleanup = () => {
+        window.clearInterval(wait);
+        window.removeEventListener("scroll", onScroll);
+        lenisOff();
+      };
+    };
+
+    setup();
+    desktop.addEventListener("change", setup);
+    reduced.addEventListener("change", setup);
+    return () => {
+      desktop.removeEventListener("change", setup);
+      reduced.removeEventListener("change", setup);
+      teardown();
+    };
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       className="section trust-section"
       id="trust"
       aria-label="What makes Wellspire different"
@@ -68,10 +167,15 @@ export function TrustSection() {
       </div>
 
       <div className="trust-grid">
-        {recognitions.map((item) => {
+        {recognitions.map((item, index) => {
           const Icon = item.icon;
+          const fromRight = index % 2 === 0;
           return (
-            <div className="trust-card" key={item.title}>
+            <div
+              className="trust-card"
+              key={item.title}
+              data-enter={fromRight ? "right" : "left"}
+            >
               <div className="trust-card-icon">
                 <Icon size={28} strokeWidth={1.5} />
               </div>
@@ -236,6 +340,12 @@ export function GlobalHorizons() {
             </div>
           </a>
         ))}
+      </div>
+      <div className="mobile-more-wrap">
+        <a className="mobile-more-btn" href="/learning-highlights">
+          More highlights
+          <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

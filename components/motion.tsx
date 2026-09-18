@@ -9,7 +9,6 @@ export default function MotionSetup() {
       if (reduced.matches) return;
       let cancelled = false;
       let desktopCleanup = () => {};
-      const animations: Animation[] = [];
       const rafs = new Set<number>();
       const counterObserver = new IntersectionObserver(
         (entries) =>
@@ -40,44 +39,8 @@ export default function MotionSetup() {
       document
         .querySelectorAll("[data-count]")
         .forEach((el) => counterObserver.observe(el));
-      const mobile = !matchMedia("(min-width: 768px)").matches;
-      const observer = new IntersectionObserver(
-        (entries) =>
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            observer.unobserve(entry.target);
-            const el = entry.target;
-            const isImage = el.matches("[data-curtain]");
-            const targets = isImage
-              ? [el]
-              : Array.from(el.querySelectorAll(".heading-line"));
-            targets.forEach((target, i) => {
-              const animation = target.animate(
-                isImage
-                  ? [
-                      { clipPath: "inset(0 0 100% 0)" },
-                      { clipPath: "inset(0 0 0 0)" },
-                    ]
-                  : [
-                      { transform: "translateY(110%)" },
-                      { transform: "translateY(0)" },
-                    ],
-                {
-                  duration: 800,
-                  delay: i * 70,
-                  easing: "cubic-bezier(.16,1,.3,1)",
-                },
-              );
-              animations.push(animation);
-            });
-          }),
-        { rootMargin: "0px 0px -20% 0px" },
-      );
-      if (mobile) {
-        document
-          .querySelectorAll("h2:not(.manifesto),h3,[data-curtain]")
-          .forEach((el) => observer.observe(el));
-      }
+      // Same GSAP/Lenis/ScrollTrigger path on all viewports so mobile matches
+      // desktop animation style (including philosophy sticky pillar stack).
       const desktop = async () => {
         const [{ gsap }, { ScrollTrigger }, { default: Lenis }] =
           await Promise.all([
@@ -192,15 +155,20 @@ export default function MotionSetup() {
             },
           );
           const cards = gsap.utils.toArray<HTMLElement>(".pillar-grid .pillar");
-          const pillarStackEnabled = matchMedia("(min-width: 768px)").matches;
-          if (pillarStackEnabled && cards.length > 1) {
+          // Same sticky stack + scale/dim scrub on all viewports. End offset
+          // follows each card's CSS `top` (108px desktop, header var on mobile).
+          if (cards.length > 1) {
+            const stickyOffset = () => {
+              const t = parseFloat(getComputedStyle(cards[0]).top);
+              return Number.isFinite(t) ? t : 108;
+            };
             cards.slice(0, -1).forEach((card, i) => {
               const next = cards[i + 1];
               const dimmer = card.querySelector(".pillar-dimmer");
               const triggerOpts = {
                 trigger: next,
                 start: "top bottom",
-                end: "top 108px",
+                end: () => `top ${stickyOffset()}px`,
                 scrub: 0.35,
                 invalidateOnRefresh: true,
               };
@@ -271,49 +239,12 @@ export default function MotionSetup() {
           lenis.destroy();
         };
       };
-      if (!mobile) void desktop();
-      // Mobile mission reveal is scroll-position driven without shipping GSAP.
-      let scrollRaf = 0;
-      const mission = document.querySelector(".manifesto");
-      const words = Array.from(
-        document.querySelectorAll<HTMLElement>(".manifesto-word"),
-      );
-      const updateMission = () => {
-        if (scrollRaf || !mobile) return;
-        scrollRaf = requestAnimationFrame(() => {
-          scrollRaf = 0;
-          if (!mission) return;
-          const box = mission.getBoundingClientRect();
-          const progress = Math.max(
-            0,
-            Math.min(
-              1,
-              (innerHeight * 0.8 - box.top) / (box.height + innerHeight * 0.45),
-            ),
-          );
-          words.forEach(
-            (w, i) =>
-              (w.style.opacity = String(
-                0.3 +
-                  0.7 * Math.max(0, Math.min(1, progress * words.length - i)),
-              )),
-          );
-        });
-      };
-      if (mobile) {
-        window.addEventListener("scroll", updateMission, { passive: true });
-        updateMission();
-      }
+      void desktop();
       cleanup = () => {
         cancelled = true;
         desktopCleanup();
-        observer.disconnect();
         counterObserver.disconnect();
-        animations.forEach((a) => a.cancel());
         rafs.forEach(cancelAnimationFrame);
-        cancelAnimationFrame(scrollRaf);
-        window.removeEventListener("scroll", updateMission);
-        words.forEach((w) => w.style.removeProperty("opacity"));
       };
     };
     setup();

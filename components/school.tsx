@@ -18,6 +18,13 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  Home,
+  FileText,
+  GraduationCap,
+  Building2,
+  Phone,
+  MapPin,
+  type LucideIcon,
 } from "lucide-react";
 import { Brand, Spire, QuadrantIcon } from "./brand";
 import { photos, stages } from "@/lib/content";
@@ -56,6 +63,14 @@ const navHref: Record<string, string> = {
   Contact: "contact",
   Results: "results",
 };
+const mobileNavItems: { label: string; id: string; Icon: LucideIcon }[] = [
+  { label: "Home", id: "main", Icon: Home },
+  { label: "About", id: "about", Icon: FileText },
+  { label: "Curriculum", id: "academics", Icon: GraduationCap },
+  { label: "Campus", id: "campus", Icon: Building2 },
+  { label: "Learning Beyond", id: "learning-beyond", Icon: Users },
+  { label: "Contact", id: "contact", Icon: Phone },
+];
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
@@ -225,15 +240,27 @@ export default function School() {
   useEffect(() => {
     if (dialog) {
       dialogRef.current?.showModal();
-      document.body.style.overflow = "hidden";
     } else {
       dialogRef.current?.close();
-      document.body.style.overflow = "";
     }
+  }, [dialog]);
+
+  useEffect(() => {
+    const lock = Boolean(menu || dialog);
+    document.body.style.overflow = lock ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [dialog]);
+  }, [menu, dialog]);
+
+  useEffect(() => {
+    if (!menu) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenu(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menu]);
   function openDialog(value: string) {
     setSaved(false);
     try {
@@ -270,7 +297,7 @@ export default function School() {
     <>
       <CrestIntro />
       <header
-        className={`header ${scrolled ? "is-scrolled" : ""} ${hidden && !menu ? "is-hidden" : ""}`}
+        className={`header ${scrolled ? "is-scrolled" : ""} ${hidden && !menu ? "is-hidden" : ""} ${menu ? "is-menu-open" : ""}`}
       >
         <div className="header-brand-group">
           <Brand />
@@ -301,45 +328,136 @@ export default function School() {
           <span>Explore Admissions</span>
           <ArrowUpRight size={15} className="nav-apply-arrow" />
         </a>
+        <a
+          className="mobile-admissions-btn"
+          href="/admissions"
+          onClick={() => setMenu(false)}
+        >
+          Admissions
+          <ChevronRight size={14} strokeWidth={2.2} aria-hidden="true" />
+        </a>
         <button
           className="menu-toggle"
+          type="button"
           onClick={() => setMenu(!menu)}
           aria-expanded={menu}
+          aria-controls="mobile-navigation"
           aria-label={menu ? "Close menu" : "Open menu"}
         >
-          {menu ? <X /> : <Menu />}
+          {menu ? (
+            <X size={20} strokeWidth={1.75} aria-hidden="true" />
+          ) : (
+            <Menu size={20} strokeWidth={1.75} aria-hidden="true" />
+          )}
         </button>
       </header>
       <AnimatePresence>
         {menu && (
           <motion.div
+            id="mobile-navigation"
             className="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+            initial={
+              typeof window !== "undefined" &&
+              window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? { opacity: 1 }
+                : { opacity: 0, y: -12 }
+            }
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={
+              typeof window !== "undefined" &&
+              window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? { opacity: 0 }
+                : { opacity: 0, y: -12 }
+            }
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
-            <nav>
-              {nav.map((n, i) => {
-                const id = navHref[n];
-                const isActive = activeSection === id;
+            <nav className="mobile-menu-nav" aria-label="Mobile navigation">
+              {mobileNavItems.map(({ label, id, Icon }) => {
+                const isHome = id === "main";
+                const isActive = isHome
+                  ? !activeSection || activeSection === "main"
+                  : activeSection === id;
                 return (
                   <a
-                    key={n}
-                    href={`#${id}`}
-                    className={isActive ? "is-active" : ""}
+                    key={label}
+                    href={isHome ? "#main" : `#${id}`}
+                    className={`mobile-menu-link ${isActive ? "is-active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
                     onClick={() => {
-                      handleNavClick(id);
+                      if (isHome) {
+                        setActiveSection("");
+                        setHidden(false);
+                        const lenis = (
+                          window as Window & {
+                            lenis?: { scrollTo?: Function };
+                          }
+                        ).lenis;
+                        if (lenis?.scrollTo) lenis.scrollTo(0, { duration: 0.85 });
+                        else window.scrollTo({ top: 0, behavior: "smooth" });
+                      } else {
+                        handleNavClick(id);
+                      }
                       setMenu(false);
                     }}
                   >
-                    <small>0{i + 1}</small>
-                    {n}
-                    <ArrowUpRight />
+                    <span className="mobile-menu-link-icon" aria-hidden="true">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </span>
+                    <span className="mobile-menu-link-label">{label}</span>
+                    <ChevronRight
+                      className="mobile-menu-link-chevron"
+                      size={16}
+                      strokeWidth={1.75}
+                      aria-hidden="true"
+                    />
                   </a>
                 );
               })}
             </nav>
-            <p>Preparing children for life, not just exams.</p>
+
+            <div className="mobile-menu-ctas">
+              <a
+                className="mobile-menu-cta mobile-menu-cta--primary"
+                href="/admissions"
+                onClick={() => setMenu(false)}
+              >
+                Apply for Admissions
+                <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+              </a>
+              <button
+                type="button"
+                className="mobile-menu-cta mobile-menu-cta--secondary"
+                onClick={() => {
+                  setMenu(false);
+                  openDialog("Plan a campus visit");
+                }}
+              >
+                Book a Campus Visit
+                <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+              </button>
+            </div>
+
+            {(school.city || school.phone) && (
+              <div className="mobile-menu-contact">
+                {school.city && (
+                  <p>
+                    <MapPin size={15} strokeWidth={1.6} aria-hidden="true" />
+                    <span>{school.city}</span>
+                  </p>
+                )}
+                {school.phone && (
+                  <a href={`tel:${school.phone.replace(/\s/g, "")}`}>
+                    <Phone size={15} strokeWidth={1.6} aria-hidden="true" />
+                    <span>{school.phone}</span>
+                  </a>
+                )}
+              </div>
+            )}
+
+            <p className="mobile-menu-tagline">LEARN · GROW · BELONG</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -660,6 +778,12 @@ export default function School() {
                 <p>{body}</p>
               </button>
             ))}
+          </div>
+          <div className="mobile-more-wrap">
+            <a className="mobile-more-btn" href="/learning-beyond">
+              More programmes
+              <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+            </a>
           </div>
         </section>
         <section className="admissions section" id="admissions-process">
