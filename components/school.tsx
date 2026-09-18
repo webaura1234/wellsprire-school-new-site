@@ -47,6 +47,7 @@ const nav = [
   "Curriculum",
   "Campus",
   "Learning Beyond",
+  "Public Disclosure",
   "Contact",
 ];
 const navHref: Record<string, string> = {
@@ -57,6 +58,10 @@ const navHref: Record<string, string> = {
   "Learning Beyond": "learning-beyond",
   Contact: "contact",
   Results: "results",
+};
+/** Page routes in the desktop dock (not in-page hash sections). */
+const navPageHref: Record<string, string> = {
+  "Public Disclosure": "/mandatory-public-disclosure",
 };
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
@@ -323,6 +328,14 @@ export default function School() {
         </div>
         <nav className="header-nav-dock" aria-label="Main navigation">
           {nav.map((n) => {
+            const pageHref = navPageHref[n];
+            if (pageHref) {
+              return (
+                <a key={n} href={pageHref} className="nav-dock-link">
+                  <span>{n}</span>
+                </a>
+              );
+            }
             const id = navHref[n];
             const isActive = activeSection === id;
             return (
@@ -567,9 +580,9 @@ export default function School() {
               <em>Ready for tomorrow.</em>
             </Heading>
             <p>
-              A balanced Global–Indian curriculum: UK National Curriculum,
-              Cambridge International, and key CBSE strengths — with conceptual
-              understanding, not memorisation.
+              A CBSE curriculum built for conceptual understanding, not
+              memorisation — with strong academics, values, creativity, and
+              culture.
             </p>
             <a className="text-link" href="#admissions">
               Explore curriculum <ArrowUpRight size={17} />
@@ -872,7 +885,7 @@ export default function School() {
           <div>
             <Eyebrow>GOOD TO KNOW</Eyebrow>
             <a href="/mandatory-public-disclosure">
-              Mandatory Public Disclosure <ArrowUpRight size={13} />
+              Public Disclosure <ArrowUpRight size={13} />
             </a>
             <button onClick={() => openDialog("Fee structure")}>
               Fee structure

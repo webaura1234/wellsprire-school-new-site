@@ -27,7 +27,7 @@ export function Stats() {
           [10, "Acre green campus", "Where children thrive"],
           [6, "Core values", "Integrity to excellence"],
           [8, "Signature spaces", "Labs, farm, studio, field"],
-          [4, "Curriculum strengths", "UK · Cambridge · CBSE · India"],
+          [4, "Curriculum strengths", "CBSE · Values · Skills · Character"],
         ].map(([n, label, copy]) => (
           <div key={String(label)}>
             <span className="stat-value" data-count={n}>

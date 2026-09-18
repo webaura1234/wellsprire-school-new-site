@@ -5,6 +5,7 @@ import {
   GraduationCap,
   Home,
   Phone,
+  ScrollText,
   Sparkles,
   Users,
   type LucideIcon,
@@ -41,5 +42,10 @@ export const mobileNavItems: MobileNavItem[] = [
     Icon: Sparkles,
   },
   { label: "Admissions", href: "/admissions", Icon: ClipboardList },
+  {
+    label: "Public Disclosure",
+    href: "/public-disclosure",
+    Icon: ScrollText,
+  },
   { label: "Contact", href: "/#contact", sectionId: "contact", Icon: Phone },
 ];

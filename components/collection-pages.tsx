@@ -11,13 +11,13 @@ import {
 } from "@/lib/programmes";
 
 export const learningHighlightsMetadata: Metadata = {
-  title: "Learning Highlights — Wellspire International School",
+  title: "Learning Highlights — Wellspire School",
   description:
-    "Explore all learning highlights at Wellspire International School — values, campus, innovation, STEAM, arts, and more.",
+    "Explore all learning highlights at Wellspire School — values, campus, innovation, STEAM, arts, and more.",
 };
 
 export const learningBeyondMetadata: Metadata = {
-  title: "Learning Beyond Classrooms — Wellspire International School",
+  title: "Learning Beyond Classrooms — Wellspire School",
   description:
     "Hands-on programmes at Wellspire — farming, STEAM, values, podcasting, biophilic spaces, and more.",
 };

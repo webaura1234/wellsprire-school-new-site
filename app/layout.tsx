@@ -16,9 +16,9 @@ const display = Instrument_Serif({
   display: "swap",
 });
 export const metadata: Metadata = {
-  title: "Wellspire International School — Inspiring Lifelong Learners",
+  title: "Wellspire School — Inspiring Lifelong Learning",
   description:
-    "Wellspire International School, Hyderabad — a CBSE-aligned Global–Indian curriculum that values academics, arts, sports, and character equally.",
+    "Wellspire School, Hyderabad — a CBSE school that values academics, arts, sports, and character equally.",
   robots: { index: false, follow: false },
 };
 
