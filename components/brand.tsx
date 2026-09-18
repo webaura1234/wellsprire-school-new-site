@@ -102,13 +102,13 @@ export function Brand({
     <Link
       className={`brand ${className}`}
       href="/"
-      aria-label="Wellspire International School home"
+      aria-label="Wellspire School home"
     >
       <Image
-        src="/images/logo.png"
-        alt="Wellspire International School"
-        width={100}
-        height={88}
+        src="/images/wellspire-school-logo.jpg"
+        alt="Wellspire School — Inspiring Lifelong Learning"
+        width={120}
+        height={120}
         className="brand-logo-img"
         unoptimized
         priority

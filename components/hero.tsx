@@ -18,7 +18,7 @@ const chapters = [
     name: "Campus",
     word: "grounds",
     image: photos.campus,
-    alt: "Wellspire International School campus building and green lawn",
+    alt: "Wellspire School campus building and green lawn",
     note: "A campus where children thrive.",
     detail: "10 acres. Green, safe, and child-friendly.",
   },
@@ -280,7 +280,7 @@ export default function Hero({ onVisit }: { onVisit: () => void }) {
     <div className="hero-scroll-track" ref={trackRef} data-hero-chapter={chapter}>
       <section
         className="hero prospectus-hero"
-        aria-label="Welcome to Wellspire International School"
+        aria-label="Welcome to Wellspire School"
       >
         <div className="hero-edition">
           <span>THE WELLSPIRE YEARS</span>

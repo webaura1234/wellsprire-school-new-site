@@ -1,9 +1,9 @@
 /** Replace only with school-approved information. Null values are deliberately not invented. */
 export const school = {
-  name: "Wellspire International School",
+  name: "Wellspire School",
   city: "Hyderabad, Telangana" as string | null,
   phone: "+91 98765 43210" as string | null,
-  email: null as string | null,
+  email: "info@wellspireschool.com" as string | null,
   affiliation: "CBSE" as string | null,
 };
 /** Design-only data, visibly labelled wherever rendered. Never publish as actual school outcomes. */

@@ -27,8 +27,8 @@ export function TrustSection() {
   const recognitions = [
     {
       badge: "CURRICULUM",
-      title: "Global Curriculum",
-      org: "UK, Cambridge & key CBSE strengths",
+      title: "CBSE Curriculum",
+      org: "Conceptual learning with strong academics",
       icon: GraduationCap,
     },
     {
@@ -209,7 +209,7 @@ export function AboutWellspireSection({
         <p className="side-note">
           Integrity · Wellness · Innovation
           <br />
-          Inspiration · Global Citizenship · Excellence
+          Inspiration · Character · Excellence
         </p>
         <Spire className="intro-spire" />
       </div>
@@ -306,7 +306,7 @@ export function PrincipalMessage({
             <div className="principal-photo-wrap">
               <Image
                 src={photos.building}
-                alt="Wellspire International School campus"
+                alt="Wellspire School campus"
                 fill
                 sizes="(max-width: 768px) 88vw, 40vw"
                 className="principal-photo"
@@ -321,11 +321,11 @@ export function PrincipalMessage({
                 </span>
                 <div className="signature-copy">
                   <div className="signature-header">
-                    <span className="signature-name">Ms Vijaya Lakshmi</span>
+                    <span className="signature-name">Ms. M. Vijaya Lakshmi</span>
                     <span className="signature-degree">MBA, M.Com, M.Ed</span>
                   </div>
                   <p className="signature-title">
-                    Principal, Wellspire International School
+                    Principal, Wellspire School
                   </p>
                 </div>
               </aside>
@@ -618,8 +618,8 @@ export function UniversityDestinations({ onEnquire }: { onEnquire: () => void })
         </div>
         <div className="uni-kpi-card">
           <span className="uni-kpi-val">CBSE</span>
-          <strong>Strengths Integrated</strong>
-          <p>UK, Cambridge, and key CBSE strengths — with Indian values.</p>
+          <strong>Curriculum</strong>
+          <p>CBSE academics with values, creativity, and culture.</p>
         </div>
         <div className="uni-kpi-card">
           <span className="uni-kpi-val">Grade 1</span>

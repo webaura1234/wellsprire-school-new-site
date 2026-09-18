@@ -326,7 +326,7 @@ export default function AdmissionsMobilePage() {
         <div className="admissions-mobile-media">
           <Image
             src={photos.campus}
-            alt="Wellspire International School campus"
+            alt="Wellspire School campus"
             fill
             sizes="(max-width:767px) 92vw, 640px"
             priority
@@ -354,7 +354,7 @@ export default function AdmissionsMobilePage() {
               </span>
               <h2>Enquiry Received</h2>
               <p>
-                Thank you for your interest in Wellspire International School.
+                Thank you for your interest in Wellspire School.
                 Our admissions team will be in touch with you shortly.
               </p>
               <p className="admissions-mobile-success-note">
@@ -556,7 +556,7 @@ export default function AdmissionsMobilePage() {
                     aria-invalid={Boolean(errors.consent)}
                   />
                   <span>
-                    I agree to be contacted by Wellspire International School.
+                    I agree to be contacted by Wellspire School.
                   </span>
                 </label>
                 {errors.consent && (

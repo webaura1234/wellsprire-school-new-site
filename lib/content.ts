@@ -18,7 +18,7 @@ export const photos = {
 export const stages = [
   {
     name: "Early Years",
-    range: "Nursery — PP2 · EYFS – UK",
+    range: "Nursery — PP2 · Foundational Stage",
     title: "Play-based. Language-rich.",
     text: "Play, stories, music, and movement that grow language, social confidence, and a love of discovery.",
     subjects: "Play · Language · Social confidence · Stories · Music · Movement",
@@ -26,7 +26,7 @@ export const stages = [
   },
   {
     name: "Primary School",
-    range: "Grades 1 — 5 · Cambridge Primary",
+    range: "Grades 1 — 5 · CBSE Primary",
     title: "Concept-led. Inquiry-driven.",
     text: "Structured, engaging learning with conceptual clarity, problem-solving, classroom mini libraries, AI awareness, robotics, and sport for teamwork.",
     subjects: "Concepts · Inquiry · Mini libraries · AI & robotics · Sport",
@@ -34,7 +34,7 @@ export const stages = [
   },
   {
     name: "Middle School",
-    range: "Grades 6 — 7 · Integrated Curriculum",
+    range: "Grades 6 — 7 · CBSE Middle",
     title: "Analytical. Application-ready.",
     text: "Independent, reflective learners applying knowledge to real contexts — with digital literacy, communication, leadership, and resilient character.",
     subjects: "Analysis · Real-world use · AI & robotics · Leadership · Resilience",
@@ -50,10 +50,10 @@ export const stages = [
   },
   {
     name: "Curriculum",
-    range: "Global–Indian · CBSE strengths",
+    range: "CBSE · Holistic Learning",
     title: "Designed for today. Ready for tomorrow.",
-    text: "UK National Curriculum foundation, Cambridge International, and key CBSE strengths — adapted for Indian context, values, and culture.",
-    subjects: "Strong academics · Conceptual clarity · Global exposure · Cultural grounding",
+    text: "A CBSE curriculum focused on conceptual understanding, not memorisation — with strong academics, values, creativity, and culture.",
+    subjects: "Strong academics · Conceptual clarity · Values · Cultural grounding",
     image: photos.building,
   },
 ];
