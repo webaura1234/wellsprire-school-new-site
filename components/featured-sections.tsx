@@ -8,7 +8,12 @@ import {
   GraduationCap,
   CheckCircle2,
   ArrowRight,
+  ShieldCheck,
+  Bus,
+  HeartPulse,
+  Users,
 } from "lucide-react";
+import { Spire } from "./brand";
 import { Heading } from "./heading";
 import { photos } from "@/lib/content";
 import { homeLearningHighlights } from "@/lib/programmes";
@@ -192,7 +197,103 @@ export function TrustSection() {
   );
 }
 
-export function PrincipalMessage({ onExplore }: { onExplore: () => void }) {
+export function AboutWellspireSection({
+  philosophyHref = "#pillars",
+}: {
+  philosophyHref?: string;
+}) {
+  return (
+    <section className="intro section" id="about">
+      <div>
+        <Eyebrow>ABOUT WELLSPIRE</Eyebrow>
+        <p className="side-note">
+          Integrity · Wellness · Innovation
+          <br />
+          Inspiration · Global Citizenship · Excellence
+        </p>
+        <Spire className="intro-spire" />
+      </div>
+      <div>
+        <h2 className="manifesto">
+          {"To shape a generation of well-rounded individuals — bright in intellect, bold in sport, alive in the arts, rooted in culture, and driven by values — who will rise to lead with balance, empathy, and excellence."
+            .split(" ")
+            .map((w, i) => (
+              <span className="manifesto-word" key={i}>
+                {w}{" "}
+              </span>
+            ))}
+        </h2>
+        <div className="intro-bottom">
+          <p>
+            The name Wellspire joins well-being and inspiration. We empower
+            every child to learn deeply, live fully, and lead with purpose —
+            through a balanced education that values academics, arts, sports,
+            and character equally.
+          </p>
+          <a href={philosophyHref} className="text-link">
+            Our philosophy <ArrowUpRight size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function CampusExperienceSection() {
+  return (
+    <section className="safety section">
+      <div>
+        <Eyebrow>CAMPUS EXPERIENCE</Eyebrow>
+        <Heading>
+          Safe. Green.
+          <br />
+          <em>Child-friendly.</em>
+        </Heading>
+        <p>Nature is part of everyday learning — not an add-on.</p>
+      </div>
+      <div className="safety-grid">
+        {(
+          [
+            [
+              ShieldCheck,
+              "10-acre green campus",
+              "Open grounds and green exploration, built for children to thrive.",
+            ],
+            [
+              Bus,
+              "GPS-enabled transport",
+              "Tracked routes and child-friendly travel to and from campus.",
+            ],
+            [
+              HeartPulse,
+              "Air-conditioned classrooms",
+              "Calm, comfortable rooms with natural light and ventilation.",
+            ],
+            [
+              Users,
+              "Safe infrastructure",
+              "A child-friendly campus designed for everyday care and belonging.",
+            ],
+          ] as const
+        ).map(([Icon, title, text]) => (
+          <div key={title}>
+            <Icon size={27} strokeWidth={1.25} />
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function PrincipalMessage({
+  onExplore,
+  philosophyHref = "#pillars",
+}: {
+  onExplore: () => void;
+  philosophyHref?: string;
+}) {
   return (
     <section
       className="section principal-section"
@@ -281,8 +382,8 @@ export function PrincipalMessage({ onExplore }: { onExplore: () => void }) {
             <button className="button dark" onClick={onExplore}>
               Connect with our leadership <ArrowUpRight size={16} />
             </button>
-            <a href="#pillars" className="text-link">
-            Explore our philosophy <ArrowUpRight size={16} />
+            <a href={philosophyHref} className="text-link">
+              Explore our philosophy <ArrowUpRight size={16} />
             </a>
           </div>
         </div>
@@ -571,13 +672,16 @@ export function UniversityDestinations({ onEnquire }: { onEnquire: () => void })
 
 export function AdmissionsCallout({
   onOpen,
+  anchor = true,
 }: {
   onOpen: (title: string) => void;
+  /** When false, omit id so a mobile/desktop twin can own #admissions. */
+  anchor?: boolean;
 }) {
   return (
     <section
       className="admissions-callout-strip"
-      id="admissions"
+      id={anchor ? "admissions" : undefined}
       aria-label="Admissions priority enquiry"
     >
       <div className="callout-inner">

@@ -4395,9 +4395,9 @@ h1 {
     padding: 0 16px !important;
     gap: 10px !important;
     background: var(--paper) !important;
-    border-bottom: 1px solid rgba(28, 59, 126, 0.1) !important;
-    border-radius: 0 !important;
-    box-shadow: 0 1px 0 rgba(28, 59, 126, 0.04), 0 4px 18px -8px rgba(28, 59, 126, 0.08) !important;
+    border-bottom: 1px solid rgba(24, 53, 112, 0.08) !important;
+    border-radius: 0 0 24px 24px !important;
+    box-shadow: 0 4px 24px -4px rgba(24, 53, 112, 0.06) !important;
     align-items: center !important;
   }
   .header.is-scrolled {
@@ -4405,13 +4405,16 @@ h1 {
     background: rgba(250, 248, 244, 0.96) !important;
     backdrop-filter: blur(16px) saturate(160%) !important;
     -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-    border-radius: 0 !important;
-    box-shadow: 0 4px 20px -6px rgba(28, 59, 126, 0.1) !important;
+    border-radius: 0 0 28px 28px !important;
+    box-shadow:
+      0 12px 36px -6px rgba(24, 53, 112, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
   }
   .header.is-menu-open {
     transform: none !important;
-    box-shadow: none !important;
-    border-bottom-color: rgba(28, 59, 126, 0.08) !important;
+    border-radius: 0 0 24px 24px !important;
+    box-shadow: 0 4px 24px -4px rgba(24, 53, 112, 0.06) !important;
+    border-bottom-color: rgba(24, 53, 112, 0.08) !important;
   }
   .header-brand-group {
     flex: 1 1 auto !important;
@@ -4591,6 +4594,43 @@ h1 {
   .trust-section .section-subtext p {
     text-align: center !important;
     margin: 0 auto !important;
+  }
+
+  /* Learning Highlights — centered header block on mobile */
+  .global-section .section-heading {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 14px !important;
+    margin-bottom: 28px !important;
+  }
+  .global-section .section-heading > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .global-section .section-heading .eyebrow {
+    text-align: center !important;
+  }
+  .global-section .section-heading h2 {
+    text-align: center !important;
+  }
+  .global-section .section-subtext {
+    max-width: 34ch !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+  .global-section .section-subtext p {
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+  .global-section .section-subtext .text-link {
+    justify-content: center !important;
+    margin-inline: auto !important;
   }
   .trust-grid {
     grid-template-columns: 1fr !important;
@@ -5395,9 +5435,9 @@ h1 {
   height: 78px !important;
   padding: 0 16px !important;
   background: var(--paper) !important;
-  border-bottom: 1px solid rgba(28, 59, 126, 0.1) !important;
-  border-radius: 0 !important;
-  box-shadow: 0 1px 0 rgba(28, 59, 126, 0.04), 0 4px 18px -8px rgba(28, 59, 126, 0.08) !important;
+  border-bottom: 1px solid rgba(24, 53, 112, 0.08) !important;
+  border-radius: 0 0 24px 24px !important;
+  box-shadow: 0 4px 24px -4px rgba(24, 53, 112, 0.06) !important;
   position: sticky;
   top: 0;
   z-index: 50;
@@ -5749,5 +5789,100 @@ h1 {
 @media (prefers-reduced-motion: reduce) {
   .admissions-mobile-submit:active {
     transform: none;
+  }
+}
+
+/* Mobile home: secondary sections live on sub-pages. CSS gates visibility
+   so the trim does not depend on JS hydration timing. */
+@media (max-width: 767px) {
+  .home-desktop-only {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .home-mobile-only {
+    display: none !important;
+  }
+}
+
+/* —— Mobile IA sub-pages (About / Leadership / Campus Life) —— */
+.mobile-subpage {
+  min-height: 100dvh;
+  background: var(--paper);
+  color: var(--ink);
+}
+.mobile-subpage-main {
+  padding: 88px 0 48px;
+}
+.mobile-subpage-intro {
+  padding: 8px 22px 28px;
+}
+.mobile-subpage-intro .collection-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.mobile-subpage-intro .eyebrow {
+  margin-bottom: 10px;
+}
+.mobile-subpage-intro h2 {
+  margin: 0 0 12px;
+  font-size: clamp(32px, 8vw, 44px);
+  line-height: 1.05;
+}
+.mobile-subpage-deck {
+  margin: 0;
+  max-width: 36ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.mobile-subpage-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  margin-top: 36px;
+  padding: 28px 22px 8px;
+  border-top: 1px solid rgba(28, 59, 126, 0.12);
+}
+.mobile-subpage-footer a {
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.mobile-subpage .section,
+.mobile-subpage .school-stats,
+.mobile-subpage .results-new,
+.mobile-subpage .safety {
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+@media (max-width: 767px) {
+  .mobile-subpage .mobile-menu {
+    display: block !important;
+    position: fixed !important;
+    top: 78px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    inset: 78px 0 0 0 !important;
+    background: var(--paper) !important;
+    z-index: 45 !important;
+    padding: 12px 18px 28px !important;
+    overflow-y: auto !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-subpage {
+    display: none;
   }
 }
