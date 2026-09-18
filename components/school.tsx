@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -10,27 +11,18 @@ import {
   X,
   Plus,
   Minus,
-  ShieldCheck,
-  Bus,
-  HeartPulse,
-  Users,
   BookOpen,
   Check,
   ChevronLeft,
   ChevronRight,
-  Home,
-  FileText,
-  GraduationCap,
-  Building2,
-  Phone,
   MapPin,
-  type LucideIcon,
+  Phone,
 } from "lucide-react";
-import { Brand, Spire, QuadrantIcon } from "./brand";
+import { Brand, QuadrantIcon } from "./brand";
 import { photos, stages } from "@/lib/content";
-import MotionSetup from "./motion";
+import { startHomeMotion } from "./motion";
 import Hero from "./hero";
-import CrestIntro from "./intro";
+import CrestIntro, { startCrestIntro } from "./intro";
 import { Heading } from "./heading";
 import { Stats, Results, Testimonials } from "./school-facts";
 import {
@@ -40,6 +32,8 @@ import {
   UniversityDestinations,
   TrustSection,
   OurTeamSection,
+  AboutWellspireSection,
+  CampusExperienceSection,
 } from "./featured-sections";
 import {
   learningBeyondPrograms,
@@ -47,6 +41,7 @@ import {
   founderDialogCopy,
 } from "@/lib/programmes";
 import { school } from "@/lib/school";
+import { mobileNavItems } from "@/lib/mobile-nav";
 const nav = [
   "About",
   "Curriculum",
@@ -63,14 +58,6 @@ const navHref: Record<string, string> = {
   Contact: "contact",
   Results: "results",
 };
-const mobileNavItems: { label: string; id: string; Icon: LucideIcon }[] = [
-  { label: "Home", id: "main", Icon: Home },
-  { label: "About", id: "about", Icon: FileText },
-  { label: "Curriculum", id: "academics", Icon: GraduationCap },
-  { label: "Campus", id: "campus", Icon: Building2 },
-  { label: "Learning Beyond", id: "learning-beyond", Icon: Users },
-  { label: "Contact", id: "contact", Icon: Phone },
-];
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
@@ -120,6 +107,38 @@ export default function School() {
   const [activeSection, setActiveSection] = useState("");
   const lastScrollY = useRef(0);
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const syncAdmissionsAnchor = () => {
+      const desktop = document.querySelector<HTMLElement>(
+        ".home-desktop-only .admissions-callout-strip",
+      );
+      const mobile = document.querySelector<HTMLElement>(
+        ".home-mobile-only .admissions-callout-strip",
+      );
+      const isMob = window.matchMedia("(max-width: 767px)").matches;
+      if (desktop) desktop.id = isMob ? "" : "admissions";
+      if (mobile) mobile.id = isMob ? "admissions" : "";
+    };
+    syncAdmissionsAnchor();
+    const mq = window.matchMedia("(max-width: 767px)");
+    mq.addEventListener("change", syncAdmissionsAnchor);
+    return () => mq.removeEventListener("change", syncAdmissionsAnchor);
+  }, []);
+
+  useEffect(() => startHomeMotion(), []);
+
+  // Crest intro → 2s idle → auto-open homepage (scroll still skips).
+  useEffect(() => {
+    let stop = () => {};
+    const id = requestAnimationFrame(() => {
+      stop = startCrestIntro();
+    });
+    return () => {
+      cancelAnimationFrame(id);
+      stop();
+    };
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -375,16 +394,53 @@ export default function School() {
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
             <nav className="mobile-menu-nav" aria-label="Mobile navigation">
-              {mobileNavItems.map(({ label, id, Icon }) => {
-                const isHome = id === "main";
+              {mobileNavItems.map(({ label, href, sectionId, Icon }) => {
+                const isHome = href === "/";
+                const isRoute = href.startsWith("/") && !href.includes("#");
                 const isActive = isHome
                   ? !activeSection || activeSection === "main"
-                  : activeSection === id;
+                  : Boolean(sectionId && activeSection === sectionId);
+                const className = `mobile-menu-link ${isActive ? "is-active" : ""}`;
+                const icon = (
+                  <>
+                    <span className="mobile-menu-link-icon" aria-hidden="true">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </span>
+                    <span className="mobile-menu-link-label">{label}</span>
+                    <ChevronRight
+                      className="mobile-menu-link-chevron"
+                      size={16}
+                      strokeWidth={1.75}
+                      aria-hidden="true"
+                    />
+                  </>
+                );
+
+                if (isRoute) {
+                  return (
+                    <Link
+                      key={label}
+                      href={href}
+                      className={className}
+                      aria-current={isActive ? "page" : undefined}
+                      onClick={() => setMenu(false)}
+                    >
+                      {icon}
+                    </Link>
+                  );
+                }
+
+                const hashId = isHome
+                  ? "main"
+                  : href.includes("#")
+                    ? href.split("#")[1]
+                    : sectionId || "";
+
                 return (
                   <a
                     key={label}
-                    href={isHome ? "#main" : `#${id}`}
-                    className={`mobile-menu-link ${isActive ? "is-active" : ""}`}
+                    href={isHome ? "#main" : `#${hashId}`}
+                    className={className}
                     aria-current={isActive ? "page" : undefined}
                     onClick={() => {
                       if (isHome) {
@@ -397,22 +453,13 @@ export default function School() {
                         ).lenis;
                         if (lenis?.scrollTo) lenis.scrollTo(0, { duration: 0.85 });
                         else window.scrollTo({ top: 0, behavior: "smooth" });
-                      } else {
-                        handleNavClick(id);
+                      } else if (hashId) {
+                        handleNavClick(hashId);
                       }
                       setMenu(false);
                     }}
                   >
-                    <span className="mobile-menu-link-icon" aria-hidden="true">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </span>
-                    <span className="mobile-menu-link-label">{label}</span>
-                    <ChevronRight
-                      className="mobile-menu-link-chevron"
-                      size={16}
-                      strokeWidth={1.75}
-                      aria-hidden="true"
-                    />
+                    {icon}
                   </a>
                 );
               })}
@@ -653,91 +700,15 @@ export default function School() {
             in person.
           </p>
         </section>
-        <section className="safety section">
-          <div>
-            <Eyebrow>CAMPUS EXPERIENCE</Eyebrow>
-            <Heading>
-              Safe. Green.
-              <br />
-              <em>Child-friendly.</em>
-            </Heading>
-            <p>
-              Nature is part of everyday learning — not an add-on.
-            </p>
-          </div>
-          <div className="safety-grid">
-            {[
-              [
-                ShieldCheck,
-                "10-acre green campus",
-                "Open grounds and green exploration, built for children to thrive.",
-              ],
-              [
-                Bus,
-                "GPS-enabled transport",
-                "Tracked routes and child-friendly travel to and from campus.",
-              ],
-              [
-                HeartPulse,
-                "Air-conditioned classrooms",
-                "Calm, comfortable rooms with natural light and ventilation.",
-              ],
-              [
-                Users,
-                "Safe infrastructure",
-                "A child-friendly campus designed for everyday care and belonging.",
-              ],
-            ].map(([Icon, title, text]) => {
-              const I = Icon as typeof ShieldCheck;
-              return (
-                <div key={String(title)}>
-                  <I size={27} strokeWidth={1.25} />
-                  <h3>{String(title)}</h3>
-                  <p>{String(text)}</p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-        <AdmissionsCallout onOpen={openDialog} />
-
-        <section className="intro section" id="about">
-          <div>
-            <Eyebrow>ABOUT WELLSPIRE</Eyebrow>
-            <p className="side-note">
-              Integrity · Wellness · Innovation
-              <br />
-              Inspiration · Global Citizenship · Excellence
-            </p>
-            <Spire className="intro-spire" />
-          </div>
-          <div>
-            <h2 className="manifesto">
-              {"To shape a generation of well-rounded individuals — bright in intellect, bold in sport, alive in the arts, rooted in culture, and driven by values — who will rise to lead with balance, empathy, and excellence."
-                .split(" ")
-                .map((w, i) => (
-                  <span className="manifesto-word" key={i}>
-                    {w}{" "}
-                  </span>
-                ))}
-            </h2>
-            <div className="intro-bottom">
-              <p>
-                The name Wellspire joins well-being and inspiration. We empower
-                every child to learn deeply, live fully, and lead with purpose —
-                through a balanced education that values academics, arts, sports,
-                and character equally.
-              </p>
-              <a href="#pillars" className="text-link">
-                Our philosophy <ArrowUpRight size={18} />
-              </a>
-            </div>
-          </div>
-        </section>
-        <OurTeamSection
-          onFounder={(name) => openDialog(name)}
-        />
-        <PrincipalMessage onExplore={() => openDialog("Message from our Principal")} />
+        <div className="home-desktop-only">
+          <CampusExperienceSection />
+          <AdmissionsCallout onOpen={openDialog} />
+          <AboutWellspireSection />
+          <OurTeamSection onFounder={(name) => openDialog(name)} />
+          <PrincipalMessage
+            onExplore={() => openDialog("Message from our Principal")}
+          />
+        </div>
         <section
           className="section journal"
           id="learning-beyond"
@@ -786,6 +757,9 @@ export default function School() {
             </a>
           </div>
         </section>
+        <div className="home-mobile-only">
+          <AdmissionsCallout onOpen={openDialog} anchor={false} />
+        </div>
         <section className="admissions section" id="admissions-process">
           <div className="admission-top">
             <Eyebrow>09 — YOUR NEXT CHAPTER</Eyebrow>
@@ -849,12 +823,15 @@ export default function School() {
             </button>
           </div>
         </section>
-        <Stats />
-        <Results />
-        <UniversityDestinations onEnquire={() => openDialog("Plan a campus visit")} />
-        <Testimonials />
+        <div className="home-desktop-only">
+          <Stats />
+          <Results />
+          <UniversityDestinations
+            onEnquire={() => openDialog("Plan a campus visit")}
+          />
+          <Testimonials />
+        </div>
       </main>
-      <MotionSetup />
       <footer id="contact">
         <div className="footer-top">
           <div>

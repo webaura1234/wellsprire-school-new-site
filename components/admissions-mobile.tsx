@@ -6,24 +6,20 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
-  Building2,
   Check,
   ChevronRight,
-  FileText,
   GraduationCap,
-  Home,
   MapPin,
   Menu,
   Phone,
   ShieldCheck,
   Sparkles,
-  Users,
   X,
-  type LucideIcon,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { Heading } from "@/components/heading";
 import { photos } from "@/lib/content";
+import { mobileNavItems } from "@/lib/mobile-nav";
 import { school } from "@/lib/school";
 
 const GRADES = [
@@ -36,17 +32,11 @@ const GRADES = [
 function academicYears() {
   const now = new Date();
   const start = now.getMonth() >= 3 ? now.getFullYear() : now.getFullYear() - 1;
-  return [`${start}–${String(start + 1).slice(-2)}`, `${start + 1}–${String(start + 2).slice(-2)}`];
+  return [
+    `${start}–${String(start + 1).slice(-2)}`,
+    `${start + 1}–${String(start + 2).slice(-2)}`,
+  ];
 }
-
-const mobileNavItems: { label: string; href: string; Icon: LucideIcon }[] = [
-  { label: "Home", href: "/", Icon: Home },
-  { label: "About", href: "/#about", Icon: FileText },
-  { label: "Curriculum", href: "/#academics", Icon: GraduationCap },
-  { label: "Campus", href: "/#campus", Icon: Building2 },
-  { label: "Learning Beyond", href: "/#learning-beyond", Icon: Users },
-  { label: "Contact", href: "/#contact", Icon: Phone },
-];
 
 const benefits = [
   { n: "01", title: "Holistic Education", Icon: Sparkles },
@@ -256,25 +246,29 @@ export default function AdmissionsMobilePage() {
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
             <nav className="mobile-menu-nav" aria-label="Mobile navigation">
-              {mobileNavItems.map(({ label, href, Icon }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  className="mobile-menu-link"
-                  onClick={() => setMenu(false)}
-                >
-                  <span className="mobile-menu-link-icon" aria-hidden="true">
-                    <Icon size={20} strokeWidth={1.5} />
-                  </span>
-                  <span className="mobile-menu-link-label">{label}</span>
-                  <ChevronRight
-                    className="mobile-menu-link-chevron"
-                    size={16}
-                    strokeWidth={1.75}
-                    aria-hidden="true"
-                  />
-                </Link>
-              ))}
+              {mobileNavItems.map(({ label, href, Icon }) => {
+                const isActive = href === "/admissions";
+                return (
+                  <Link
+                    key={label}
+                    href={href}
+                    className={`mobile-menu-link${isActive ? " is-active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                    onClick={() => setMenu(false)}
+                  >
+                    <span className="mobile-menu-link-icon" aria-hidden="true">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </span>
+                    <span className="mobile-menu-link-label">{label}</span>
+                    <ChevronRight
+                      className="mobile-menu-link-chevron"
+                      size={16}
+                      strokeWidth={1.75}
+                      aria-hidden="true"
+                    />
+                  </Link>
+                );
+              })}
             </nav>
             <div className="mobile-menu-ctas">
               <Link
