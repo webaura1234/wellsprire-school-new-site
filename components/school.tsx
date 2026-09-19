@@ -24,16 +24,9 @@ import { startHomeMotion } from "./motion";
 import Hero from "./hero";
 import CrestIntro, { startCrestIntro } from "./intro";
 import { Heading } from "./heading";
-import { Stats, Results, Testimonials } from "./school-facts";
 import {
-  PrincipalMessage,
   GlobalHorizons,
-  AdmissionsCallout,
-  UniversityDestinations,
   TrustSection,
-  OurTeamSection,
-  AboutWellspireSection,
-  CampusExperienceSection,
 } from "./featured-sections";
 import {
   learningBeyondPrograms,
@@ -41,28 +34,9 @@ import {
   founderDialogCopy,
 } from "@/lib/programmes";
 import { school } from "@/lib/school";
-import { mobileNavItems } from "@/lib/mobile-nav";
-const nav = [
-  "About",
-  "Curriculum",
-  "Campus",
-  "Learning Beyond",
-  "Public Disclosure",
-  "Contact",
-];
-const navHref: Record<string, string> = {
-  About: "about",
-  Curriculum: "academics",
-  Academics: "academics",
-  Campus: "campus",
-  "Learning Beyond": "learning-beyond",
-  Contact: "contact",
-  Results: "results",
-};
-/** Page routes in the desktop dock (not in-page hash sections). */
-const navPageHref: Record<string, string> = {
-  "Public Disclosure": "/mandatory-public-disclosure",
-};
+import { DesktopNavDock } from "./desktop-nav-dock";
+import { CampusFacilitiesSection } from "./campus-facilities";
+import { MobileMenuNav } from "./mobile-menu-nav";
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
@@ -92,17 +66,9 @@ const pillars = [
     photos.earlyYears,
   ],
 ];
-const facilities = [
-  ["Academic spaces", "Smart classrooms, mini libraries till Grade 5, computer, maths, and science labs.", photos.classroom],
-  ["Specialised labs", "AI & Robotics for coding and innovation. Value Education for ethics, empathy, and leadership.", photos.computerLab],
-  ["Creative studios", "Art, music, dance, and a dedicated podcast studio for voice and digital expression.", photos.storytellers],
-  ["Sports facilities", "Football, basketball, skating, martial arts, indoor games, and a 200-metre running track.", photos.building],
-  ["Biophilic campus", "Green corridors, plant-filled rooms, open-air classrooms, and outdoor exploration.", photos.earlyYears],
-];
 export default function School() {
   const [menu, setMenu] = useState(false);
   const [stage, setStage] = useState(0);
-  const [facility, setFacility] = useState(0);
   const [dialog, setDialog] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [draft, setDraft] = useState<Record<string, string>>({});
@@ -112,24 +78,6 @@ export default function School() {
   const [activeSection, setActiveSection] = useState("");
   const lastScrollY = useRef(0);
   const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const syncAdmissionsAnchor = () => {
-      const desktop = document.querySelector<HTMLElement>(
-        ".home-desktop-only .admissions-callout-strip",
-      );
-      const mobile = document.querySelector<HTMLElement>(
-        ".home-mobile-only .admissions-callout-strip",
-      );
-      const isMob = window.matchMedia("(max-width: 767px)").matches;
-      if (desktop) desktop.id = isMob ? "" : "admissions";
-      if (mobile) mobile.id = isMob ? "admissions" : "";
-    };
-    syncAdmissionsAnchor();
-    const mq = window.matchMedia("(max-width: 767px)");
-    mq.addEventListener("change", syncAdmissionsAnchor);
-    return () => mq.removeEventListener("change", syncAdmissionsAnchor);
-  }, []);
 
   useEffect(() => startHomeMotion(), []);
 
@@ -198,12 +146,9 @@ export default function School() {
           setActiveSection("contact");
         } else {
           const sectionIds = [
-            "about",
-            "team",
             "academics",
             "campus",
             "learning-beyond",
-            "results",
             "admissions",
             "contact",
           ];
@@ -326,35 +271,13 @@ export default function School() {
         <div className="header-brand-group">
           <Brand />
         </div>
-        <nav className="header-nav-dock" aria-label="Main navigation">
-          {nav.map((n) => {
-            const pageHref = navPageHref[n];
-            if (pageHref) {
-              return (
-                <a key={n} href={pageHref} className="nav-dock-link">
-                  <span>{n}</span>
-                </a>
-              );
-            }
-            const id = navHref[n];
-            const isActive = activeSection === id;
-            return (
-              <a
-                key={n}
-                href={`#${id}`}
-                className={`nav-dock-link ${isActive ? "is-active" : ""}`}
-                aria-current={isActive ? "page" : undefined}
-                onClick={() => handleNavClick(id)}
-              >
-                <span>{n}</span>
-              </a>
-            );
-          })}
-        </nav>
+        <DesktopNavDock
+          activeSection={activeSection}
+          onHashClick={handleNavClick}
+        />
         <a
           className="button nav-apply"
-          href="#admissions"
-          onClick={() => handleNavClick("admissions")}
+          href="/admissions"
           aria-label="Explore admissions"
         >
           <span>Explore Admissions</span>
@@ -406,77 +329,11 @@ export default function School() {
             }
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
-            <nav className="mobile-menu-nav" aria-label="Mobile navigation">
-              {mobileNavItems.map(({ label, href, sectionId, Icon }) => {
-                const isHome = href === "/";
-                const isRoute = href.startsWith("/") && !href.includes("#");
-                const isActive = isHome
-                  ? !activeSection || activeSection === "main"
-                  : Boolean(sectionId && activeSection === sectionId);
-                const className = `mobile-menu-link ${isActive ? "is-active" : ""}`;
-                const icon = (
-                  <>
-                    <span className="mobile-menu-link-icon" aria-hidden="true">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </span>
-                    <span className="mobile-menu-link-label">{label}</span>
-                    <ChevronRight
-                      className="mobile-menu-link-chevron"
-                      size={16}
-                      strokeWidth={1.75}
-                      aria-hidden="true"
-                    />
-                  </>
-                );
-
-                if (isRoute) {
-                  return (
-                    <Link
-                      key={label}
-                      href={href}
-                      className={className}
-                      aria-current={isActive ? "page" : undefined}
-                      onClick={() => setMenu(false)}
-                    >
-                      {icon}
-                    </Link>
-                  );
-                }
-
-                const hashId = isHome
-                  ? "main"
-                  : href.includes("#")
-                    ? href.split("#")[1]
-                    : sectionId || "";
-
-                return (
-                  <a
-                    key={label}
-                    href={isHome ? "#main" : `#${hashId}`}
-                    className={className}
-                    aria-current={isActive ? "page" : undefined}
-                    onClick={() => {
-                      if (isHome) {
-                        setActiveSection("");
-                        setHidden(false);
-                        const lenis = (
-                          window as Window & {
-                            lenis?: { scrollTo?: Function };
-                          }
-                        ).lenis;
-                        if (lenis?.scrollTo) lenis.scrollTo(0, { duration: 0.85 });
-                        else window.scrollTo({ top: 0, behavior: "smooth" });
-                      } else if (hashId) {
-                        handleNavClick(hashId);
-                      }
-                      setMenu(false);
-                    }}
-                  >
-                    {icon}
-                  </a>
-                );
-              })}
-            </nav>
+            <MobileMenuNav
+              activeSection={activeSection}
+              onNavigate={() => setMenu(false)}
+              onHashClick={handleNavClick}
+            />
 
             <div className="mobile-menu-ctas">
               <a
@@ -522,7 +379,7 @@ export default function School() {
         )}
       </AnimatePresence>
       <main id="main">
-        <Hero onVisit={()=>openDialog('Plan a campus visit')}/>
+        <Hero />
         <TrustSection />
         <GlobalHorizons />
         <section className="section pillars" id="pillars">
@@ -633,95 +490,7 @@ export default function School() {
             ))}
           </div>
         </section>
-        <section className="campus section" id="campus">
-          <div className="section-heading">
-            <div>
-              <Eyebrow>06 — CAMPUS &amp; FACILITIES</Eyebrow>
-              <Heading>
-                A campus where
-                <br />
-                <em>children thrive.</em>
-              </Heading>
-            </div>
-            <button
-              className="text-link"
-              onClick={() => openDialog("Plan a campus visit")}
-            >
-              View campus &amp; facilities <ArrowUpRight size={18} />
-            </button>
-          </div>
-          <div
-            className="campus-tabs"
-            role="tablist"
-            aria-label="Explore campus facilities"
-          >
-            {facilities.map(([name], i) => (
-              <button
-                key={name}
-                role="tab"
-                id={`facility-tab-${i}`}
-                aria-selected={facility === i}
-                aria-controls="facility-panel"
-                tabIndex={facility === i ? 0 : -1}
-                onClick={() => setFacility(i)}
-                onKeyDown={(e) => {
-                  if (
-                    ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)
-                  ) {
-                    e.preventDefault();
-                    const total = facilities.length;
-                    const next =
-                      e.key === "Home"
-                        ? 0
-                        : e.key === "End"
-                          ? total - 1
-                          : (i + (e.key === "ArrowRight" ? 1 : total - 1)) %
-                            total;
-                    setFacility(next);
-                    document.getElementById(`facility-tab-${next}`)?.focus();
-                  }
-                }}
-              >
-                {name}
-                <ArrowUpRight size={15} />
-              </button>
-            ))}
-          </div>
-          <div
-            className="campus-picture"
-            id="facility-panel"
-            role="tabpanel"
-            aria-labelledby={`facility-tab-${facility}`}
-          >
-            <Image
-              key={facility}
-              src={facilities[facility][2]}
-              alt={facilities[facility][0]}
-              fill
-              sizes="90vw"
-            />
-            <div className="campus-caption">
-              <span>WELLSPIRE / CAMPUS WHERE CHILDREN THRIVE</span>
-              <h3>{facilities[facility][1]}</h3>
-              <span>
-                0{facility + 1} / 0{facilities.length}
-              </span>
-            </div>
-          </div>
-          <p className="image-note">
-            Photographs are illustrative; arrange a visit to explore the school
-            in person.
-          </p>
-        </section>
-        <div className="home-desktop-only">
-          <CampusExperienceSection />
-          <AdmissionsCallout onOpen={openDialog} />
-          <AboutWellspireSection />
-          <OurTeamSection onFounder={(name) => openDialog(name)} />
-          <PrincipalMessage
-            onExplore={() => openDialog("Message from our Principal")}
-          />
-        </div>
+        <CampusFacilitiesSection />
         <section
           className="section journal"
           id="learning-beyond"
@@ -770,7 +539,7 @@ export default function School() {
             </a>
           </div>
         </section>
-        <section className="admissions section" id="admissions-process">
+        <section className="admissions section" id="admissions">
           <div className="admission-top">
             <Eyebrow>09 — YOUR NEXT CHAPTER</Eyebrow>
             <span>NURSERY — GRADE 7</span>
@@ -833,14 +602,6 @@ export default function School() {
             </button>
           </div>
         </section>
-        <div className="home-desktop-only">
-          <Stats />
-          <Results />
-          <UniversityDestinations
-            onEnquire={() => openDialog("Plan a campus visit")}
-          />
-          <Testimonials />
-        </div>
       </main>
       <footer id="contact">
         <div className="footer-top">
@@ -874,10 +635,17 @@ export default function School() {
           </div>
           <div>
             <Eyebrow>TAKE A LOOK AROUND</Eyebrow>
+            <a href="/">Home</a>
+            <a href="/about">About Wellspire</a>
+            <a href="/leadership">Management &amp; Leadership</a>
+            <a href="/leadership#leadership">Principal&apos;s Message</a>
             <a href="#academics">Curriculum</a>
-            <a href="#campus">Campus &amp; facilities</a>
-            <a href="#learning-beyond">Learning beyond classrooms</a>
-            <a href="#admissions">Admissions</a>
+            <a href="/campus-life#campus">Campus &amp; Facilities</a>
+            <a href="/campus-life#campus-life">Campus Life</a>
+            <a href="/learning-beyond">Learning Beyond</a>
+            <a href="/admissions">Admissions</a>
+            <a href="/careers">Careers</a>
+            <a href="#contact">Contact</a>
           </div>
           <div>
             <Eyebrow>GOOD TO KNOW</Eyebrow>

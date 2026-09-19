@@ -16,6 +16,7 @@ export function Stats() {
   return (
     <section
       className="school-stats"
+      id="stats"
       aria-label="Campus and curriculum snapshot"
     >
       <ExampleNote>
@@ -41,28 +42,47 @@ export function Stats() {
     </section>
   );
 }
-export function Results() {
+export function Results({
+  hidePageHeading = false,
+}: {
+  /** When true, skip the duplicate page-level heading (sub-pages already introduce the topic). */
+  hidePageHeading?: boolean;
+}) {
   const [year, setYear] = useState("2025–26");
   return (
     <section className="results-new section" id="results">
-      <div className="section-heading">
-        <div>
-          <p className="eyebrow">06 — PROGRESS, PRESENTED PLAINLY</p>
-          <Heading>
-            Progress, not
-            <br />
-            <em>pressure.</em>
-          </Heading>
+      {hidePageHeading ? (
+        <div className="results-toolbar">
+          <p className="eyebrow">Board results format</p>
+          <label className="year-picker">
+            Academic year
+            <select value={year} onChange={(e) => setYear(e.target.value)}>
+              {["2025–26", "2024–25", "2023–24"].map((y) => (
+                <option key={y}>{y}</option>
+              ))}
+            </select>
+          </label>
         </div>
-        <label className="year-picker">
-          Academic year
-          <select value={year} onChange={(e) => setYear(e.target.value)}>
-            {["2025–26", "2024–25", "2023–24"].map((y) => (
-              <option key={y}>{y}</option>
-            ))}
-          </select>
-        </label>
-      </div>
+      ) : (
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">06 — PROGRESS, PRESENTED PLAINLY</p>
+            <Heading>
+              Progress, not
+              <br />
+              <em>pressure.</em>
+            </Heading>
+          </div>
+          <label className="year-picker">
+            Academic year
+            <select value={year} onChange={(e) => setYear(e.target.value)}>
+              {["2025–26", "2024–25", "2023–24"].map((y) => (
+                <option key={y}>{y}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+      )}
       <ExampleNote>
         Wellspire currently offers Nursery–Grade 7. Class X/XII figures below
         are format samples only — not school board results.
@@ -180,6 +200,7 @@ export function Testimonials() {
   return (
     <section
       className="testimonials section"
+      id="testimonials"
       aria-roledescription="carousel"
       aria-label="Community perspectives"
       onMouseEnter={() => setPaused(true)}

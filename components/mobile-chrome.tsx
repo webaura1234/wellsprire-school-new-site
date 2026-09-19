@@ -2,10 +2,10 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
+  ArrowUpRight,
   ChevronRight,
   MapPin,
   Menu,
@@ -13,13 +13,17 @@ import {
   X,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
-import { mobileNavItems } from "@/lib/mobile-nav";
+import { DesktopNavDock } from "@/components/desktop-nav-dock";
+import { MobileMenuNav } from "@/components/mobile-menu-nav";
 import { school } from "@/lib/school";
 
 type MobileChromeProps = {
   children: ReactNode;
-  /** Desktop visitors are redirected here (page is mobile-only). */
-  desktopRedirect: string;
+  /**
+   * When set, desktop visitors are redirected (used when a dedicated
+   * desktop route already exists, e.g. public disclosure).
+   */
+  desktopRedirect?: string;
   /** Highlight Admissions pill when on /admissions */
   admissionsActive?: boolean;
   activeMatch?: string;
@@ -29,11 +33,8 @@ export function MobileChrome({
   children,
   desktopRedirect,
   admissionsActive = false,
-  activeMatch,
 }: MobileChromeProps) {
   const [menu, setMenu] = useState(false);
-  const pathname = usePathname();
-  const current = activeMatch ?? pathname;
 
   useEffect(() => {
     document.body.style.overflow = menu ? "hidden" : "";
@@ -43,6 +44,7 @@ export function MobileChrome({
   }, [menu]);
 
   useEffect(() => {
+    if (!desktopRedirect) return;
     const desktop = window.matchMedia("(min-width: 768px)");
     const bounce = () => {
       if (desktop.matches) window.location.replace(desktopRedirect);
@@ -69,6 +71,11 @@ export function MobileChrome({
         <div className="header-brand-group">
           <Brand />
         </div>
+        <DesktopNavDock />
+        <Link className="button nav-apply" href="/admissions">
+          <span>Explore Admissions</span>
+          <ArrowUpRight size={15} className="nav-apply-arrow" />
+        </Link>
         <Link
           className={`mobile-admissions-btn${admissionsActive ? " is-active" : ""}`}
           href="/admissions"
@@ -107,33 +114,9 @@ export function MobileChrome({
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
-            <nav className="mobile-menu-nav" aria-label="Mobile navigation">
-              {mobileNavItems.map(({ label, href, Icon }) => {
-                const isActive =
-                  href === current ||
-                  (href !== "/" && current.startsWith(href));
-                return (
-                  <Link
-                    key={label}
-                    href={href}
-                    className={`mobile-menu-link${isActive ? " is-active" : ""}`}
-                    aria-current={isActive ? "page" : undefined}
-                    onClick={() => setMenu(false)}
-                  >
-                    <span className="mobile-menu-link-icon" aria-hidden="true">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </span>
-                    <span className="mobile-menu-link-label">{label}</span>
-                    <ChevronRight
-                      className="mobile-menu-link-chevron"
-                      size={16}
-                      strokeWidth={1.75}
-                      aria-hidden="true"
-                    />
-                  </Link>
-                );
-              })}
-            </nav>
+            <MobileMenuNav
+              onNavigate={() => setMenu(false)}
+            />
             <div className="mobile-menu-ctas">
               <Link
                 className="mobile-menu-cta mobile-menu-cta--primary"

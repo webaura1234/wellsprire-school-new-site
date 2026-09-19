@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
+  ArrowUpRight,
   Check,
   ChevronRight,
   GraduationCap,
@@ -17,9 +18,10 @@ import {
   X,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
+import { DesktopNavDock } from "@/components/desktop-nav-dock";
 import { Heading } from "@/components/heading";
+import { MobileMenuNav } from "@/components/mobile-menu-nav";
 import { photos } from "@/lib/content";
-import { mobileNavItems } from "@/lib/mobile-nav";
 import { school } from "@/lib/school";
 
 const GRADES = [
@@ -116,18 +118,6 @@ export default function AdmissionsMobilePage() {
   }, [menu]);
 
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 768px)");
-    const bounce = () => {
-      if (desktop.matches) {
-        window.location.replace("/#admissions");
-      }
-    };
-    bounce();
-    desktop.addEventListener("change", bounce);
-    return () => desktop.removeEventListener("change", bounce);
-  }, []);
-
-  useEffect(() => {
     if (!menu) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMenu(false);
@@ -208,6 +198,11 @@ export default function AdmissionsMobilePage() {
         <div className="header-brand-group">
           <Brand />
         </div>
+        <DesktopNavDock />
+        <Link className="button nav-apply" href="/admissions" aria-current="page">
+          <span>Explore Admissions</span>
+          <ArrowUpRight size={15} className="nav-apply-arrow" />
+        </Link>
         <Link
           className="mobile-admissions-btn is-active"
           href="/admissions"
@@ -245,31 +240,7 @@ export default function AdmissionsMobilePage() {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
-            <nav className="mobile-menu-nav" aria-label="Mobile navigation">
-              {mobileNavItems.map(({ label, href, Icon }) => {
-                const isActive = href === "/admissions";
-                return (
-                  <Link
-                    key={label}
-                    href={href}
-                    className={`mobile-menu-link${isActive ? " is-active" : ""}`}
-                    aria-current={isActive ? "page" : undefined}
-                    onClick={() => setMenu(false)}
-                  >
-                    <span className="mobile-menu-link-icon" aria-hidden="true">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </span>
-                    <span className="mobile-menu-link-label">{label}</span>
-                    <ChevronRight
-                      className="mobile-menu-link-chevron"
-                      size={16}
-                      strokeWidth={1.75}
-                      aria-hidden="true"
-                    />
-                  </Link>
-                );
-              })}
-            </nav>
+            <MobileMenuNav onNavigate={() => setMenu(false)} />
             <div className="mobile-menu-ctas">
               <Link
                 className="mobile-menu-cta mobile-menu-cta--primary"
@@ -310,42 +281,6 @@ export default function AdmissionsMobilePage() {
       </AnimatePresence>
 
       <main id="main" className="admissions-mobile-main">
-        <section className="admissions-mobile-intro">
-          <p className="eyebrow">ADMISSIONS</p>
-          <Heading as="h1">
-            Open for a
-            <br />
-            <em>Brighter Tomorrow</em>
-          </Heading>
-          <p className="admissions-mobile-deck">
-            Begin your child&apos;s journey at Wellspire — where learning goes
-            beyond the classroom.
-          </p>
-        </section>
-
-        <div className="admissions-mobile-media">
-          <Image
-            src={photos.campus}
-            alt="Wellspire School campus"
-            fill
-            sizes="(max-width:767px) 92vw, 640px"
-            priority
-            className="admissions-mobile-photo"
-          />
-        </div>
-
-        <ul className="admissions-mobile-benefits">
-          {benefits.map(({ n, title, Icon }) => (
-            <li key={n}>
-              <span className="admissions-benefit-num">{n}</span>
-              <span className="admissions-benefit-icon" aria-hidden="true">
-                <Icon size={18} strokeWidth={1.6} />
-              </span>
-              <span className="admissions-benefit-title">{title}</span>
-            </li>
-          ))}
-        </ul>
-
         <section className="admissions-mobile-form-card" aria-labelledby="enquiry-heading">
           {success ? (
             <div className="admissions-mobile-success" role="status">
@@ -584,6 +519,41 @@ export default function AdmissionsMobilePage() {
             </>
           )}
         </section>
+
+        <section className="admissions-mobile-intro">
+          <p className="eyebrow">ADMISSIONS</p>
+          <Heading as="h1">
+            Open for a
+            <br />
+            <em>Brighter Tomorrow</em>
+          </Heading>
+          <p className="admissions-mobile-deck">
+            Begin your child&apos;s journey at Wellspire — where learning goes
+            beyond the classroom.
+          </p>
+        </section>
+
+        <div className="admissions-mobile-media">
+          <Image
+            src={photos.campus}
+            alt="Wellspire School campus"
+            fill
+            sizes="(max-width:767px) 92vw, 640px"
+            className="admissions-mobile-photo"
+          />
+        </div>
+
+        <ul className="admissions-mobile-benefits">
+          {benefits.map(({ n, title, Icon }) => (
+            <li key={n}>
+              <span className="admissions-benefit-num">{n}</span>
+              <span className="admissions-benefit-icon" aria-hidden="true">
+                <Icon size={18} strokeWidth={1.6} />
+              </span>
+              <span className="admissions-benefit-title">{title}</span>
+            </li>
+          ))}
+        </ul>
 
         {(school.city || school.phone) && (
           <aside className="admissions-mobile-help">

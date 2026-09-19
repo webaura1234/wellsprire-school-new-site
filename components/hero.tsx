@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { QuadrantIcon } from "./brand";
 import { Heading } from "./heading";
 import { photos } from "@/lib/content";
@@ -73,7 +73,7 @@ const currentScrollY = () => {
   return window.scrollY;
 };
 
-export default function Hero({ onVisit }: { onVisit: () => void }) {
+export default function Hero() {
   const [chapter, setChapter] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -302,23 +302,6 @@ export default function Hero({ onVisit }: { onVisit: () => void }) {
             <div className="hero-introduction">
               <span className="intro-rule" />
               <p>Preparing children for life, not just exams.</p>
-            </div>
-            <div className="hero-actions">
-              <a
-                className="admissions-orbit"
-                href="#admissions"
-                data-cursor="BEGIN"
-              >
-                <span className="orbit-icon">
-                  <ArrowUpRight size={25} strokeWidth={1.2} />
-                </span>
-                <span>
-                  Enquire Now<small>EXPLORE ADMISSIONS</small>
-                </span>
-              </a>
-              <button className="hero-visit" onClick={onVisit}>
-                Book a campus visit <ArrowUpRight size={15} />
-              </button>
             </div>
           </div>
           <div className="hero-architecture">

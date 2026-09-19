@@ -1,51 +1,19 @@
-import {
-  Building2,
-  ClipboardList,
-  FileText,
-  GraduationCap,
-  Home,
-  Phone,
-  ScrollText,
-  Sparkles,
-  Users,
-  type LucideIcon,
-} from "lucide-react";
+import { siteNavItems, type SiteNavItem } from "@/lib/site-nav";
+import type { LucideIcon } from "lucide-react";
 
 export type MobileNavItem = {
   label: string;
   href: string;
-  /** Home scroll-spy id when the item points at a home section */
   sectionId?: string;
   Icon: LucideIcon;
+  children?: SiteNavItem["children"];
 };
 
-/** Shared mobile hamburger IA — keep in sync across home + sub-pages. */
-export const mobileNavItems: MobileNavItem[] = [
-  { label: "Home", href: "/", sectionId: "main", Icon: Home },
-  { label: "About", href: "/about", Icon: FileText },
-  {
-    label: "Management & Leadership",
-    href: "/leadership",
-    Icon: Users,
-  },
-  { label: "Campus Life", href: "/campus-life", Icon: Building2 },
-  {
-    label: "Curriculum",
-    href: "/#academics",
-    sectionId: "academics",
-    Icon: GraduationCap,
-  },
-  {
-    label: "Learning Beyond",
-    href: "/#learning-beyond",
-    sectionId: "learning-beyond",
-    Icon: Sparkles,
-  },
-  { label: "Admissions", href: "/admissions", Icon: ClipboardList },
-  {
-    label: "Public Disclosure",
-    href: "/public-disclosure",
-    Icon: ScrollText,
-  },
-  { label: "Contact", href: "/#contact", sectionId: "contact", Icon: Phone },
-];
+/** Same IA as desktop — includes dropdown children for hamburger accordions. */
+export const mobileNavItems: MobileNavItem[] = siteNavItems.map((item) => ({
+  label: item.label,
+  href: item.href,
+  sectionId: item.hashId,
+  Icon: item.Icon,
+  children: item.children,
+}));

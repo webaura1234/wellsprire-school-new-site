@@ -103,12 +103,12 @@ export function LearningHighlightsCollection() {
 export function LearningBeyondCollection() {
   return (
     <CollectionShell
-      eyebrow="LEARNING BEYOND CLASSROOMS"
-      title="Soil to soul."
-      titleEm="Studio to stage."
-      intro="All hands-on programmes — farming, STEAM, values, voice, and more."
-      backHref="/#learning-beyond"
-      backLabel="Back to home"
+      eyebrow="ALL PROGRAMMES"
+      title="Every path"
+      titleEm="beyond the classroom."
+      intro="The complete hands-on catalogue — farming, STEAM, values, voice, and more."
+      backHref="/learning-beyond/overview"
+      backLabel="Back to overview"
     >
       <div className="journal-grid journal-grid--programs collection-page-grid">
         {learningBeyondPrograms.map(({ tag, title, image, body }) => (

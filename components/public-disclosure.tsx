@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
 import { Brand } from "@/components/brand";
+import { DesktopNavDock } from "@/components/desktop-nav-dock";
 import { MobileChrome } from "@/components/mobile-chrome";
 import {
   disclosureDocuments,
@@ -225,37 +226,14 @@ export function PublicDisclosureMobilePage() {
 
 /** Full disclosure page for desktop navbar / footer / direct links. */
 export function PublicDisclosurePage() {
-  const desktopNav = [
-    { label: "About", href: "/#about" },
-    { label: "Curriculum", href: "/#academics" },
-    { label: "Campus", href: "/#campus" },
-    { label: "Learning Beyond", href: "/#learning-beyond" },
-    { label: "Public Disclosure", href: "/mandatory-public-disclosure" },
-    { label: "Contact", href: "/#contact" },
-  ];
-
   return (
     <main id="main" className="mpd-desktop-shell">
       <header className="header mpd-desktop-site-header">
         <div className="header-brand-group">
           <Brand />
         </div>
-        <nav className="header-nav-dock" aria-label="Main navigation">
-          {desktopNav.map((item) => {
-            const isDisclosure = item.label === "Public Disclosure";
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`nav-dock-link${isDisclosure ? " is-active" : ""}`}
-                aria-current={isDisclosure ? "page" : undefined}
-              >
-                <span>{item.label}</span>
-              </a>
-            );
-          })}
-        </nav>
-        <a className="button nav-apply" href="/#admissions">
+        <DesktopNavDock />
+        <a className="button nav-apply" href="/admissions">
           <span>Explore Admissions</span>
           <ArrowRight size={15} className="nav-apply-arrow" />
         </a>

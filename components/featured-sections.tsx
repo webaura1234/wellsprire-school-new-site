@@ -241,7 +241,7 @@ export function AboutWellspireSection({
 
 export function CampusExperienceSection() {
   return (
-    <section className="safety section">
+    <section className="safety section" id="campus-experience">
       <div>
         <Eyebrow>CAMPUS EXPERIENCE</Eyebrow>
         <Heading>
@@ -282,6 +282,180 @@ export function CampusExperienceSection() {
             <p>{text}</p>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+/** Merged Campus Experience + Creative Life — one clean story. */
+export function CampusLifeStorySection({
+  onEnquire,
+}: {
+  onEnquire: () => void;
+}) {
+  const [filter, setFilter] = useState<"all" | "sports" | "arts" | "campus">(
+    "all",
+  );
+
+  const pillars = [
+    {
+      Icon: ShieldCheck,
+      title: "10-acre green campus",
+      text: "Open grounds and green exploration, built for children to thrive.",
+    },
+    {
+      Icon: Bus,
+      title: "GPS-enabled transport",
+      text: "Tracked routes and child-friendly travel to and from campus.",
+    },
+    {
+      Icon: HeartPulse,
+      title: "Comfortable classrooms",
+      text: "Calm, air-conditioned rooms with natural light and ventilation.",
+    },
+    {
+      Icon: Users,
+      title: "Safe infrastructure",
+      text: "A child-friendly campus designed for everyday care and belonging.",
+    },
+  ] as const;
+
+  const activities = [
+    {
+      name: "Football & Basketball",
+      blurb: "Fitness, teamwork & discipline",
+      detail: "Outdoor games and match play",
+      region: "sports" as const,
+      tag: "SPORTS",
+      rhythm: "Daily",
+    },
+    {
+      name: "Martial Arts & Skating",
+      blurb: "Strength, balance & focus",
+      detail: "Track, indoor games, specialised training",
+      region: "sports" as const,
+      tag: "SPORTS",
+      rhythm: "Weekly",
+    },
+    {
+      name: "Art Studio",
+      blurb: "Creativity & self-expression",
+      detail: "Visual making and looking closely",
+      region: "arts" as const,
+      tag: "ARTS",
+      rhythm: "Weekly",
+    },
+    {
+      name: "Music & Dance",
+      blurb: "Rhythm, confidence & culture",
+      detail: "Studio practice and performance",
+      region: "arts" as const,
+      tag: "ARTS",
+      rhythm: "Weekly",
+    },
+    {
+      name: "Podcast Studio",
+      blurb: "Storytelling & digital voice",
+      detail: "Listening, teamwork, articulation",
+      region: "arts" as const,
+      tag: "ARTS",
+      rhythm: "Guided",
+    },
+    {
+      name: "Biophilic Learning Spaces",
+      blurb: "Green corridors & calm corners",
+      detail: "Bird corners, open-air classrooms, farm",
+      region: "campus" as const,
+      tag: "CAMPUS",
+      rhythm: "Every day",
+    },
+  ];
+
+  const filtered = activities.filter(
+    (a) => filter === "all" || a.region === filter,
+  );
+
+  return (
+    <section
+      className="section campus-life-story"
+      id="campus-life"
+      aria-label="Campus life"
+    >
+      <div className="campus-life-story-intro">
+        <Eyebrow>CAMPUS LIFE</Eyebrow>
+        <Heading>
+          Safe. Creative.
+          <br />
+          <em>Alive every day.</em>
+        </Heading>
+        <p>
+          Nature, safety, sport, and the arts — one campus where children grow
+          with confidence.
+        </p>
+        <button className="text-link" type="button" onClick={onEnquire}>
+          Plan a campus visit <ArrowUpRight size={16} />
+        </button>
+      </div>
+
+      <ul className="campus-life-pillars">
+        {pillars.map(({ Icon, title, text }) => (
+          <li key={title}>
+            <span className="campus-life-pillar-icon" aria-hidden="true">
+              <Icon size={22} strokeWidth={1.4} />
+            </span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div className="campus-life-activities">
+        <div className="campus-life-activities-head">
+          <h3>Sports, arts &amp; campus rhythm</h3>
+          <div
+            className="campus-life-filters"
+            role="tablist"
+            aria-label="Filter activities"
+          >
+            {(
+              [
+                { id: "all", label: "All" },
+                { id: "sports", label: "Sports" },
+                { id: "arts", label: "Arts" },
+                { id: "campus", label: "Nature" },
+              ] as const
+            ).map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={filter === tab.id}
+                className={`campus-life-filter${filter === tab.id ? " is-active" : ""}`}
+                onClick={() => setFilter(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="campus-life-activity-grid">
+          {filtered.map((activity) => (
+            <article className="campus-life-activity" key={activity.name}>
+              <div className="campus-life-activity-meta">
+                <span className="campus-life-activity-tag">{activity.tag}</span>
+                <span className="campus-life-activity-rhythm">
+                  {activity.rhythm}
+                </span>
+              </div>
+              <h4>{activity.name}</h4>
+              <p>{activity.blurb}</p>
+              <span className="campus-life-activity-detail">
+                {activity.detail}
+              </span>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

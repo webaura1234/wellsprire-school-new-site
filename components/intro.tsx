@@ -70,8 +70,7 @@ export function startCrestIntro(): () => void {
   const counter = panel.querySelector<HTMLElement>(".intro-counter");
   const word = panel.querySelector<HTMLElement>(".intro-word");
   const marker = panel.querySelector<HTMLElement>(".intro-marker");
-  const reveal = panel.querySelector<HTMLElement>(".intro-reveal");
-  if (!counter || !word || !marker || !reveal) return () => {};
+  if (!counter || !word || !marker) return () => {};
 
   panel.dataset.playing = "true";
   document.documentElement.dataset.intro = "playing";
@@ -241,17 +240,6 @@ export function startCrestIntro(): () => void {
       [{ opacity: 1 }, { opacity: 0 }],
       { delay: 120, duration: 700, easing: EASE_OUT },
     );
-    reveal.querySelectorAll(".intro-reveal-line").forEach((el, i) =>
-      run(
-        el,
-        [{ transform: "translateY(110%)" }, { transform: "translateY(0)" }],
-        { delay: 300 + i * 120, duration: 650, easing: EASE_DRAW },
-      ),
-    );
-    run(reveal, [{ opacity: 1 }, { opacity: 0 }], {
-      delay: 1370,
-      duration: 250,
-    });
     doneTimer = window.setTimeout(() => {
       state = "done";
       panel.removeAttribute("data-playing");
@@ -260,7 +248,7 @@ export function startCrestIntro(): () => void {
       gateEvent(false);
       markIntroSeen();
       if (activeStop === stop) activeStop = null;
-    }, 1650);
+    }, 1000);
   };
 
   const onWheel = (e: WheelEvent) => {
@@ -363,16 +351,6 @@ export default function CrestIntro() {
       <span className="intro-marker">
         <span className="intro-marker-dot" />
       </span>
-      <div className="intro-reveal">
-        <span className="intro-reveal-mask">
-          <span className="intro-reveal-line">Learn deeply.</span>
-        </span>
-        <span className="intro-reveal-mask">
-          <span className="intro-reveal-line">
-            Live <em>fully.</em>
-          </span>
-        </span>
-      </div>
     </div>
   );
 }
