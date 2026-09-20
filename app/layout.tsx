@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Fraunces, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import "lenis/dist/lenis.css";
 import RouteTransition from "@/components/route-transition";
-const body = Inter({
+
+/** Matches Oakridge body/UI: Source Sans Variable / Source Sans Pro lineage */
+const body = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 });
-const display = Instrument_Serif({
+
+/** Display / headings: Fraunces — soft optical serif for Wellspire */
+const display = Fraunces({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
+  axes: ["SOFT", "WONK", "opsz"],
 });
+
 export const metadata: Metadata = {
   title: "Wellspire School — Inspiring Lifelong Learning",
   description:
@@ -27,6 +31,7 @@ export const viewport = {
   initialScale: 1,
   viewportFit: "cover" as const,
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
