@@ -379,11 +379,6 @@ export default function Hero({
                 A WINDOW INTO {current.name.toUpperCase()}
               </span>
             </div>
-            <div className="hero-seal" aria-hidden="true">
-              <span>LEARN</span>
-              <QuadrantIcon kind={chapter} />
-              <span>BELONG · BECOME</span>
-            </div>
             <div className="hero-annotation" aria-live="polite">
               <span className="annotation-number">0{chapter + 1}</span>
               <p>{current.note}</p>

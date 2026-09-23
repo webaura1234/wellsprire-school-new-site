@@ -3742,34 +3742,6 @@ h1 {
   text-align: center;
   z-index: 3;
 }
-.hero-seal {
-  position: absolute;
-  bottom: 87px;
-  left: -35px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 94px;
-  height: 94px;
-  border-radius: 50%;
-  background: var(--paper);
-  color: var(--navy);
-  border: 1px solid var(--navy);
-  outline: 7px solid var(--paper);
-  z-index: 2;
-  gap: 5px;
-  transform: rotate(-10deg);
-}
-.hero-seal > span {
-  font-size: 6px;
-  letter-spacing: 0.15em;
-}
-.hero-seal svg {
-  width: 32px;
-  height: 32px;
-  color: var(--navy);
-}
 .hero-annotation {
   position: absolute;
   bottom: 0;
@@ -5409,17 +5381,6 @@ h1 {
     inset: 0 0 28px 0 !important;
     position: absolute !important;
     z-index: 5 !important;
-  }
-  
-  .hero-seal {
-    bottom: 22px !important;
-    left: 50% !important;
-    transform: translate(-50%, 50%) scale(0.7) !important;
-    transform-origin: center center !important;
-    z-index: 10 !important;
-    display: flex !important;
-    position: absolute !important;
-    white-space: nowrap !important;
   }
   
   .arch-footnote {
