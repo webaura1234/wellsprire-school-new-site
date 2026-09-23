@@ -10,8 +10,8 @@ const config: Config = {
         gold: "#C8A15A",
       },
       fontFamily: {
-        display: ["var(--font-display)"],
-        sans: ["var(--font-body)"],
+        display: ["var(--font-display)", "Fraunces", "serif"],
+        sans: ["var(--font-body)", "Source Sans 3", "sans-serif"],
       },
       spacing: { gutter: "6vw", section: "10rem" },
       transitionTimingFunction: { editorial: "cubic-bezier(0.16,1,0.3,1)" },

@@ -17,6 +17,7 @@ const display = Fraunces({
   variable: "--font-display",
   display: "swap",
   axes: ["SOFT", "WONK", "opsz"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {

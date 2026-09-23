@@ -173,16 +173,18 @@ export default function AdmissionsMobilePage() {
       <div className="admissions-page">
         <div className="admissions-layout">
           <aside className="admissions-intro">
-            <p className="eyebrow">ADMISSIONS</p>
-            <Heading as="h1">
-              Open for a
-              <br />
-              <em>Brighter Tomorrow</em>
-            </Heading>
-            <p className="admissions-deck">
-              Begin your child&apos;s journey at Wellspire — where learning goes
-              beyond the classroom.
-            </p>
+            <div className="admissions-intro-lead">
+              <p className="eyebrow">ADMISSIONS</p>
+              <Heading as="h1">
+                Open for a
+                <br />
+                <em>Brighter Tomorrow</em>
+              </Heading>
+              <p className="admissions-deck">
+                Begin your child&apos;s journey at Wellspire — where learning goes
+                beyond the classroom.
+              </p>
+            </div>
 
             <div className="admissions-media">
               <Image

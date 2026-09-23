@@ -16,7 +16,7 @@ export function Heading({
     else lines[lines.length - 1].push(child);
   });
   return (
-    <Tag className={className} {...props}>
+    <Tag className={["font-display", className].filter(Boolean).join(" ")} {...props}>
       {lines.map((line, i) => (
         <span className="heading-mask" key={i}>
           <span className="heading-line">{line}</span>

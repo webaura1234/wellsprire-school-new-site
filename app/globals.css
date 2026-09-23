@@ -69,9 +69,21 @@ h1,
 h2,
 h3,
 h4,
-blockquote {
-  font-family: var(--font-display), serif;
+h5,
+h6,
+blockquote,
+.font-display,
+.heading-line {
+  font-family: var(--font-display), "Fraunces", serif;
+  font-optical-sizing: auto;
   font-weight: 400;
+}
+h1 em,
+h2 em,
+h3 em,
+h4 em {
+  font-family: inherit;
+  font-style: italic;
 }
 h2 {
   font-size: clamp(44px, 4.3vw, 72px);
@@ -144,7 +156,8 @@ svg {
   color: var(--accent);
 }
 .brand > span {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-display), "Fraunces", serif;
+  font-optical-sizing: auto;
   font-size: 39px;
   line-height: 0.95;
   letter-spacing: 0.015em;
@@ -1051,7 +1064,7 @@ footer {
 }
 .footer-wordmark span {
   font-size: 13vw;
-  font-family: Georgia;
+  font-family: var(--font-display), "Fraunces", serif;
   font-weight: 400;
 }
 .footer-bottom {
@@ -1888,6 +1901,51 @@ form > .button {
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }
+
+/* Home page: bold body / non-heading copy; headings keep display weight */
+main.home-page {
+  font-weight: 600;
+}
+main.home-page :is(h1, h2, h3, h4, h5, h6),
+main.home-page .font-display,
+main.home-page .heading-line,
+main.home-page .heading-mask {
+  font-weight: 400;
+}
+main.home-page :is(h1, h2, h3, h4) em {
+  font-weight: inherit;
+}
+main.home-page p,
+main.home-page .section-subtext p,
+main.home-page .section-heading > p,
+main.home-page .hero-introduction > p,
+main.home-page .hero-annotation p,
+main.home-page .hero-marginalia > p,
+main.home-page .chapter-invitation p,
+main.home-page .academic-title > p,
+main.home-page .pillar-copy > p,
+main.home-page .stage-content p,
+main.home-page .global-card-body > p,
+main.home-page .biophilic-card > p,
+main.home-page .philosophy-essay-body p,
+main.home-page .principal-content > p,
+main.home-page .trust-card-content > p,
+main.home-page .team-founder-copy > p,
+main.home-page .callout-text > p,
+main.home-page .campus-caption > p,
+main.home-page .result-content > p,
+main.home-page .admission-description,
+main.home-page .journal-card > p,
+main.home-page .curriculum-framework span,
+main.home-page .curriculum-outcomes,
+main.home-page .eyebrow,
+main.home-page .hero-kicker,
+main.home-page .hero-edition,
+main.home-page .signature-title,
+main.home-page .tab-title,
+main.home-page .uni-filter-title {
+  font-weight: 600;
+}
 .utility {
   background: var(--ink);
   font-size: 10px;
@@ -2403,7 +2461,8 @@ form > .button {
 @media (max-width: 639px) {
   .header {
     height: 84px;
-    padding: 0 16px;
+    padding: 0 var(--gutter);
+    padding-left: calc(var(--gutter) + 8px);
   }
   .brand-logo-img {
     height: 64px;
@@ -2411,7 +2470,8 @@ form > .button {
   }
   .header.is-scrolled {
     height: 66px;
-    padding: 0 16px;
+    padding: 0 var(--gutter);
+    padding-left: calc(var(--gutter) + 8px);
     border-radius: 0 0 14px 14px;
   }
   .header.is-scrolled .brand-logo-img {
@@ -4788,10 +4848,11 @@ h1 {
 }
 
 @media (max-width: 767px) {
-  /* ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Mobile navbar redesign (header chrome) ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ */
+  /* Mobile navbar redesign (header chrome) */
   .header {
     height: 78px !important;
-    padding: 0 16px !important;
+    padding: 0 var(--gutter) !important;
+    padding-left: calc(var(--gutter) + 8px) !important;
     gap: 10px !important;
     background: var(--paper) !important;
     border-bottom: 1px solid rgba(24, 53, 112, 0.08) !important;
@@ -5676,6 +5737,8 @@ h1 {
   margin-bottom: 10px;
 }
 .collection-page-intro h2 {
+  font-family: var(--font-display), "Fraunces", serif;
+  font-optical-sizing: auto;
   font-size: clamp(32px, 8vw, 48px);
   line-height: 1.05;
   margin: 0 0 12px;
@@ -5773,7 +5836,8 @@ h1 {
   justify-content: space-between;
   gap: 10px;
   height: 78px !important;
-  padding: 0 16px !important;
+  padding: 0 var(--gutter) !important;
+  padding-left: calc(var(--gutter) + 8px) !important;
   background: var(--paper) !important;
   border-bottom: 1px solid rgba(24, 53, 112, 0.08) !important;
   border-radius: 0 0 24px 24px !important;
@@ -5818,9 +5882,36 @@ h1 {
   color: var(--navy);
 }
 .admissions-layout {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 28px;
   width: 100%;
+}
+/* Mobile: headline first, enquiry form next, supporting content below */
+@media (max-width: 959px) {
+  .admissions-intro {
+    display: contents;
+  }
+  .admissions-intro-lead {
+    order: 1;
+  }
+  .admissions-intro-lead .admissions-deck {
+    margin-bottom: 0;
+  }
+  .admissions-form-card {
+    order: 2;
+  }
+  .admissions-media {
+    order: 3;
+    margin-bottom: 0;
+  }
+  .admissions-benefits {
+    order: 4;
+    margin-bottom: 0;
+  }
+  .admissions-help {
+    order: 5;
+  }
 }
 .admissions-intro .eyebrow {
   margin-bottom: 10px;
@@ -6158,14 +6249,23 @@ h1 {
 }
 @media (min-width: 960px) {
   .admissions-layout {
+    display: grid;
     grid-template-columns: minmax(280px, 0.92fr) minmax(440px, 1.2fr);
     gap: 40px clamp(32px, 4vw, 64px);
     align-items: start;
   }
   .admissions-intro {
+    display: block;
     position: sticky;
     top: 104px;
     padding-top: 8px;
+  }
+  .admissions-intro-lead,
+  .admissions-form-card,
+  .admissions-media,
+  .admissions-benefits,
+  .admissions-help {
+    order: initial;
   }
   .admissions-deck {
     max-width: 38ch;
@@ -6232,6 +6332,8 @@ h1 {
 }
 .mobile-subpage-intro h2 {
   margin: 0 0 12px;
+  font-family: var(--font-display), "Fraunces", serif;
+  font-optical-sizing: auto;
   font-size: clamp(32px, 8vw, 44px);
   line-height: 1.05;
 }
@@ -6491,11 +6593,11 @@ h1 {
   margin-top: 40px;
 }
 .mpd-section h2 {
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: clamp(16px, 2.4vw, 22px);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-family: var(--font-display), "Fraunces", serif;
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--navy);
   margin: 0 0 16px;
 }
