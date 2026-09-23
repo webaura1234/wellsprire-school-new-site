@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronRight } from "lucide-react";
 import { siteNavItems } from "@/lib/site-nav";
 
 type MobileMenuNavProps = {
@@ -143,11 +143,30 @@ export function MobileMenuNav({
             </button>
             {expanded && (
               <div className="mobile-menu-submenu" role="group">
+                {item.href && item.href !== "/" && (
+                  <a
+                    href={item.href}
+                    className="mobile-menu-sublink"
+                    onClick={() => {
+                      if (
+                        pathname === "/" &&
+                        (item.href.startsWith("/#") ||
+                          item.href.startsWith("#"))
+                      ) {
+                        const id = hashOnly(item.href) || item.hashId;
+                        if (id) onHashClick?.(id);
+                      }
+                      onNavigate?.();
+                    }}
+                  >
+                    <span>{item.label} (Reach Campus)</span>
+                  </a>
+                )}
                 {item.children!.map((child) => (
                   <Link
                     key={child.href + child.label}
                     href={child.href}
-                    className="mobile-menu-sublink"
+                    className="mobile-menu-sublink mobile-menu-sublink--highlight"
                     onClick={() => {
                       if (
                         pathname === "/" &&
@@ -160,7 +179,12 @@ export function MobileMenuNav({
                       onNavigate?.();
                     }}
                   >
-                    {child.label}
+                    <span>{child.label}</span>
+                    <ArrowUpRight
+                      size={14}
+                      className="mobile-menu-sublink-arrow"
+                      aria-hidden="true"
+                    />
                   </Link>
                 ))}
               </div>

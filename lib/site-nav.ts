@@ -1,10 +1,12 @@
 import {
   BookOpen,
-  Briefcase,
+  Building2,
   ClipboardList,
-  FileText,
+  Compass,
   Home,
+  Info,
   Phone,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 
@@ -22,8 +24,12 @@ export type SiteNavItem = {
 };
 
 /**
- * Shared IA for desktop dock + mobile hamburger.
- * Home · About Us ▾ · Academics ▾ · Admissions · Careers · Contact ▾
+ * Primary navigation — WIS Web Layout & Content.doc, verbatim order:
+ * Home · About Wellspire · Our Team - Management - Leadership · Curriculum ·
+ * Campus & Facilities · Learning Beyond Classrooms · Admissions · Contact Us.
+ * Flat, no dropdowns, matching the doc exactly. (Careers and Public
+ * Disclosure aren't doc nav items — both pages still exist and are linked
+ * from the footer; Public Disclosure itself is untouched.)
  */
 export const siteNavItems: readonly SiteNavItem[] = [
   {
@@ -33,26 +39,29 @@ export const siteNavItems: readonly SiteNavItem[] = [
     Icon: Home,
   },
   {
-    label: "About Us",
+    label: "About Wellspire",
     href: "/about",
-    Icon: FileText,
-    children: [
-      { label: "About Wellspire", href: "/about#about" },
-      { label: "Management & Leadership", href: "/leadership" },
-      { label: "Principal’s Message", href: "/leadership#leadership" },
-    ],
+    Icon: Info,
   },
   {
-    label: "Academics",
-    href: "/#academics",
-    hashId: "academics",
+    label: "Our Team – Management – Leadership",
+    href: "/leadership",
+    Icon: Users,
+  },
+  {
+    label: "Curriculum",
+    href: "/curriculum",
     Icon: BookOpen,
-    children: [
-      { label: "Curriculum", href: "/#academics" },
-      { label: "Campus & Facilities", href: "/campus-life#campus" },
-      { label: "Campus Life", href: "/campus-life#campus-life" },
-      { label: "Learning Beyond", href: "/learning-beyond" },
-    ],
+  },
+  {
+    label: "Campus & Facilities",
+    href: "/campus-life#campus",
+    Icon: Building2,
+  },
+  {
+    label: "Learning Beyond Classrooms",
+    href: "/learning-beyond",
+    Icon: Compass,
   },
   {
     label: "Admissions",
@@ -60,17 +69,15 @@ export const siteNavItems: readonly SiteNavItem[] = [
     Icon: ClipboardList,
   },
   {
-    label: "Careers",
-    href: "/careers",
-    Icon: Briefcase,
-  },
-  {
-    label: "Contact",
+    label: "Contact Us",
     href: "/#contact",
     hashId: "contact",
     Icon: Phone,
     children: [
-      { label: "Public Disclosure", href: "/mandatory-public-disclosure" },
+      {
+        label: "Public Disclosure",
+        href: "/mandatory-public-disclosure",
+      },
     ],
   },
 ];

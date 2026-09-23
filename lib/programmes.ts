@@ -58,31 +58,31 @@ export const learningBeyondPrograms = [
     tag: "LIFE SKILLS",
     title: "Life Skills Farming Program",
     image: photos.farming,
-    body: "Hands-on farming: where food comes from, responsibility, patience, teamwork, and sustainability — learning from soil to soul.",
+    body: "Hands-on Farming Experience. Children learn: where food comes from, responsibility and patience, and teamwork and sustainability. Learning truly grows from the soil to the soul.",
   },
   {
     tag: "STEAM",
     title: "STEAM Program",
     image: photos.computerLab,
-    body: "Science, technology, engineering, arts, and math together — creative problem-solving from Grade 1 onwards.",
+    body: "Science + Technology + Engineering + Arts + Math. Creative problem-solving from Grade 1 onwards.",
   },
   {
     tag: "VALUES",
     title: "Value Education Program",
     image: photos.earlyYears,
-    body: "Ethics, empathy, communication, and leadership — taught through real-life situations, not lectures.",
+    body: "Ethics, empathy, communication, leadership taught through real-life situations.",
   },
   {
     tag: "VOICE",
-    title: "Podcasting & Communication Skills",
+    title: "Podcasting & Communication Skills Program",
     image: photos.podcast,
-    body: "In our podcast studio: articulation, storytelling, listening, teamwork, confidence, and responsible digital communication.",
+    body: "Through guided use of the dedicated Podcast Studio, students develop articulation, storytelling, listening skills, teamwork, confidence, and responsible digital communication.",
   },
   {
     tag: "EXPERIENTIAL",
     title: "Bagless Days",
     image: photos.classroom,
-    body: "Experiential learning through projects, creativity, collaboration, and joyful exploration — beyond the textbook.",
+    body: "Experiential learning through projects, creativity, collaboration, and joyful exploration.",
   },
   {
     tag: "CAMPUS",
@@ -114,7 +114,7 @@ export const programmeDialogCopy: Record<string, string> = {
   "STEM & Experiential Learning":
     "Integrated science, technology, engineering, arts, and math through inquiry and experiential projects.",
   "Life Skills Farming Program":
-    "Where food comes from — responsibility, patience, teamwork, and sustainability. Learning grows from soil to soul.",
+    "Where food comes from — responsibility, patience, teamwork, and sustainability. Learning truly grows from the soil to the soul.",
   "Creative & Sports Excellence":
     "Arts, music, dance, sport, and movement — fitness, teamwork, and expression valued alongside academics.",
   "Dedicated Podcast Studio":
@@ -122,18 +122,27 @@ export const programmeDialogCopy: Record<string, string> = {
   "Mini Library (Classroom Libraries)":
     "Mini libraries in classrooms through Grade 5 to build reading habits, vocabulary, and confident learners.",
   "STEAM Program":
-    "Science, technology, engineering, arts, and math together — creative problem-solving from Grade 1 onwards.",
+    "Science + Technology + Engineering + Arts + Math. Creative problem-solving from Grade 1 onwards.",
   "Value Education Program":
-    "Ethics, empathy, communication, and leadership through real-life situations, not lectures alone.",
-  "Podcasting & Communication Skills":
-    "Guided use of the podcast studio for voice, storytelling, listening, teamwork, and digital responsibility.",
+    "Ethics, empathy, communication, leadership taught through real-life situations.",
+  "Podcasting & Communication Skills Program":
+    "Through guided use of the dedicated Podcast Studio, students develop articulation, storytelling, listening skills, teamwork, confidence, and responsible digital communication.",
   "Bagless Days":
     "Project-led days with creativity, collaboration, and joyful exploration beyond regular timetables.",
 };
 
+/** Full founder profiles — Management.doc, verbatim. Paragraphs separated by "\n\n". */
 export const founderDialogCopy: Record<string, string> = {
-  "Mr Chamakura Bhoopal Reddy":
-    "For over two decades, Mr Bhoopal Reddy has served as Vice Chairman of CMR Engineering College. He co-founded Wellspire to build strong school-level foundations in curiosity, discipline, and character — a campus rooted in higher-education wisdom and whole-child excellence.",
-  "Ms Shruthi Reddy":
-    "An engineer by qualification and educator by purpose, Ms Shruthi Reddy co-founded Wellspire with the belief that potential is limitless. She champions a dynamic, balanced ecosystem where every child discovers academic, artistic, and athletic strengths.",
+  "Mr Chamakura Bhoopal Reddy": [
+    "For over two decades, Mr Bhoopal Reddy has been a pillar of higher education, serving as the Vice Chairman of CMR Engineering College — an institution distinguished for its academic rigour and spirit of innovation. In this role, he played a pivotal part in shaping the learning journeys of thousands of aspiring engineers, championing holistic development and industry-ready competencies.",
+    "His extensive experience in nurturing young adults revealed a profound insight: the seeds of excellence — curiosity, discipline, and character — are sown much earlier. He realised that a strong school-level foundation is the most decisive force in enabling lifelong success.",
+    "Guided by this conviction, Mr. Reddy has embarked on a new mission: to build that foundation with intention and purpose. The establishment of Wellspire is the embodiment of this vision — a school rooted in the wisdom of higher education, yet wholly committed to excellence across the entire schooling spectrum.",
+    "At Wellspire, we are committed to fostering not only academic proficiency but also critical thinking, creativity, and character. Our philosophy is to create a warm, stimulating environment where young learners are encouraged to explore, question, imagine, and innovate. We strive to build a community where the leaders, problem-solvers, and inventors of tomorrow take their first confident steps today.",
+    "With a legacy of educational leadership and a dynamic, future-focused approach, Mr. Reddy is shaping Wellspire into a beacon of holistic, future-ready, and transformative education.",
+  ].join("\n\n"),
+  "Ms Shruthi Reddy": [
+    "An engineer by qualification, a fitness enthusiast by passion, and an educator by purpose — Shruthi Reddy embodies discipline, balance, and a deep commitment to personal growth.",
+    "She lives by a powerful belief: Potential is Limitless. After years of dedicating herself to her family, she channelled her discipline into a remarkable personal transformation. Today, she brings that same strength, clarity, and determination to the field of education. She believes that education must prepare children for the world — not just exams — and that every child carries a unique potential waiting to unfold.",
+    "As the Co-Founder of Wellspire, she has envisioned and crafted a learning ecosystem that reflects her philosophy — dynamic, balanced, enriching, and rooted in holistic development. Her mission is to ensure that every child discovers their academic, artistic, and athletic strengths, building a strong foundation for a confident, skilled, and successful life.",
+  ].join("\n\n"),
 };

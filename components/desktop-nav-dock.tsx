@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { siteNavItems } from "@/lib/site-nav";
 
 type DesktopNavDockProps = {
@@ -22,6 +22,14 @@ function hashOnly(href: string) {
 function isRouteActive(pathname: string, href: string) {
   const path = pathOnly(href);
   if (path === "/") return pathname === "/";
+  if (
+    (path === "/mandatory-public-disclosure" &&
+      pathname === "/public-disclosure") ||
+    (path === "/public-disclosure" &&
+      pathname === "/mandatory-public-disclosure")
+  ) {
+    return true;
+  }
   return pathname === path || pathname.startsWith(`${path}/`);
 }
 
@@ -142,7 +150,12 @@ export function DesktopNavDock({
                       }
                     }}
                   >
-                    {child.label}
+                    <span>{child.label}</span>
+                    <ArrowUpRight
+                      size={13}
+                      className="nav-dock-dropdown-arrow"
+                      aria-hidden="true"
+                    />
                   </Link>
                 );
               })}

@@ -175,16 +175,41 @@ export function EnquiryDialog({
       ) : (
         <div className="information-panel">
           {dialog === "Message from our Principal" ? (
-            <p>
-              At Wellspire, education is never about numbers—it is about each
-              child: curiosity, courage, creativity, and dreams. With 15 years
-              leading schools, I have seen children flourish when they feel
-              safe, valued, and inspired. We do not merely educate minds—we
-              shape lives.
-            </p>
+            <>
+              <p>
+                At Wellspire, education is never about numbers—it is about
+                each child. It is about their curiosity, courage, creativity,
+                emotions, challenges, strengths, and dreams. We believe that
+                every child has their own pace and purpose, and our role is
+                to guide them with encouragement, understanding, and trust.
+              </p>
+              <p>
+                With 15 years of experience in leading schools, shaping
+                academics, and designing curriculum, I have seen firsthand
+                that children flourish best when they feel safe, valued, and
+                inspired. This belief lives at the heart of Wellspire.
+              </p>
+              <p>
+                Our school spaces speak the language of care and purpose.
+                Every classroom, every learning area, every open corner has
+                been created to nurture the mind, body, and soul. Children
+                walk into Wellspire with enthusiasm, confidence, and the
+                freedom to express themselves.
+              </p>
+              <p>
+                Through a curriculum that nurtures expression, creativity,
+                emotional strength, physical fitness, and social awareness,
+                supported by experiential and joyful learning, our children
+                grow into balanced, compassionate, and confident
+                individuals—ready for the world and for themselves.
+              </p>
+              <p>
+                At Wellspire, we do not merely educate minds—we shape lives.
+              </p>
+            </>
           ) : (
-            <p>
-              {dialog && programmeDialogCopy[dialog]
+            <>
+              {(dialog && programmeDialogCopy[dialog]
                 ? programmeDialogCopy[dialog]
                 : dialog && founderDialogCopy[dialog]
                   ? founderDialogCopy[dialog]
@@ -194,8 +219,13 @@ export function EnquiryDialog({
                       ? "The admissions journey begins with an enquiry, followed by registration, an interaction, document checks, and confirmation. Opening dates, eligibility, and the official prospectus are awaiting approval from the school."
                       : dialog === "Privacy & your data"
                         ? "This preview uses browser storage only when you save an enquiry draft. It does not send the draft to a server or use analytics. Clear the saved draft below to remove your information from this device."
-                        : "The name Wellspire reflects our belief that well-being and inspiration together create meaningful education. We nurture mind, body, and spirit through academics, values, creativity, communication, reading, and care."}
-            </p>
+                        : "The name Wellspire reflects our belief that well-being and inspiration together create meaningful education. We nurture mind, body, and spirit through academics, values, creativity, communication, reading, and care."
+              )
+                .split("\n\n")
+                .map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+            </>
           )}
           {dialog === "Privacy & your data" ? (
             <button

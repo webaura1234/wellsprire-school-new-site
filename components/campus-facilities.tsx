@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Heading } from "@/components/heading";
-import { campusFacilities } from "@/lib/facilities";
+import { campusFacilities, facilitiesHeader } from "@/lib/facilities";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
@@ -17,6 +17,7 @@ export function CampusFacilitiesSection({
   exploreHref?: string;
 }) {
   const [facility, setFacility] = useState(0);
+  const active = campusFacilities[facility];
 
   return (
     <section className="campus section" id="campus">
@@ -24,21 +25,22 @@ export function CampusFacilitiesSection({
         <div>
           <Eyebrow>06 — CAMPUS &amp; FACILITIES</Eyebrow>
           <Heading>
-            A campus where
+            Infrastructure that
             <br />
-            <em>children thrive.</em>
+            <em>supports learning.</em>
           </Heading>
         </div>
         <Link className="text-link" href={exploreHref}>
           Explore campus life <ArrowUpRight size={18} />
         </Link>
       </div>
+      <p className="campus-facilities-header">{facilitiesHeader}</p>
       <div
         className="campus-tabs"
         role="tablist"
         aria-label="Explore campus facilities"
       >
-        {campusFacilities.map(([name], i) => (
+        {campusFacilities.map(({ name }, i) => (
           <button
             key={name}
             type="button"
@@ -78,14 +80,19 @@ export function CampusFacilitiesSection({
       >
         <Image
           key={facility}
-          src={campusFacilities[facility][2]}
-          alt={campusFacilities[facility][0]}
+          src={active.image}
+          alt={active.name}
           fill
           sizes="90vw"
         />
         <div className="campus-caption">
-          <span>WELLSPIRE / CAMPUS WHERE CHILDREN THRIVE</span>
-          <h3>{campusFacilities[facility][1]}</h3>
+          <span>WELLSPIRE / CAMPUS &amp; FACILITIES</span>
+          <h3>{active.name}</h3>
+          <ul className="campus-caption-list">
+            {active.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
           <span>
             0{facility + 1} / 0{campusFacilities.length}
           </span>

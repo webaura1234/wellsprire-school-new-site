@@ -48,6 +48,13 @@ const chapters = [
   },
 ];
 
+const heroHeadlines = [
+  { lead: "Inspiring lifelong", accent: "learners." },
+  { lead: "Where curiosity", accent: "meets confidence." },
+  { lead: "Rooted in values.", accent: "Ready for the world." },
+  { lead: "Educating the mind.", accent: "Body. Spirit." },
+];
+
 const detailPanels = [
   {
     image: photos.classroom,
@@ -73,8 +80,15 @@ const currentScrollY = () => {
   return window.scrollY;
 };
 
-export default function Hero() {
+export default function Hero({
+  onEnquire,
+  onVisit,
+}: {
+  onEnquire?: () => void;
+  onVisit?: () => void;
+}) {
   const [chapter, setChapter] = useState(0);
+  const [headline, setHeadline] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const isClickingRef = useRef(false);
@@ -96,6 +110,14 @@ export default function Hero() {
 
   useEffect(() => {
     paintHeroChapter(0, trackRef.current);
+  }, []);
+
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = setInterval(() => {
+      setHeadline((prev) => (prev + 1) % heroHeadlines.length);
+    }, 4200);
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -294,14 +316,35 @@ export default function Hero() {
               <span /> INSPIRING LIFELONG LEARNERS
             </p>
             <Heading as="h1">
-              Inspiring lifelong
-              <br />
-              <em>learners.</em>
+              <span
+                className="hero-headline-rotator"
+                aria-live="polite"
+                key={headline}
+              >
+                {heroHeadlines[headline].lead}
+                <br />
+                <em>{heroHeadlines[headline].accent}</em>
+              </span>
             </Heading>
-            <p className="hero-deck">Where curiosity meets confidence.</p>
             <div className="hero-introduction">
               <span className="intro-rule" />
               <p>Preparing children for life, not just exams.</p>
+            </div>
+            <div className="hero-cta-row">
+              <button
+                type="button"
+                className="button"
+                onClick={() => onEnquire?.()}
+              >
+                Enquire Now
+              </button>
+              <button
+                type="button"
+                className="button ghost"
+                onClick={() => onVisit?.()}
+              >
+                Book a Campus Visit
+              </button>
             </div>
           </div>
           <div className="hero-architecture">

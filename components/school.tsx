@@ -25,18 +25,18 @@ import Hero from "./hero";
 import CrestIntro, { startCrestIntro } from "./intro";
 import { Heading } from "./heading";
 import {
+  CampusExperienceSection,
   GlobalHorizons,
   TrustSection,
 } from "./featured-sections";
 import {
-  learningBeyondPrograms,
   programmeDialogCopy,
   founderDialogCopy,
 } from "@/lib/programmes";
 import { school } from "@/lib/school";
 import { DesktopNavDock } from "./desktop-nav-dock";
-import { CampusFacilitiesSection } from "./campus-facilities";
 import { MobileMenuNav } from "./mobile-menu-nav";
+import { SiteFooter } from "./site-footer";
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
@@ -379,7 +379,10 @@ export default function School() {
         )}
       </AnimatePresence>
       <main id="main">
-        <Hero />
+        <Hero
+          onEnquire={() => openDialog("Start an admissions enquiry")}
+          onVisit={() => openDialog("Plan a campus visit")}
+        />
         <TrustSection />
         <GlobalHorizons />
         <section className="section pillars" id="pillars">
@@ -441,9 +444,31 @@ export default function School() {
               memorisation — with strong academics, values, creativity, and
               culture.
             </p>
-            <a className="text-link" href="#admissions">
-              Explore curriculum <ArrowUpRight size={17} />
-            </a>
+            <div className="curriculum-framework">
+              <div>
+                <strong>NCF-SE 2023</strong>
+                <span>Foundational framework for school education</span>
+              </div>
+              <div>
+                <strong>CBSE</strong>
+                <span>Structured academic and competency-based learning</span>
+              </div>
+              <div>
+                <strong>5+3+3+4</strong>
+                <span>Age-appropriate stages of learning</span>
+              </div>
+              <div>
+                <strong>Indian Context</strong>
+                <span>Values, culture, traditions and real-life learning</span>
+              </div>
+            </div>
+            <p className="curriculum-outcomes">
+              Strong Academics · Conceptual Clarity · Global Exposure ·
+              Cultural Grounding
+            </p>
+            <Link className="text-link" href="/curriculum">
+              Explore Curriculum <ArrowUpRight size={17} />
+            </Link>
           </div>
           <div className="stages">
             {stages.map((s, i) => (
@@ -490,55 +515,7 @@ export default function School() {
             ))}
           </div>
         </section>
-        <CampusFacilitiesSection />
-        <section
-          className="section journal"
-          id="learning-beyond"
-          aria-label="Learning beyond classrooms"
-        >
-          <div className="section-heading">
-            <div>
-              <Eyebrow>LEARNING BEYOND CLASSROOMS</Eyebrow>
-              <Heading>
-                Soil to soul.
-                <br />
-                <em>Studio to stage.</em>
-              </Heading>
-            </div>
-            <span className="journal-label">HANDS-ON PROGRAMMES</span>
-          </div>
-          <div className="journal-grid journal-grid--programs">
-            {learningBeyondPrograms.map(({ tag, title, image, body }) => (
-              <button
-                className="journal-card"
-                key={title}
-                type="button"
-                onClick={() => openDialog(title)}
-              >
-                <div>
-                  <Image
-                    src={image}
-                    alt={title}
-                    fill
-                    sizes="(max-width:640px) 90vw, 30vw"
-                  />
-                </div>
-                <span className="eyebrow">{tag}</span>
-                <h3>
-                  {title}
-                  <ArrowUpRight size={20} />
-                </h3>
-                <p>{body}</p>
-              </button>
-            ))}
-          </div>
-          <div className="mobile-more-wrap">
-            <a className="mobile-more-btn" href="/learning-beyond">
-              More programmes
-              <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
-            </a>
-          </div>
-        </section>
+        <CampusExperienceSection />
         <section className="admissions section" id="admissions">
           <div className="admission-top">
             <Eyebrow>09 — YOUR NEXT CHAPTER</Eyebrow>
@@ -555,12 +532,20 @@ export default function School() {
               <br />
               Let’s start with a conversation.
             </p>
-            <button
-              className="button light"
-              onClick={() => openDialog("Start an admissions enquiry")}
-            >
-              Enquire Now <ArrowUpRight size={18} />
-            </button>
+            <div className="admission-cta-row">
+              <button
+                className="button light"
+                onClick={() => openDialog("Start an admissions enquiry")}
+              >
+                Enquire Now <ArrowUpRight size={18} />
+              </button>
+              <button
+                className="button ghost"
+                onClick={() => openDialog("Plan a campus visit")}
+              >
+                Schedule a Visit <ArrowUpRight size={18} />
+              </button>
+            </div>
           </div>
           <div className="timeline-wrap">
             <svg
@@ -603,77 +588,7 @@ export default function School() {
           </div>
         </section>
       </main>
-      <footer id="contact">
-        <div className="footer-top">
-          <div>
-            <Brand />
-            <p>Join a school that educates the whole child.</p>
-          </div>
-          <div>
-            <Eyebrow>COME SAY HELLO</Eyebrow>
-            <p>
-              {school.city || "Campus location awaiting confirmation"}
-              <br />
-              {school.phone ? (
-                <a href={`tel:${school.phone}`}>{school.phone}</a>
-              ) : (
-                "Phone number awaiting school confirmation"
-              )}
-            </p>
-            <button
-              className="text-link"
-              onClick={() => openDialog("Plan a campus visit")}
-            >
-              Book a campus visit <ArrowUpRight size={15} />
-            </button>
-            <button
-              className="text-link"
-              onClick={() => openDialog("Start an admissions enquiry")}
-            >
-              Speak to admissions <ArrowUpRight size={15} />
-            </button>
-          </div>
-          <div>
-            <Eyebrow>TAKE A LOOK AROUND</Eyebrow>
-            <a href="/">Home</a>
-            <a href="/about">About Wellspire</a>
-            <a href="/leadership">Management &amp; Leadership</a>
-            <a href="/leadership#leadership">Principal&apos;s Message</a>
-            <a href="#academics">Curriculum</a>
-            <a href="/campus-life#campus">Campus &amp; Facilities</a>
-            <a href="/campus-life#campus-life">Campus Life</a>
-            <a href="/learning-beyond">Learning Beyond</a>
-            <a href="/admissions">Admissions</a>
-            <a href="/careers">Careers</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <div>
-            <Eyebrow>GOOD TO KNOW</Eyebrow>
-            <a href="/mandatory-public-disclosure">
-              Public Disclosure <ArrowUpRight size={13} />
-            </a>
-            <button onClick={() => openDialog("Fee structure")}>
-              Fee structure
-            </button>
-            <button onClick={() => openDialog("Privacy & your data")}>
-              Privacy & your data
-            </button>
-          </div>
-        </div>
-        <div className="footer-wordmark">
-          wellspire<span>↗</span>
-        </div>
-        <div className="footer-bottom">
-          <span>
-            © {new Date().getFullYear()} Wellspire. Educating the whole child.
-          </span>
-          <span>DESIGNED TO INSPIRE.</span>
-        </div>
-        <p className="preview-note">
-          Design preview · School details, affiliations, policies, and
-          admissions dates require verification before publication.
-        </p>
-      </footer>
+      <SiteFooter openDialog={openDialog} />
       <dialog
         aria-label={dialog || "Wellspire information"}
         ref={dialogRef}
@@ -803,16 +718,41 @@ export default function School() {
             {dialog === "Message from our Principal" ? (
               <>
                 <p>
-                  At Wellspire, education is never about numbers—it is about each
-                  child: curiosity, courage, creativity, and dreams. With 15
-                  years leading schools, I have seen children flourish when they
-                  feel safe, valued, and inspired. We do not merely educate
-                  minds—we shape lives.
+                  At Wellspire, education is never about numbers—it is about
+                  each child. It is about their curiosity, courage,
+                  creativity, emotions, challenges, strengths, and dreams. We
+                  believe that every child has their own pace and purpose,
+                  and our role is to guide them with encouragement,
+                  understanding, and trust.
+                </p>
+                <p>
+                  With 15 years of experience in leading schools, shaping
+                  academics, and designing curriculum, I have seen firsthand
+                  that children flourish best when they feel safe, valued,
+                  and inspired. This belief lives at the heart of Wellspire.
+                </p>
+                <p>
+                  Our school spaces speak the language of care and purpose.
+                  Every classroom, every learning area, every open corner has
+                  been created to nurture the mind, body, and soul. Children
+                  walk into Wellspire with enthusiasm, confidence, and the
+                  freedom to express themselves.
+                </p>
+                <p>
+                  Through a curriculum that nurtures expression, creativity,
+                  emotional strength, physical fitness, and social awareness,
+                  supported by experiential and joyful learning, our children
+                  grow into balanced, compassionate, and confident
+                  individuals—ready for the world and for themselves.
+                </p>
+                <p>
+                  At Wellspire, we do not merely educate minds—we shape
+                  lives.
                 </p>
               </>
             ) : (
-              <p>
-                {dialog && programmeDialogCopy[dialog]
+              <>
+                {(dialog && programmeDialogCopy[dialog]
                   ? programmeDialogCopy[dialog]
                   : dialog && founderDialogCopy[dialog]
                     ? founderDialogCopy[dialog]
@@ -822,8 +762,13 @@ export default function School() {
                         ? "The admissions journey begins with an enquiry, followed by registration, an interaction, document checks, and confirmation. Opening dates, eligibility, and the official prospectus are awaiting approval from the school."
                         : dialog === "Privacy & your data"
                           ? "This preview uses browser storage only when you save an enquiry draft. It does not send the draft to a server or use analytics. Clear the saved draft below to remove your information from this device."
-                          : "The name Wellspire reflects our belief that well-being and inspiration together create meaningful education. We nurture mind, body, and spirit through academics, values, creativity, communication, reading, and care."}
-              </p>
+                          : "The name Wellspire reflects our belief that well-being and inspiration together create meaningful education. We nurture mind, body, and spirit through academics, values, creativity, communication, reading, and care."
+                )
+                  .split("\n\n")
+                  .map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+              </>
             )}
             {dialog === "Privacy & your data" ? (
               <button

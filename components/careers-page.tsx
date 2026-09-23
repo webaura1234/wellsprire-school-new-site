@@ -24,8 +24,8 @@ const empty: CareerForm = {
   resumeName: "",
 };
 
-const CAREER_PHONES = ["+91 99883 34844", "+91 99883 35466"];
-const CAREER_EMAIL = "info@wellspireinternational.com";
+const CAREER_PHONES = school.phone ? [school.phone] : [];
+const CAREER_EMAIL = school.email ?? "";
 
 export function CareersPage() {
   const [form, setForm] = useState<CareerForm>(empty);

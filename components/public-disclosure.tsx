@@ -218,6 +218,7 @@ export function PublicDisclosureMobilePage() {
     <MobileChrome
       desktopRedirect="/mandatory-public-disclosure"
       activeMatch="/public-disclosure"
+      hideFooter
     >
       <DisclosureBody />
     </MobileChrome>

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowUpRight,
   Sparkles,
@@ -26,27 +27,19 @@ export function TrustSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const recognitions = [
     {
-      badge: "CURRICULUM",
-      title: "CBSE Curriculum",
-      org: "Conceptual learning with strong academics",
+      title: "Global Curriculum",
       icon: GraduationCap,
     },
     {
-      badge: "VALUES",
       title: "Strong Values",
-      org: "Integrity, wellness, inspiration, excellence",
       icon: Sparkles,
     },
     {
-      badge: "CAMPUS",
       title: "Safe Green Campus",
-      org: "10 acres, child-friendly",
       icon: CheckCircle2,
     },
     {
-      badge: "LEADERSHIP",
       title: "Experienced Leadership",
-      org: "Values, excellence, and genuine care",
       icon: Award,
     },
   ];
@@ -150,45 +143,22 @@ export function TrustSection() {
   return (
     <section
       ref={sectionRef}
-      className="section trust-section"
+      className="section trust-strip"
       id="trust"
       aria-label="What makes Wellspire different"
     >
-      <div className="section-heading">
-        <div>
-          <Eyebrow>WHY WELLSPIRE</Eyebrow>
-          <Heading>
-            What Families
-            <br />
-            <em>Trust Us With.</em>
-          </Heading>
-        </div>
-        <div className="section-subtext">
-          <p>
-            A commitment to excellence across curriculum, values, campus, and
-            leadership.
-          </p>
-        </div>
-      </div>
-
-      <div className="trust-grid">
+      <div className="trust-grid trust-grid--strip">
         {recognitions.map((item, index) => {
           const Icon = item.icon;
           const fromRight = index % 2 === 0;
           return (
             <div
-              className="trust-card"
+              className="trust-card trust-card--strip"
               key={item.title}
               data-enter={fromRight ? "right" : "left"}
             >
-              <div className="trust-card-icon">
-                <Icon size={28} strokeWidth={1.5} />
-              </div>
-              <div className="trust-card-content">
-                <span className="trust-badge">{item.badge}</span>
-                <h3>{item.title}</h3>
-                <p>{item.org}</p>
-              </div>
+              <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
+              <span>{item.title}</span>
             </div>
           );
         })}
@@ -199,37 +169,69 @@ export function TrustSection() {
 
 export function AboutWellspireSection({
   philosophyHref = "#pillars",
+  teamHref = "/leadership",
 }: {
   philosophyHref?: string;
+  teamHref?: string;
 }) {
   return (
     <section className="intro section" id="about">
       <div>
         <Eyebrow>ABOUT WELLSPIRE</Eyebrow>
-        <p className="side-note">
-          Integrity · Wellness · Innovation
-          <br />
-          Inspiration · Character · Excellence
-        </p>
         <Spire className="intro-spire" />
       </div>
       <div>
-        <h2 className="manifesto">
-          {"To shape a generation of well-rounded individuals — bright in intellect, bold in sport, alive in the arts, rooted in culture, and driven by values — who will rise to lead with balance, empathy, and excellence."
-            .split(" ")
-            .map((w, i) => (
-              <span className="manifesto-word" key={i}>
-                {w}{" "}
-              </span>
-            ))}
-        </h2>
-        <div className="intro-bottom">
+        <p className="about-lede">
+          The name Wellspire reflects our belief that well-being and
+          inspiration together create meaningful education. We nurture the
+          mind, body, and spirit through academics, values, creativity,
+          communication, reading habits, and care.
+        </p>
+
+        <div className="about-block">
+          <span className="about-block-label">Vision</span>
+          <h2 className="manifesto">
+            {"To shape a generation of well-rounded individuals — bright in intellect, bold in sport, alive in the arts, rooted in culture, and driven by values — who will rise to lead with balance, empathy, and excellence."
+              .split(" ")
+              .map((w, i) => (
+                <span className="manifesto-word" key={i}>
+                  {w}{" "}
+                </span>
+              ))}
+          </h2>
+        </div>
+
+        <div className="about-block">
+          <span className="about-block-label">Mission</span>
           <p>
-            The name Wellspire joins well-being and inspiration. We empower
-            every child to learn deeply, live fully, and lead with purpose —
-            through a balanced education that values academics, arts, sports,
-            and character equally.
+            At Wellspire International School, we empower every child to
+            learn deeply, live fully, and lead with purpose through a
+            balanced education that values academics, arts, sports, and
+            character equally.
           </p>
+        </div>
+
+        <div className="about-block">
+          <span className="about-block-label">Core Values</span>
+          <p className="side-note">
+            Integrity · Wellness · Innovation
+            <br />
+            Inspiration · Global Citizenship · Excellence
+          </p>
+        </div>
+
+        <div className="about-block about-team-teaser">
+          <span className="about-block-label">Our Team</span>
+          <p>
+            A team rooted in strong values, professional excellence, and
+            genuine care for children.
+          </p>
+          <a href={teamHref} className="text-link">
+            Meet management &amp; leadership <ArrowUpRight size={18} />
+          </a>
+        </div>
+
+        <div className="intro-bottom">
           <a href={philosophyHref} className="text-link">
             Our philosophy <ArrowUpRight size={18} />
           </a>
@@ -239,47 +241,73 @@ export function AboutWellspireSection({
   );
 }
 
-export function CampusExperienceSection() {
+export function PhilosophyEssaySection() {
+  const paragraphs = [
+    "As educators, it is our responsibility to recognise these possibilities and nurture them with care — just as a gardener patiently tends to young seedlings and saplings, helping them grow into strong and flourishing plants. In the same spirit, every child is guided, supported, and motivated to blossom with confidence.",
+    "At Wellspire, this belief forms the foundation of everything we do. Our approach focuses on developing knowledge, deep understanding, and essential skills while nurturing the body, mind, and spirit.",
+    "Learning here is natural, alive, and meaningful. We make text, theories, and words tangible for children — allowing them to see, experience, and do what they read and learn. When learning moves beyond textbook covers and becomes something children can explore, knowledge becomes meaningful and lasting.",
+    "Every classroom, learning space, and open corner of the campus has been thoughtfully designed to nurture the mind, body, and spirit of a child. When children walk into Wellspire, they feel energised, confident, curious, and ready to learn.",
+    "At Wellspire, we celebrate progress, not pressure. We do not compare students with one another or label them — instead, we focus on each child's individual growth. We encourage children to measure their progress not against others, but against who they were yesterday and who they are becoming today.",
+    "Timeless values are deeply integrated into our teaching and learning, helping children grow into thoughtful, compassionate, and responsible individuals.",
+    "Our goal is to nurture children who are capable, confident, and contextual — individuals who understand the world around them today and are prepared to navigate and shape the world of tomorrow.",
+  ];
+
+  return (
+    <section className="section philosophy-essay" id="philosophy" aria-label="Our philosophy">
+      <div className="section-heading">
+        <div>
+          <Eyebrow>OUR PHILOSOPHY</Eyebrow>
+          <Heading>
+            We do not merely
+            <br />
+            <em>educate minds.</em>
+          </Heading>
+        </div>
+      </div>
+      <div className="philosophy-essay-body">
+        {paragraphs.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+        <p className="philosophy-essay-close">
+          At Wellspire, we do not merely educate minds — we shape lives.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export function CampusExperienceSection({
+  exploreHref = "/campus-life#campus",
+}: {
+  exploreHref?: string;
+}) {
   return (
     <section className="safety section" id="campus-experience">
-      <div>
-        <Eyebrow>CAMPUS EXPERIENCE</Eyebrow>
-        <Heading>
-          Safe. Green.
-          <br />
-          <em>Child-friendly.</em>
-        </Heading>
-        <p>Nature is part of everyday learning — not an add-on.</p>
+      <div className="section-heading">
+        <div>
+          <Eyebrow>06 — CAMPUS EXPERIENCE</Eyebrow>
+          <Heading>
+            A campus where
+            <br />
+            <em>children thrive.</em>
+          </Heading>
+        </div>
+        <Link className="text-link" href={exploreHref}>
+          View Campus &amp; Facilities <ArrowUpRight size={18} />
+        </Link>
       </div>
       <div className="safety-grid">
         {(
           [
-            [
-              ShieldCheck,
-              "10-acre green campus",
-              "Open grounds and green exploration, built for children to thrive.",
-            ],
-            [
-              Bus,
-              "GPS-enabled transport",
-              "Tracked routes and child-friendly travel to and from campus.",
-            ],
-            [
-              HeartPulse,
-              "Air-conditioned classrooms",
-              "Calm, comfortable rooms with natural light and ventilation.",
-            ],
-            [
-              Users,
-              "Safe infrastructure",
-              "A child-friendly campus designed for everyday care and belonging.",
-            ],
+            [ShieldCheck, "10-acre green campus"],
+            [HeartPulse, "Air-conditioned classrooms"],
+            [Bus, "GPS-enabled transport"],
+            [Users, "Safe, child-friendly infrastructure"],
           ] as const
-        ).map(([Icon, title, text]) => (
+        ).map(([Icon, title]) => (
           <div key={title}>
             <Icon size={27} strokeWidth={1.25} />
             <h3>{title}</h3>
-            <p>{text}</p>
           </div>
         ))}
       </div>
@@ -364,7 +392,7 @@ export function CampusLifeStorySection({
     {
       name: "Biophilic Learning Spaces",
       blurb: "Green corridors & calm corners",
-      detail: "Bird corners, open-air classrooms, farm",
+      detail: "Bird corners, rabbit house, open-air classrooms",
       region: "campus" as const,
       tag: "CAMPUS",
       rhythm: "Every day",
@@ -461,6 +489,82 @@ export function CampusLifeStorySection({
   );
 }
 
+export function BiophilicLearningSection() {
+  const indoor = [
+    "Green corridors",
+    "Plant-filled classrooms",
+    "Reading-friendly calm corners",
+    "Natural light and ventilation",
+  ];
+  const outdoor = [
+    "Bird corners",
+    "Rabbit house",
+    "Open-air classrooms",
+    "Green exploration areas",
+  ];
+  const benefits = [
+    "Emotional well-being",
+    "Focus and calmness",
+    "Environmental responsibility",
+    "Reduced screen dependence",
+  ];
+
+  return (
+    <section
+      className="section biophilic-section"
+      id="biophilic"
+      aria-label="Biophilic learning spaces"
+    >
+      <div className="section-heading">
+        <div>
+          <Eyebrow>BIOPHILIC LEARNING SPACES</Eyebrow>
+          <Heading>
+            Learning in harmony
+            <br />
+            <em>with nature.</em>
+          </Heading>
+        </div>
+        <div className="section-subtext">
+          <p>
+            At Wellspire, nature is not an add-on — it is part of everyday
+            learning.
+          </p>
+        </div>
+      </div>
+
+      <div className="biophilic-grid">
+        <div className="biophilic-card">
+          <h3>Indoor Biophilic Design</h3>
+          <ul>
+            {indoor.map((i) => (
+              <li key={i}>{i}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="biophilic-card">
+          <h3>Outdoor Learning Zones</h3>
+          <ul>
+            {outdoor.map((i) => (
+              <li key={i}>{i}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="biophilic-card biophilic-card--benefits">
+          <h3>Benefits Parents Value</h3>
+          <ul>
+            {benefits.map((i) => (
+              <li key={i}>
+                <CheckCircle2 size={14} strokeWidth={2} aria-hidden="true" />
+                {i}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function PrincipalMessage({
   onExplore,
   philosophyHref = "#pillars",
@@ -516,15 +620,39 @@ export function PrincipalMessage({
           </Heading>
 
           <blockquote className="principal-quote">
-            “At Wellspire, education is never about numbers—it is about each child.
-            Their curiosity, courage, creativity, and dreams.”
+            “At Wellspire, education is never about numbers—it is about each
+            child. It is about their curiosity, courage, creativity,
+            emotions, challenges, strengths, and dreams.”
           </blockquote>
 
           <div className="principal-text">
             <p>
-              With 15 years leading schools and shaping curriculum, I have seen
-              children flourish when they feel safe, valued, and inspired. Every
-              classroom and open corner is made to nurture mind, body, and soul.
+              We believe that every child has their own pace and purpose, and
+              our role is to guide them with encouragement, understanding,
+              and trust.
+            </p>
+            <p>
+              With 15 years of experience in leading schools, shaping
+              academics, and designing curriculum, I have seen firsthand that
+              children flourish best when they feel safe, valued, and
+              inspired. This belief lives at the heart of Wellspire.
+            </p>
+            <p>
+              Our school spaces speak the language of care and purpose. Every
+              classroom, every learning area, every open corner has been
+              created to nurture the mind, body, and soul. Children walk into
+              Wellspire with enthusiasm, confidence, and the freedom to
+              express themselves.
+            </p>
+            <p>
+              Through a curriculum that nurtures expression, creativity,
+              emotional strength, physical fitness, and social awareness,
+              supported by experiential and joyful learning, our children
+              grow into balanced, compassionate, and confident
+              individuals—ready for the world and for themselves.
+            </p>
+            <p className="principal-text-close">
+              At Wellspire, we do not merely educate minds—we shape lives.
             </p>
           </div>
 
@@ -587,7 +715,7 @@ export function GlobalHorizons() {
             Programme titles only on the home page — tap a card to explore
             Learning Beyond Classrooms.
           </p>
-          <a className="text-link" href="#learning-beyond">
+          <a className="text-link" href="/learning-beyond">
             Learning beyond classrooms <ArrowUpRight size={16} />
           </a>
         </div>
@@ -597,7 +725,7 @@ export function GlobalHorizons() {
         {homeLearningHighlights.map((card) => (
           <a
             className="global-card global-card--title-only"
-            href="#learning-beyond"
+            href="/learning-beyond"
             key={card.title}
           >
             <div className="global-card-image">

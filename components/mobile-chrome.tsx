@@ -15,6 +15,8 @@ import {
 import { Brand } from "@/components/brand";
 import { DesktopNavDock } from "@/components/desktop-nav-dock";
 import { MobileMenuNav } from "@/components/mobile-menu-nav";
+import { SiteFooter } from "@/components/site-footer";
+import { EnquiryDialog, useEnquiryDialog } from "@/components/enquiry-dialog";
 import { school } from "@/lib/school";
 
 type MobileChromeProps = {
@@ -27,14 +29,18 @@ type MobileChromeProps = {
   /** Highlight Admissions pill when on /admissions */
   admissionsActive?: boolean;
   activeMatch?: string;
+  /** Public Disclosure keeps its pre-existing layout untouched — no shared footer. */
+  hideFooter?: boolean;
 };
 
 export function MobileChrome({
   children,
   desktopRedirect,
   admissionsActive = false,
+  hideFooter = false,
 }: MobileChromeProps) {
   const [menu, setMenu] = useState(false);
+  const footerDialog = useEnquiryDialog();
 
   useEffect(() => {
     document.body.style.overflow = menu ? "hidden" : "";
@@ -159,6 +165,12 @@ export function MobileChrome({
       <main id="main" className="mobile-subpage-main">
         {children}
       </main>
+      {!hideFooter && (
+        <>
+          <SiteFooter openDialog={footerDialog.openDialog} />
+          <EnquiryDialog {...footerDialog} />
+        </>
+      )}
     </div>
   );
 }
