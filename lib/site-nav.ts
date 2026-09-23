@@ -42,7 +42,6 @@ export const siteNavItems: readonly SiteNavItem[] = [
   },
   {
     label: "About Wellspire",
-    shortLabel: "About",
     href: "/about",
     Icon: Info,
   },

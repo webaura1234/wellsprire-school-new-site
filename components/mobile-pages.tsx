@@ -22,7 +22,6 @@ import {
 import { learningBeyondPrograms } from "@/lib/programmes";
 import {
   curriculumOverview,
-  curriculumOverviewDoc,
   coreBelief,
   threePillars,
   academicProgramsIntro,
@@ -61,25 +60,31 @@ function SubpageIntro({
   title,
   titleEm,
   deck,
+  className,
 }: {
   eyebrow: string;
   title: string;
   titleEm: string;
   deck: string;
+  className?: string;
 }) {
   return (
-    <div className="mobile-subpage-intro">
+    <div className={`mobile-subpage-intro${className ? ` ${className}` : ""}`}>
       <Link className="collection-back" href="/">
         <ArrowLeft size={16} strokeWidth={1.75} aria-hidden="true" />
         Back to home
       </Link>
-      <p className="eyebrow">{eyebrow}</p>
-      <Heading>
-        {title}
-        <br />
-        <em>{titleEm}</em>
-      </Heading>
-      <p className="mobile-subpage-deck">{deck}</p>
+      <div className="mobile-subpage-intro-main">
+        <div className="mobile-subpage-intro-title">
+          <p className="eyebrow">{eyebrow}</p>
+          <Heading>
+            {title}
+            <br />
+            <em>{titleEm}</em>
+          </Heading>
+        </div>
+        <p className="mobile-subpage-deck">{deck}</p>
+      </div>
     </div>
   );
 }
@@ -203,145 +208,230 @@ export function LearningBeyondPage() {
 export function CurriculumMobilePage() {
   useHashScroll();
 
+  const [activeLearning, ...otherPedagogies] = teachingPedagogies;
+
   return (
     <MobileChrome activeMatch="/curriculum">
       <SubpageIntro
-        eyebrow="CURRICULUM AT WELLSPIRE INTERNATIONAL SCHOOL"
+        className="curriculum-hero"
+        eyebrow="CURRICULUM"
         title="Designed for today."
         titleEm="Ready for tomorrow."
-        deck={curriculumOverviewDoc.intro}
+        deck={curriculumOverview.intro}
       />
 
-      <section className="section curriculum-page-section" aria-label="Curriculum overview">
-        <ul className="curriculum-bullet-grid">
-          {curriculumOverviewDoc.bullets.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
-      </section>
+      <div className="curriculum-page">
+        <section
+          className="curriculum-section"
+          aria-label="Curriculum overview"
+        >
+          <p className="curriculum-section-kicker">Our curriculum ensures</p>
+          <ul className="curriculum-chip-list">
+            {[
+              "Conceptual understanding (not memorisation)",
+              "Strong literacy and numeracy",
+              "Inquiry-based learning",
+              "Competency-based learning",
+              "Global awareness",
+              "Indian cultural grounding",
+              "Holistic development",
+              "Values and life skills",
+            ].map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
+          <p className="curriculum-lead">{curriculumOverview.outro}</p>
+        </section>
 
-      <section className="section curriculum-page-section" aria-label="Curriculum framework">
-        <p className="eyebrow">{curriculumOverview.heading}</p>
-        <ul className="curriculum-bullet-grid">
-          {curriculumOverview.bullets.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
-        <p className="curriculum-outro">{curriculumOverview.outro}</p>
-      </section>
-
-      <section className="section curriculum-page-section" aria-label="Our core belief">
-        <p className="eyebrow">{coreBelief.eyebrow}</p>
-        <Heading>{coreBelief.heading}</Heading>
-        <p className="curriculum-outro">{coreBelief.intro}</p>
-        <ul className="curriculum-bullet-grid">
-          {coreBelief.bullets.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
-        <p className="curriculum-outro">{coreBelief.outro}</p>
-      </section>
-
-      <section className="section curriculum-page-section" aria-label="Three pillars of learning">
-        <p className="eyebrow">THREE PILLARS OF LEARNING</p>
-        <div className="curriculum-pillars">
-          {threePillars.map((pillar, i) => (
-            <div className="curriculum-pillar" key={pillar.name}>
-              <span className="curriculum-pillar-number">0{i + 1}</span>
-              <h3>{pillar.name}</h3>
-              <p>{pillar.text}</p>
-              {pillar.subBullets && (
-                <ul>
-                  {pillar.subBullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              )}
+        <section
+          className="curriculum-section"
+          aria-label="Our core belief"
+        >
+          <div className="curriculum-belief">
+            <div className="curriculum-belief-title">
+              <p className="eyebrow">{coreBelief.eyebrow}</p>
+              <Heading>{coreBelief.heading}</Heading>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section curriculum-page-section" aria-label="Academic programs">
-        <p className="eyebrow">{academicProgramsIntro.heading}</p>
-        <p className="curriculum-outro">{academicProgramsIntro.text}</p>
-        <p className="curriculum-outro">{academicProgramsIntro.outro}</p>
-
-        {curriculumStages.map((s) => (
-          <article className="curriculum-stage" key={s.name}>
-            <header>
-              <span className="curriculum-pillar-number">{s.number}</span>
-              <div>
-                <h3>{s.name}</h3>
-                <p className="curriculum-stage-meta">
-                  {s.range} | {s.ages}
-                </p>
-              </div>
-            </header>
-            <p className="curriculum-outro">{s.intro}</p>
-            <p className="curriculum-outro">{s.body}</p>
-            {s.tagline && <p className="curriculum-tagline">{s.tagline}</p>}
-            <div className="curriculum-stage-grid">
-              <div>
-                <h4>Our Focus</h4>
-                <ul>
-                  {s.focus.map((f) => (
-                    <li key={f}>{f}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4>Our Approach</h4>
-                <ul>
-                  {s.approach.map((a) => (
-                    <li key={a}>{a}</li>
-                  ))}
-                </ul>
-              </div>
+            <div className="curriculum-belief-body">
+              <p className="curriculum-lead">{coreBelief.intro}</p>
+              <ul className="curriculum-chip-list">
+                {coreBelief.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+              <p className="curriculum-lead curriculum-lead--muted">
+                {coreBelief.outro}
+              </p>
             </div>
+          </div>
+        </section>
+
+        <section
+          className="curriculum-section"
+          aria-label="Three pillars of learning"
+        >
+          <header className="curriculum-section-head">
+            <p className="eyebrow">THREE PILLARS OF LEARNING</p>
+            <p className="curriculum-section-sub">
+              Curiosity, critical thinking, and life skills — woven through every
+              stage.
+            </p>
+          </header>
+          <div className="curriculum-pillars">
+            {threePillars.map((pillar, i) => (
+              <article className="curriculum-pillar" key={pillar.name}>
+                <span className="curriculum-pillar-number">0{i + 1}</span>
+                <h3>{pillar.name}</h3>
+                <p>{pillar.text}</p>
+                {pillar.subBullets && (
+                  <ul className="curriculum-chip-list curriculum-chip-list--compact">
+                    {pillar.subBullets.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className="curriculum-section"
+          aria-label="Academic programs"
+        >
+          <header className="curriculum-section-head curriculum-programs-head">
+            <div className="curriculum-programs-title">
+              <p className="eyebrow">{academicProgramsIntro.heading}</p>
+              <Heading>
+                Age-appropriate.
+                <br />
+                <em>Competency-led.</em>
+              </Heading>
+            </div>
+            <div className="curriculum-programs-copy">
+              <p className="curriculum-lead">{academicProgramsIntro.text}</p>
+              <p className="curriculum-lead curriculum-lead--muted">
+                {academicProgramsIntro.outro}
+              </p>
+            </div>
+          </header>
+
+          <div className="curriculum-stages">
+            {curriculumStages.map((s) => (
+              <article className="curriculum-stage" key={s.name}>
+                <header className="curriculum-stage-head">
+                  <span className="curriculum-stage-number">{s.number}</span>
+                  <div>
+                    <h3>{s.name}</h3>
+                    <p className="curriculum-stage-meta">
+                      {s.range}
+                      <span aria-hidden="true"> · </span>
+                      {s.ages}
+                    </p>
+                  </div>
+                </header>
+                <div className="curriculum-stage-copy">
+                  <p className="curriculum-lead">{s.intro}</p>
+                  <p className="curriculum-lead curriculum-lead--muted">{s.body}</p>
+                  {s.tagline && (
+                    <p className="curriculum-tagline">{s.tagline}</p>
+                  )}
+                </div>
+                <div className="curriculum-stage-grid">
+                  <div className="curriculum-stage-panel">
+                    <h4>Our Focus</h4>
+                    <ul>
+                      {s.focus.map((f) => (
+                        <li key={f}>{f}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="curriculum-stage-panel">
+                    <h4>Our Approach</h4>
+                    <ul>
+                      {s.approach.map((a) => (
+                        <li key={a}>{a}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className="curriculum-section"
+          aria-label="Teaching pedagogies"
+        >
+          <header className="curriculum-section-head">
+            <p className="eyebrow">TEACHING PEDAGOGIES</p>
+            <p className="curriculum-section-sub">
+              How learning happens in Wellspire classrooms — active, inquiry-led,
+              and connected to the real world.
+            </p>
+          </header>
+
+          <article className="curriculum-featured">
+            <div className="curriculum-featured-copy">
+              <h3>{activeLearning.name}</h3>
+              <p>{activeLearning.text}</p>
+            </div>
+            {activeLearning.bullets && (
+              <ul className="curriculum-featured-list">
+                {activeLearning.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            )}
           </article>
-        ))}
-      </section>
 
-      <section className="section curriculum-page-section" aria-label="Teaching pedagogies">
-        <p className="eyebrow">TEACHING PEDAGOGIES</p>
-        <div className="curriculum-pedagogy-grid">
-          {teachingPedagogies.map((p) => (
-            <div className="curriculum-pedagogy-card" key={p.name}>
-              <h3>{p.name}</h3>
-              <p>{p.text}</p>
-              {"bullets" in p && p.bullets && (
-                <ul className="curriculum-pedagogy-bullets">
-                  {p.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
-          <div className="curriculum-pedagogy-card curriculum-pedagogy-card--highlight">
+          <div className="curriculum-pedagogy-grid">
+            {otherPedagogies.map((p) => (
+              <article className="curriculum-pedagogy-card" key={p.name}>
+                <h3>{p.name}</h3>
+                <p>{p.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <aside className="curriculum-statement">
             <h3>{holisticDevelopment.name}</h3>
             <p>{holisticDevelopment.text}</p>
+          </aside>
+        </section>
+
+        <section
+          className="curriculum-section"
+          aria-label="Beyond the classroom"
+        >
+          <header className="curriculum-section-head">
+            <p className="eyebrow">BEYOND THE CLASSROOM</p>
+            <p className="curriculum-section-sub">
+              Experiences that grow strength, creativity, and character alongside
+              academics.
+            </p>
+          </header>
+          <div className="curriculum-beyond-grid">
+            {beyondTheClassroom.map((activity) => (
+              <article className="curriculum-beyond-card" key={activity.name}>
+                <h3>{activity.name}</h3>
+                <p>{activity.text}</p>
+              </article>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="section curriculum-page-section" aria-label="Beyond the classroom">
-        <p className="eyebrow">BEYOND THE CLASSROOM</p>
-        <div className="curriculum-beyond-grid">
-          {beyondTheClassroom.map((activity) => (
-            <div className="curriculum-beyond-card" key={activity.name}>
-              <h3>{activity.name}</h3>
-              <p>{activity.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section curriculum-page-section" aria-label="Assessments">
-        <p className="eyebrow">{assessments.heading}</p>
-        <p className="curriculum-outro">{assessments.text}</p>
-      </section>
+        <section
+          className="curriculum-section curriculum-section--last"
+          aria-label="Assessments"
+        >
+          <header className="curriculum-section-head curriculum-assessments">
+            <p className="eyebrow">{assessments.heading}</p>
+            <p className="curriculum-lead">{assessments.text}</p>
+          </header>
+        </section>
+      </div>
     </MobileChrome>
   );
 }

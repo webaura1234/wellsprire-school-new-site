@@ -1365,7 +1365,7 @@ form > .button {
     color: var(--navy);
     font-family: var(--font-body), sans-serif;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.2;
     border: 0;
     text-decoration: none;
@@ -1911,7 +1911,7 @@ form > .button {
   border-radius: 0 0 24px 24px;
   box-shadow: 0 4px 24px -4px rgba(24, 53, 112, 0.06);
   gap: clamp(10px, 1.6vw, 32px);
-  padding: 0 clamp(16px, 3vw, 56px);
+  padding: 0 var(--gutter);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -2026,9 +2026,9 @@ form > .button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 4px;
   background: rgba(24, 53, 112, 0.04);
-  padding: 4px 5px;
+  padding: 4px 6px;
   border-radius: 9999px;
   border: 1px solid rgba(24, 53, 112, 0.09);
   box-shadow: inset 0 1px 2px rgba(24, 53, 112, 0.03);
@@ -2049,12 +2049,12 @@ form > .button {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-radius: 9999px;
   font-size: 10.5px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.04em;
-  color: rgba(24, 53, 112, 0.78);
+  color: var(--navy);
   transition: all 0.25s var(--ease);
   position: relative;
   white-space: nowrap;
@@ -2185,8 +2185,9 @@ form > .button {
   }
 }
 .header.is-scrolled .nav-dock-link {
-  padding: 6px 9px;
+  padding: 6px 11px;
   font-size: 10px;
+  font-weight: 700;
 }
 .nav-dock-link:hover,
 .nav-dock-link:focus-visible {
@@ -2201,7 +2202,7 @@ form > .button {
   color: #ffffff !important;
   border: 1px solid var(--navy);
   box-shadow: 0 2px 10px rgba(24, 53, 112, 0.25);
-  font-weight: 600;
+  font-weight: 700;
 }
 .nav-dock-link.is-active:before {
   content: "";
@@ -2270,14 +2271,20 @@ form > .button {
   .nav-dock-label-short {
     display: inline;
   }
+  .header-nav-dock {
+    gap: 3px;
+    padding: 5px 7px;
+  }
   .nav-dock-link {
-    padding: 7px 8px;
+    padding: 7px 10px;
     font-size: 10px;
+    font-weight: 700;
     letter-spacing: 0.03em;
   }
   .header.is-scrolled .nav-dock-link {
-    padding: 5px 7px;
+    padding: 5px 9px;
     font-size: 9.5px;
+    font-weight: 700;
   }
   .header .nav-apply {
     padding: 9px 14px;
@@ -2290,35 +2297,26 @@ form > .button {
     font-size: 9px;
   }
 }
-@media (max-width: 1280px) {
+/* Tighter gaps on mid desktops — keep compact bold font */
+@media (max-width: 1439px) and (min-width: 1280px) {
   .header {
-    gap: 8px;
-    padding: 0 clamp(12px, 2vw, 28px);
+    gap: 10px;
+    padding: 0 var(--gutter);
   }
   .header-nav-dock {
-    gap: 1px;
-    padding: 3px 4px;
+    gap: 2px;
+    padding: 4px 6px;
   }
   .nav-dock-link {
-    padding: 6px 6px;
-    font-size: 9.5px;
+    padding: 7px 9px;
+    font-size: 10px;
+    font-weight: 700;
     letter-spacing: 0.02em;
   }
-  .header .nav-apply {
-    padding: 8px 12px;
-    font-size: 9px;
-    gap: 5px;
-  }
-  .header .nav-apply .nav-apply-arrow {
-    width: 13px;
-    height: 13px;
-  }
-  .brand-logo-img {
-    max-width: 100px;
-    height: 62px;
-  }
-  .header.is-scrolled .brand-logo-img {
-    height: 48px;
+  .header.is-scrolled .nav-dock-link {
+    padding: 5px 8px;
+    font-size: 9.5px;
+    font-weight: 700;
   }
   .header .nav-apply .nav-apply-label-full {
     display: none;
@@ -2327,7 +2325,7 @@ form > .button {
     display: inline-block;
   }
 }
-/* Use hamburger below widths where the dock still won't fit */
+/* Below 1280: hamburger — dock hidden so logo/CTA stay clear */
 @media (max-width: 1279px) and (min-width: 768px) {
   .header-nav-dock {
     display: none !important;
@@ -2379,6 +2377,10 @@ form > .button {
   .header-brand-group {
     flex: 1 1 auto;
     min-width: 0;
+  }
+  .mobile-menu-link {
+    font-size: 15px !important;
+    font-weight: 600 !important;
   }
 }
 .header .nav-apply:hover {
@@ -6233,12 +6235,39 @@ h1 {
   font-size: clamp(32px, 8vw, 44px);
   line-height: 1.05;
 }
+.mobile-subpage-intro-main {
+  display: block;
+}
 .mobile-subpage-deck {
   margin: 0;
-  max-width: 36ch;
+  max-width: 42ch;
   font-size: 15px;
   line-height: 1.55;
   color: var(--muted);
+}
+/* Curriculum hero: shared container + two-column title/deck */
+.mobile-subpage:has(.curriculum-page) .mobile-subpage-intro.curriculum-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px 32px;
+}
+.mobile-subpage:has(.curriculum-page) .curriculum-hero .mobile-subpage-intro-main {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px;
+  align-items: end;
+}
+.mobile-subpage:has(.curriculum-page) .curriculum-hero .mobile-subpage-intro-title {
+  grid-column: 1 / span 6;
+}
+.mobile-subpage:has(.curriculum-page) .curriculum-hero .mobile-subpage-intro-title h2 {
+  margin: 0;
+}
+.mobile-subpage:has(.curriculum-page) .curriculum-hero .mobile-subpage-deck {
+  grid-column: 7 / span 6;
+  max-width: none;
+  margin: 0;
+  align-self: end;
 }
 .mobile-subpage-footer {
   display: flex;
@@ -7075,201 +7104,480 @@ h1 {
   }
 }
 
-/* —— Curriculum inner page —— */
-.curriculum-page-section {
-  max-width: 900px;
+/* Curriculum inner page */
+.curriculum-page {
+  --curriculum-max: 1200px;
+  --curriculum-pad: 24px;
+  --curriculum-gap: 64px;
+  --curriculum-space-1: 8px;
+  --curriculum-space-2: 16px;
+  --curriculum-space-3: 24px;
+  --curriculum-space-4: 32px;
+  --curriculum-space-5: 48px;
+  max-width: var(--curriculum-max);
   margin: 0 auto;
-  padding: 48px var(--gutter, 24px);
-  border-top: 1px solid var(--line);
+  padding: 0 var(--curriculum-pad) var(--curriculum-space-5);
 }
-.curriculum-page-section:first-of-type {
-  border-top: none;
+.curriculum-section {
+  padding: var(--curriculum-gap) 0;
+  border-top: 1px solid rgba(24, 53, 112, 0.1);
 }
-.curriculum-outro {
-  font-size: 13px;
-  line-height: 1.75;
-  color: var(--muted);
-  max-width: 640px;
-  margin: 14px 0;
+.curriculum-section:first-child {
+  border-top: 1px solid rgba(24, 53, 112, 0.1);
+  padding-top: var(--curriculum-gap);
 }
-.curriculum-bullet-grid {
+.curriculum-section--last {
+  padding-bottom: 0;
+}
+.curriculum-section-head {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 24px;
-  margin: 18px 0;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--curriculum-space-2) var(--curriculum-space-3);
+  margin-bottom: var(--curriculum-space-4);
+  max-width: none;
+  align-items: start;
+}
+.curriculum-section-head .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+.curriculum-section-head h2 {
+  grid-column: 1 / span 6;
+  margin: 0;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.08;
+}
+.curriculum-section-sub {
+  grid-column: 7 / span 6;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: none;
+}
+.curriculum-section-head:not(:has(h2)) .eyebrow {
+  grid-column: 1 / span 5;
+  align-self: end;
+}
+.curriculum-section-head:not(:has(h2)) .curriculum-section-sub {
+  grid-column: 6 / span 7;
+  align-self: end;
+}
+.curriculum-section-kicker {
+  margin: 0 0 var(--curriculum-space-2);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.curriculum-lead {
+  margin: 0 0 var(--curriculum-space-2);
+  max-width: none;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--navy);
+}
+.curriculum-lead:last-child {
+  margin-bottom: 0;
+}
+.curriculum-lead--muted,
+.curriculum-lead.curriculum-lead--muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+.curriculum-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--curriculum-space-1);
+  margin: 0 0 var(--curriculum-space-3);
   padding: 0;
   list-style: none;
 }
-.curriculum-bullet-grid li {
-  font-size: 12px;
+.curriculum-chip-list--compact {
+  margin: var(--curriculum-space-2) 0 0;
+  gap: 6px;
+}
+.curriculum-chip-list li {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: rgba(24, 53, 112, 0.05);
+  border: 1px solid rgba(24, 53, 112, 0.08);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.3;
   color: var(--navy);
-  padding-left: 16px;
+}
+.curriculum-chip-list--compact li {
+  padding: 5px 10px;
+  font-size: 11px;
+}
+.curriculum-section[aria-label="Curriculum overview"] .curriculum-lead {
+  max-width: 72ch;
+}
+.curriculum-belief {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--curriculum-space-3);
+  align-items: start;
+}
+.curriculum-belief-title {
+  grid-column: 1 / span 5;
+}
+.curriculum-belief-title .eyebrow {
+  margin-bottom: var(--curriculum-space-1);
+}
+.curriculum-belief-title h2 {
+  margin: 0;
+}
+.curriculum-belief-body {
+  grid-column: 6 / span 7;
+}
+.curriculum-belief-body .curriculum-chip-list {
+  margin-bottom: var(--curriculum-space-2);
+}
+.curriculum-pillars {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--curriculum-space-3);
+}
+.curriculum-pillar {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: var(--curriculum-space-2) 0 0;
+  border: 0;
+  border-top: 2px solid var(--gold);
+}
+.curriculum-pillar-number,
+.curriculum-stage-number {
+  font-family: var(--font-display), serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+.curriculum-pillar h3 {
+  font-family: var(--font-display), serif;
+  font-size: clamp(20px, 2.2vw, 24px);
+  margin: var(--curriculum-space-1) 0 var(--curriculum-space-1);
+  color: var(--navy);
+  line-height: 1.15;
+}
+.curriculum-pillar p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.curriculum-programs-head {
+  align-items: start;
+}
+.curriculum-programs-title {
+  grid-column: 1 / span 5;
+}
+.curriculum-programs-title .eyebrow {
+  margin-bottom: var(--curriculum-space-1);
+}
+.curriculum-programs-title h2 {
+  grid-column: auto;
+  margin: 0;
+}
+.curriculum-programs-copy {
+  grid-column: 6 / span 7;
+  display: flex;
+  flex-direction: column;
+  gap: var(--curriculum-space-2);
+}
+.curriculum-programs-copy .curriculum-lead {
+  margin: 0;
+}
+.curriculum-stages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--curriculum-space-5);
+}
+.curriculum-stage {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--curriculum-space-2) var(--curriculum-space-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.curriculum-stage-head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--curriculum-space-2);
+  margin-bottom: 0;
+}
+.curriculum-stage-number {
+  font-size: 28px;
+  line-height: 1;
+  padding-top: 2px;
+}
+.curriculum-stage h3 {
+  font-family: var(--font-display), serif;
+  font-size: clamp(24px, 3vw, 30px);
+  color: var(--navy);
+  margin: 0;
+  line-height: 1.1;
+}
+.curriculum-stage-meta {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin: 6px 0 0;
+  letter-spacing: 0.02em;
+}
+.curriculum-stage-copy {
+  grid-column: 1 / span 5;
+  display: flex;
+  flex-direction: column;
+  gap: var(--curriculum-space-2);
+}
+.curriculum-stage-copy .curriculum-lead {
+  margin: 0;
+}
+.curriculum-tagline {
+  display: inline-block;
+  align-self: flex-start;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(203, 151, 56, 0.12);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a6420;
+}
+.curriculum-stage-grid {
+  grid-column: 6 / span 7;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--curriculum-space-2);
+  margin-top: 0;
+  align-items: stretch;
+}
+.curriculum-stage-panel {
+  background: rgba(24, 53, 112, 0.035);
+  border: 1px solid rgba(24, 53, 112, 0.08);
+  border-radius: 16px;
+  padding: var(--curriculum-space-2) var(--curriculum-space-3);
+}
+.curriculum-stage-panel h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin: 0 0 var(--curriculum-space-2);
+}
+.curriculum-stage-panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--curriculum-space-1);
+}
+.curriculum-stage-panel li {
+  font-size: 13px;
+  color: var(--navy);
+  line-height: 1.45;
+  padding-left: 14px;
   position: relative;
 }
-.curriculum-bullet-grid li::before {
+.curriculum-stage-panel li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 7px;
+  top: 0.55em;
   width: 5px;
   height: 5px;
   background: var(--gold);
   border-radius: 50%;
 }
-.curriculum-pillars {
+.curriculum-featured {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
-  margin-top: 24px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--curriculum-space-3);
+  margin-bottom: var(--curriculum-space-3);
+  padding: var(--curriculum-space-3) var(--curriculum-space-4);
+  border-radius: 20px;
+  background: rgba(24, 53, 112, 0.04);
+  border: 1px solid rgba(24, 53, 112, 0.09);
 }
-.curriculum-pillar {
-  border: 1px solid var(--line);
-  padding: 24px;
+.curriculum-featured-copy {
+  grid-column: 1 / span 5;
 }
-.curriculum-pillar-number {
-  font-family: var(--font-display);
-  font-size: 13px;
-  color: var(--gold);
-}
-.curriculum-pillar h3 {
-  font-family: var(--font-display);
-  font-size: 19px;
-  margin: 10px 0 8px;
+.curriculum-featured-copy h3 {
+  font-family: var(--font-display), serif;
+  font-size: clamp(22px, 2.5vw, 28px);
   color: var(--navy);
+  margin: 0 0 var(--curriculum-space-1);
 }
-.curriculum-pillar p {
-  font-size: 12px;
-  line-height: 1.7;
-  color: var(--muted);
-}
-.curriculum-pillar ul {
-  margin: 12px 0 0;
-  padding-left: 16px;
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.9;
-}
-.curriculum-stage {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
-}
-.curriculum-stage header {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-}
-.curriculum-stage h3 {
-  font-family: var(--font-display);
-  font-size: 22px;
-  color: var(--navy);
+.curriculum-featured-copy > p {
   margin: 0;
-}
-.curriculum-stage-meta {
-  font-size: 11px;
+  max-width: none;
+  font-size: 14.5px;
+  line-height: 1.65;
   color: var(--muted);
-  margin: 2px 0 0;
 }
-.curriculum-tagline {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin: 10px 0 4px;
-}
-.curriculum-stage-grid {
+.curriculum-featured-list {
+  grid-column: 6 / span 7;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 20px;
-}
-.curriculum-stage-grid h4 {
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--navy);
-  margin: 0 0 10px;
-}
-.curriculum-stage-grid ul {
+  grid-template-columns: 1fr;
+  gap: var(--curriculum-space-1);
   margin: 0;
   padding: 0;
   list-style: none;
+  align-content: start;
 }
-.curriculum-stage-grid li {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.9;
+.curriculum-featured-list li {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--navy);
   padding-left: 14px;
   position: relative;
 }
-.curriculum-stage-grid li::before {
+.curriculum-featured-list li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 8px;
-  width: 4px;
-  height: 4px;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
   background: var(--gold);
   border-radius: 50%;
 }
 .curriculum-pedagogy-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-  margin-top: 24px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--curriculum-space-2);
+  margin-top: 0;
 }
 .curriculum-pedagogy-card {
-  border: 1px solid var(--line);
-  padding: 20px;
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--curriculum-space-3) var(--curriculum-space-2);
+  border-radius: 16px;
+  border: 1px solid rgba(24, 53, 112, 0.1);
+  background: var(--paper);
 }
 .curriculum-pedagogy-card h3 {
-  font-family: var(--font-display);
-  font-size: 15px;
+  font-family: var(--font-display), serif;
+  font-size: 17px;
   color: var(--navy);
-  margin: 0 0 8px;
+  margin: 0 0 var(--curriculum-space-1);
+  line-height: 1.2;
 }
 .curriculum-pedagogy-card p {
-  font-size: 11.5px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.curriculum-statement {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--curriculum-space-2);
+  margin-top: var(--curriculum-space-3);
+  padding: var(--curriculum-space-3) var(--curriculum-space-4);
+  border-radius: 20px;
+  background: var(--navy);
+  color: var(--paper);
+}
+.curriculum-statement h3 {
+  grid-column: 1 / span 4;
+  font-family: var(--font-display), serif;
+  font-size: clamp(20px, 2.4vw, 26px);
+  margin: 0;
+  color: var(--paper);
+}
+.curriculum-statement p {
+  grid-column: 5 / span 8;
+  margin: 0;
+  max-width: none;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(250, 248, 244, 0.82);
+}
+.curriculum-beyond-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--curriculum-space-2);
+  margin-top: 0;
+}
+.curriculum-beyond-card {
+  grid-column: span 3;
+  padding: var(--curriculum-space-2);
+  border-radius: 14px;
+  border: 1px solid rgba(24, 53, 112, 0.1);
+  background: rgba(24, 53, 112, 0.02);
+  min-height: 100%;
+}
+.curriculum-beyond-card h3 {
+  font-family: var(--font-display), serif;
+  font-size: 15px;
+  color: var(--navy);
+  margin: 0 0 var(--curriculum-space-1);
+  line-height: 1.25;
+}
+.curriculum-beyond-card p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.curriculum-assessments .eyebrow {
+  grid-column: 1 / span 3;
+}
+.curriculum-assessments .curriculum-lead {
+  grid-column: 4 / span 9;
+  margin: 0;
+}
+.curriculum-page-section {
+  max-width: var(--curriculum-max, 1200px);
+  margin: 0 auto;
+}
+.curriculum-outro {
+  font-size: 14px;
   line-height: 1.7;
   color: var(--muted);
+  max-width: none;
+  margin: 14px 0;
+}
+.curriculum-bullet-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+.curriculum-bullet-grid li {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: rgba(24, 53, 112, 0.05);
+  border: 1px solid rgba(24, 53, 112, 0.08);
+  font-size: 12.5px;
+  color: var(--navy);
+}
+.curriculum-bullet-grid li::before {
+  display: none;
 }
 .curriculum-pedagogy-bullets {
   margin: 10px 0 0;
   padding-left: 14px;
-  font-size: 11px;
-  line-height: 1.8;
-  color: var(--muted);
-}
-.curriculum-beyond-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 24px;
-}
-.curriculum-beyond-card {
-  border: 1px solid var(--line);
-  padding: 18px;
-}
-.curriculum-beyond-card h3 {
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--navy);
-  margin: 0 0 8px;
-}
-.curriculum-beyond-card p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.7;
   color: var(--muted);
-}
-@media (max-width: 1023px) {
-  .curriculum-beyond-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 639px) {
-  .curriculum-beyond-grid {
-    grid-template-columns: 1fr;
-  }
 }
 .curriculum-pedagogy-card--highlight {
   background: var(--navy);
@@ -7279,23 +7587,79 @@ h1 {
 .curriculum-pedagogy-card--highlight p {
   color: var(--paper);
 }
-@media (max-width: 1023px) {
-  .curriculum-pillars,
-  .curriculum-pedagogy-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.curriculum-chip-list--secondary {
+  margin-top: -8px;
+  opacity: 0.92;
 }
-@media (max-width: 639px) {
-  .curriculum-bullet-grid,
+.curriculum-chip-list--secondary li {
+  background: transparent;
+  border-style: dashed;
+}
+@media (max-width: 1023px) {
+  .curriculum-page {
+    --curriculum-gap: 56px;
+  }
+  .mobile-subpage:has(.curriculum-page) .curriculum-hero .mobile-subpage-intro-title,
+  .mobile-subpage:has(.curriculum-page) .curriculum-hero .mobile-subpage-deck {
+    grid-column: 1 / -1;
+  }
+  .curriculum-belief-title,
+  .curriculum-belief-body,
+  .curriculum-programs-title,
+  .curriculum-programs-copy,
+  .curriculum-stage-copy,
   .curriculum-stage-grid,
-  .curriculum-pillars,
-  .curriculum-pedagogy-grid {
+  .curriculum-featured-copy,
+  .curriculum-featured-list,
+  .curriculum-statement h3,
+  .curriculum-statement p,
+  .curriculum-section-sub,
+  .curriculum-assessments .eyebrow,
+  .curriculum-assessments .curriculum-lead {
+    grid-column: 1 / -1;
+  }
+  .curriculum-pillar,
+  .curriculum-pedagogy-card,
+  .curriculum-beyond-card {
+    grid-column: span 6;
+  }
+  .curriculum-stage-grid {
     grid-template-columns: 1fr;
   }
-  .curriculum-page-section {
-    padding: 36px var(--gutter, 20px);
+}
+@media (max-width: 767px) {
+  .curriculum-page {
+    --curriculum-gap: 48px;
+    --curriculum-pad: 20px;
+    padding-bottom: 48px;
+  }
+  .mobile-subpage:has(.curriculum-page) .mobile-subpage-intro.curriculum-hero {
+    padding: 12px 20px 24px;
+  }
+  .mobile-subpage:has(.curriculum-page) .curriculum-hero .mobile-subpage-intro-main {
+    gap: 16px;
+  }
+  .curriculum-section-head {
+    margin-bottom: 24px;
+    gap: 12px;
+  }
+  .curriculum-pillar,
+  .curriculum-pedagogy-card,
+  .curriculum-beyond-card {
+    grid-column: 1 / -1;
+  }
+  .curriculum-stages {
+    gap: 32px;
+  }
+  .curriculum-stage-number {
+    font-size: 22px;
+  }
+  .curriculum-featured,
+  .curriculum-statement {
+    padding: 24px 20px;
   }
 }
+
 
 /* —— Philosophy essay (About page) —— */
 .philosophy-essay {
