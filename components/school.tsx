@@ -379,7 +379,7 @@ export default function School() {
           </motion.div>
         )}
       </AnimatePresence>
-      <main id="main" className="home-page">
+      <main id="main">
         <Hero
           onEnquire={() => openDialog("Start an admissions enquiry")}
           onVisit={() => openDialog("Plan a campus visit")}

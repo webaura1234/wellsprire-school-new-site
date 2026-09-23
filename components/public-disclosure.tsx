@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
-import { Brand } from "@/components/brand";
-import { DesktopNavDock } from "@/components/desktop-nav-dock";
+import { ArrowLeft, ArrowUp } from "lucide-react";
 import { MobileChrome } from "@/components/mobile-chrome";
 import {
   disclosureDocuments,
@@ -153,7 +151,7 @@ function DisclosureBody() {
       <div className="mpd-inner">
         <Link className="mpd-back" href="/">
           <ArrowLeft size={16} strokeWidth={1.75} aria-hidden="true" />
-          Back to home
+          Back to Home
         </Link>
 
         <header className="mpd-hero">
@@ -212,7 +210,7 @@ function DisclosureBody() {
   );
 }
 
-/** Mobile hamburger destination — also usable as standalone disclosure page. */
+/** Mobile route (/public-disclosure) — redirects desktop to the canonical URL. */
 export function PublicDisclosureMobilePage() {
   return (
     <MobileChrome
@@ -225,22 +223,11 @@ export function PublicDisclosureMobilePage() {
   );
 }
 
-/** Full disclosure page for desktop navbar / footer / direct links. */
+/** Canonical disclosure page — MobileChrome so hamburger + back work on phones. */
 export function PublicDisclosurePage() {
   return (
-    <main id="main" className="mpd-desktop-shell">
-      <header className="header mpd-desktop-site-header">
-        <div className="header-brand-group">
-          <Brand />
-        </div>
-        <DesktopNavDock />
-        <a className="button nav-apply" href="/admissions" aria-label="Explore admissions">
-          <span className="nav-apply-label-full">Explore Admissions</span>
-          <span className="nav-apply-label-short">Admissions</span>
-          <ArrowRight size={15} className="nav-apply-arrow" />
-        </a>
-      </header>
+    <MobileChrome activeMatch="/mandatory-public-disclosure" hideFooter>
       <DisclosureBody />
-    </main>
+    </MobileChrome>
   );
 }

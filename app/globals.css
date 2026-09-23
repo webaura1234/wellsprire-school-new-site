@@ -10,6 +10,8 @@
   --line: rgba(14, 17, 22, 0.16);
   --gutter: 6vw;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --text-weight: 600;
+  --heading-weight: 400;
 }
 * {
   box-sizing: border-box;
@@ -23,6 +25,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body), sans-serif;
   font-size: 13px;
+  font-weight: var(--text-weight);
   line-height: 1.65;
   overflow-x: clip;
 }
@@ -73,10 +76,11 @@ h5,
 h6,
 blockquote,
 .font-display,
-.heading-line {
+.heading-line,
+.heading-mask {
   font-family: var(--font-display), "Fraunces", serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: var(--heading-weight);
 }
 h1 em,
 h2 em,
@@ -84,6 +88,7 @@ h3 em,
 h4 em {
   font-family: inherit;
   font-style: italic;
+  font-weight: inherit;
 }
 h2 {
   font-size: clamp(44px, 4.3vw, 72px);
@@ -259,7 +264,7 @@ svg {
 .eyebrow {
   font-family: var(--font-body), sans-serif;
   font-size: 9px;
-  font-weight: 500;
+  font-weight: var(--text-weight);
   letter-spacing: 0.18em;
   line-height: 1.5;
   margin-bottom: 29px;
@@ -370,7 +375,7 @@ h1 em {
 }
 .quick-links strong {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: var(--text-weight);
   letter-spacing: 0;
   color: var(--ink);
 }
@@ -1191,7 +1196,7 @@ form > .button {
   border-bottom: 1px solid rgba(200, 161, 90, 0.5);
 }
 .disclosure th {
-  font-weight: 500;
+  font-weight: var(--text-weight);
   background: rgba(28, 59, 126, 0.05);
 }
 .disclosure td:last-child {
@@ -1430,7 +1435,7 @@ form > .button {
     border-radius: 10px;
     color: var(--navy);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     opacity: 0.88;
   }
@@ -1497,7 +1502,7 @@ form > .button {
     margin: 0;
     color: var(--navy);
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
   }
   .mobile-menu-contact svg {
@@ -1902,49 +1907,79 @@ form > .button {
   padding-right: var(--gutter);
 }
 
-/* Home page: bold body / non-heading copy; headings keep display weight */
-main.home-page {
-  font-weight: 600;
+/* Site-wide: bold secondary / body copy; headings keep display weight */
+p,
+li,
+dd,
+figcaption,
+label,
+.section-subtext p,
+.section-heading > p,
+.hero-introduction > p,
+.hero-annotation p,
+.hero-marginalia > p,
+.chapter-invitation p,
+.academic-title > p,
+.pillar-copy > p,
+.stage-content p,
+.global-card-body > p,
+.biophilic-card > p,
+.philosophy-essay-body p,
+.principal-content > p,
+.trust-card-content > p,
+.team-founder-copy > p,
+.callout-text > p,
+.campus-caption > p,
+.result-content > p,
+.admission-description,
+.journal-card > p,
+.curriculum-framework span,
+.curriculum-outcomes,
+.curriculum-lead,
+.curriculum-section-sub,
+.curriculum-tagline,
+.admissions-deck,
+.admissions-form-lead,
+.admissions-help-note,
+.admissions-success p,
+.admissions-form-note,
+.admissions-benefit-title,
+.careers-deck,
+.careers-form-lead,
+.mobile-subpage-deck,
+.collection-page-deck,
+.mpd-lede,
+.hero-kicker,
+.hero-edition,
+.signature-title,
+.signature-name,
+.signature-degree,
+.tab-title,
+.uni-filter-title,
+.footer-top > div > p,
+.footer-bottom,
+.mobile-menu-tagline {
+  font-weight: var(--text-weight);
 }
-main.home-page :is(h1, h2, h3, h4, h5, h6),
-main.home-page .font-display,
-main.home-page .heading-line,
-main.home-page .heading-mask {
-  font-weight: 400;
+
+/* Keep headings / display marks at designed weight on every layout */
+:is(h1, h2, h3, h4, h5, h6),
+.font-display,
+.heading-line,
+.heading-mask,
+.footer-wordmark,
+.footer-wordmark span,
+.uni-kpi-val,
+.curriculum-pillar-number,
+.curriculum-stage-number {
+  font-weight: var(--heading-weight);
 }
-main.home-page :is(h1, h2, h3, h4) em {
-  font-weight: inherit;
-}
-main.home-page p,
-main.home-page .section-subtext p,
-main.home-page .section-heading > p,
-main.home-page .hero-introduction > p,
-main.home-page .hero-annotation p,
-main.home-page .hero-marginalia > p,
-main.home-page .chapter-invitation p,
-main.home-page .academic-title > p,
-main.home-page .pillar-copy > p,
-main.home-page .stage-content p,
-main.home-page .global-card-body > p,
-main.home-page .biophilic-card > p,
-main.home-page .philosophy-essay-body p,
-main.home-page .principal-content > p,
-main.home-page .trust-card-content > p,
-main.home-page .team-founder-copy > p,
-main.home-page .callout-text > p,
-main.home-page .campus-caption > p,
-main.home-page .result-content > p,
-main.home-page .admission-description,
-main.home-page .journal-card > p,
-main.home-page .curriculum-framework span,
-main.home-page .curriculum-outcomes,
-main.home-page .eyebrow,
-main.home-page .hero-kicker,
-main.home-page .hero-edition,
-main.home-page .signature-title,
-main.home-page .tab-title,
-main.home-page .uni-filter-title {
-  font-weight: 600;
+
+/* Form fields stay readable while typing */
+input,
+select,
+textarea {
+  font-weight: 500;
 }
 .utility {
   background: var(--ink);
@@ -3608,7 +3643,7 @@ h1 {
   padding: 16px 0 0;
   gap: 30px;
   font-size: 8px;
-  font-weight: 500;
+  font-weight: var(--text-weight);
   letter-spacing: 0.15em;
 }
 .hero-edition > span:last-child {
@@ -3823,7 +3858,7 @@ h1 {
   font-size: 13px;
   color: var(--navy);
   margin: 0;
-  font-weight: 500;
+  font-weight: var(--text-weight);
 }
 
 .hero-marginalia {
@@ -4429,7 +4464,7 @@ h1 {
 .signature-degree {
   font-size: 10px;
   color: var(--muted);
-  font-weight: 500;
+  font-weight: var(--text-weight);
 }
 .signature-title {
   font-size: 10px;
@@ -4980,7 +5015,7 @@ h1 {
     min-height: 48px !important;
     border-radius: 12px !important;
     font-size: 15.5px !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     color: var(--navy) !important;
   }
   .mobile-menu-link.is-active {
@@ -6128,7 +6163,7 @@ h1 {
 }
 .admissions-field-error {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: var(--text-weight);
   color: #9a3412;
   line-height: 1.35;
 }
@@ -6138,7 +6173,7 @@ h1 {
   align-items: flex-start;
   gap: 10px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: var(--text-weight);
   color: var(--navy);
   line-height: 1.4;
 }
@@ -6559,10 +6594,25 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  color: var(--navy);
-  text-decoration: none;
+  min-height: 40px;
+  padding: 8px 14px;
   margin-bottom: 22px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--navy);
+  background: transparent;
+  color: var(--navy);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.mpd-back:hover,
+.mpd-back:focus-visible {
+  background: rgba(28, 59, 126, 0.06);
 }
 .mpd-hero {
   margin-bottom: 36px;
@@ -6595,7 +6645,7 @@ h1 {
 .mpd-section h2 {
   font-family: var(--font-display), "Fraunces", serif;
   font-size: clamp(18px, 2.4vw, 24px);
-  font-weight: 500;
+  font-weight: var(--heading-weight);
   letter-spacing: 0.02em;
   text-transform: none;
   color: var(--navy);
@@ -6642,13 +6692,13 @@ h1 {
   color: var(--navy);
 }
 .mpd-info {
-  font-weight: 500;
+  font-weight: var(--text-weight);
   color: #222;
   text-align: center;
 }
 .mpd-detail {
   color: #333;
-  font-weight: 500;
+  font-weight: var(--text-weight);
 }
 .mpd-detail--split {
   display: flex;
@@ -6715,7 +6765,8 @@ h1 {
   background: #ffffff;
 }
 .mobile-subpage .mpd-back {
-  display: none;
+  display: inline-flex;
+  margin-bottom: 18px;
 }
 .mobile-subpage .mpd-hero .mpd-brand,
 .mpd-desktop-shell .mpd-hero .mpd-brand {
@@ -6738,7 +6789,7 @@ h1 {
   max-width: 100%;
 }
 .mpd-desktop-shell .mpd-back {
-  display: none;
+  display: inline-flex;
 }
 .mpd-desktop-shell .mpd-inner {
   padding-top: 20px;
@@ -7308,7 +7359,7 @@ h1 {
   background: rgba(24, 53, 112, 0.05);
   border: 1px solid rgba(24, 53, 112, 0.08);
   font-size: 12.5px;
-  font-weight: 500;
+  font-weight: var(--text-weight);
   line-height: 1.3;
   color: var(--navy);
 }
