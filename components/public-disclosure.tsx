@@ -234,8 +234,9 @@ export function PublicDisclosurePage() {
           <Brand />
         </div>
         <DesktopNavDock />
-        <a className="button nav-apply" href="/admissions">
-          <span>Explore Admissions</span>
+        <a className="button nav-apply" href="/admissions" aria-label="Explore admissions">
+          <span className="nav-apply-label-full">Explore Admissions</span>
+          <span className="nav-apply-label-short">Admissions</span>
           <ArrowRight size={15} className="nav-apply-arrow" />
         </a>
       </header>

@@ -280,7 +280,8 @@ export default function School() {
           href="/admissions"
           aria-label="Explore admissions"
         >
-          <span>Explore Admissions</span>
+          <span className="nav-apply-label-full">Explore Admissions</span>
+          <span className="nav-apply-label-short">Admissions</span>
           <ArrowUpRight size={15} className="nav-apply-arrow" />
         </a>
         <a

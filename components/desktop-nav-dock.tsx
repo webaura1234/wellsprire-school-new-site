@@ -96,6 +96,7 @@ export function DesktopNavDock({
           <Link
             href={parentHref}
             className={`nav-dock-link${active ? " is-active" : ""}`}
+            aria-label={item.label}
             aria-current={active ? "page" : undefined}
             aria-haspopup={hasChildren ? "menu" : undefined}
             onClick={() => {
@@ -107,7 +108,12 @@ export function DesktopNavDock({
               }
             }}
           >
-            <span>{item.label}</span>
+            <span className="nav-dock-label" aria-hidden="true">
+              <span className="nav-dock-label-full">{item.label}</span>
+              <span className="nav-dock-label-short">
+                {item.shortLabel ?? item.label}
+              </span>
+            </span>
             {hasChildren && (
               <ChevronDown
                 className="nav-dock-chevron"

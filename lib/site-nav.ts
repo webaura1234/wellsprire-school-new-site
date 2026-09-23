@@ -17,6 +17,8 @@ export type SiteNavChild = {
 
 export type SiteNavItem = {
   label: string;
+  /** Compact label for the desktop dock at mid widths. */
+  shortLabel?: string;
   href: string;
   hashId?: string;
   children?: readonly SiteNavChild[];
@@ -40,11 +42,13 @@ export const siteNavItems: readonly SiteNavItem[] = [
   },
   {
     label: "About Wellspire",
+    shortLabel: "About",
     href: "/about",
     Icon: Info,
   },
   {
     label: "Our Team – Management – Leadership",
+    shortLabel: "Our Team",
     href: "/leadership",
     Icon: Users,
   },
@@ -55,11 +59,13 @@ export const siteNavItems: readonly SiteNavItem[] = [
   },
   {
     label: "Campus & Facilities",
+    shortLabel: "Campus",
     href: "/campus-life#campus",
     Icon: Building2,
   },
   {
     label: "Learning Beyond Classrooms",
+    shortLabel: "Learning Beyond",
     href: "/learning-beyond",
     Icon: Compass,
   },
@@ -70,6 +76,7 @@ export const siteNavItems: readonly SiteNavItem[] = [
   },
   {
     label: "Contact Us",
+    shortLabel: "Contact",
     href: "/#contact",
     hashId: "contact",
     Icon: Phone,

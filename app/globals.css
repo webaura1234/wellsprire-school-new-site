@@ -1904,11 +1904,14 @@ form > .button {
   background: var(--paper);
   color: var(--navy);
   height: 108px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   border-bottom: 1px solid rgba(24, 53, 112, 0.08);
   border-radius: 0 0 24px 24px;
   box-shadow: 0 4px 24px -4px rgba(24, 53, 112, 0.06);
-  gap: clamp(16px, 2.5vw, 32px);
-  padding: 0 clamp(20px, 4vw, 56px);
+  gap: clamp(10px, 1.6vw, 32px);
+  padding: 0 clamp(16px, 3vw, 56px);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -2022,16 +2025,19 @@ form > .button {
 .header-nav-dock {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 2px;
   background: rgba(24, 53, 112, 0.04);
-  padding: 4px 6px;
+  padding: 4px 5px;
   border-radius: 9999px;
   border: 1px solid rgba(24, 53, 112, 0.09);
   box-shadow: inset 0 1px 2px rgba(24, 53, 112, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: all 0.32s ease;
-  flex-shrink: 0;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
 }
 .header.is-scrolled .header-nav-dock {
   padding: 4px 6px;
@@ -2043,7 +2049,7 @@ form > .button {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 12px;
+  padding: 8px 10px;
   border-radius: 9999px;
   font-size: 10.5px;
   font-weight: 500;
@@ -2053,6 +2059,15 @@ form > .button {
   position: relative;
   white-space: nowrap;
   text-decoration: none;
+}
+.nav-dock-label {
+  display: inline;
+}
+.nav-dock-label-short {
+  display: none;
+}
+.nav-dock-label-full {
+  display: inline;
 }
 .nav-dock-link:after {
   display: none !important;
@@ -2170,7 +2185,7 @@ form > .button {
   }
 }
 .header.is-scrolled .nav-dock-link {
-  padding: 6px 11px;
+  padding: 6px 9px;
   font-size: 10px;
 }
 .nav-dock-link:hover,
@@ -2219,7 +2234,7 @@ form > .button {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 11px 22px;
+  padding: 11px 18px;
   border-radius: 9999px;
   box-shadow:
     0 4px 18px rgba(203, 151, 56, 0.4),
@@ -2227,12 +2242,18 @@ form > .button {
   transition: all 0.28s var(--ease);
   flex-shrink: 0 !important;
   width: auto !important;
-  min-width: max-content;
+  min-width: 0;
 }
 .header .nav-apply span {
   display: inline-block;
   white-space: nowrap;
   flex-shrink: 0;
+}
+.header .nav-apply .nav-apply-label-short {
+  display: none;
+}
+.header .nav-apply .nav-apply-label-full {
+  display: inline-block;
 }
 .header.is-scrolled .nav-apply {
   padding: 8px 18px;
@@ -2241,6 +2262,124 @@ form > .button {
     0 4px 14px rgba(203, 151, 56, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   flex-shrink: 0 !important;
+}
+@media (max-width: 1599px) {
+  .nav-dock-label-full {
+    display: none;
+  }
+  .nav-dock-label-short {
+    display: inline;
+  }
+  .nav-dock-link {
+    padding: 7px 8px;
+    font-size: 10px;
+    letter-spacing: 0.03em;
+  }
+  .header.is-scrolled .nav-dock-link {
+    padding: 5px 7px;
+    font-size: 9.5px;
+  }
+  .header .nav-apply {
+    padding: 9px 14px;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    gap: 6px;
+  }
+  .header.is-scrolled .nav-apply {
+    padding: 7px 12px;
+    font-size: 9px;
+  }
+}
+@media (max-width: 1280px) {
+  .header {
+    gap: 8px;
+    padding: 0 clamp(12px, 2vw, 28px);
+  }
+  .header-nav-dock {
+    gap: 1px;
+    padding: 3px 4px;
+  }
+  .nav-dock-link {
+    padding: 6px 6px;
+    font-size: 9.5px;
+    letter-spacing: 0.02em;
+  }
+  .header .nav-apply {
+    padding: 8px 12px;
+    font-size: 9px;
+    gap: 5px;
+  }
+  .header .nav-apply .nav-apply-arrow {
+    width: 13px;
+    height: 13px;
+  }
+  .brand-logo-img {
+    max-width: 100px;
+    height: 62px;
+  }
+  .header.is-scrolled .brand-logo-img {
+    height: 48px;
+  }
+  .header .nav-apply .nav-apply-label-full {
+    display: none;
+  }
+  .header .nav-apply .nav-apply-label-short {
+    display: inline-block;
+  }
+}
+/* Use hamburger below widths where the dock still won't fit */
+@media (max-width: 1279px) and (min-width: 768px) {
+  .header-nav-dock {
+    display: none !important;
+  }
+  .header .nav-apply {
+    display: none !important;
+  }
+  .mobile-admissions-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+    min-height: 40px !important;
+    padding: 8px 14px 8px 16px !important;
+    border-radius: 9999px !important;
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    font-family: var(--font-body), sans-serif !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .header.is-menu-open .mobile-admissions-btn {
+    display: none !important;
+  }
+  .menu-toggle {
+    display: grid !important;
+    place-items: center !important;
+    flex-shrink: 0 !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 9999px !important;
+    border: 1.5px solid var(--navy) !important;
+    background: transparent !important;
+    color: var(--navy) !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+  }
+  .header-brand-group {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
 }
 .header .nav-apply:hover {
   background: linear-gradient(135deg, #f0ca76 0%, #d8a543 100%);
