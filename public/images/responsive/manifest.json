@@ -712,5 +712,551 @@
         "bytes": 114411
       }
     ]
+  },
+  {
+    "source": "/images/campus-playground.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "file": "/images/responsive/campus-playground-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 5071,
+        "requestedWidth": 320
+      },
+      {
+        "file": "/images/responsive/campus-playground-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 15827,
+        "requestedWidth": 640
+      },
+      {
+        "file": "/images/responsive/campus-playground-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 36178,
+        "requestedWidth": 960
+      },
+      {
+        "file": "/images/responsive/campus-playground-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 61737,
+        "requestedWidth": 1280
+      },
+      {
+        "file": "/images/responsive/campus-playground-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 93625,
+        "requestedWidth": 1600
+      }
+    ]
+  },
+  {
+    "source": "/images/playground-campus.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "file": "/images/responsive/playground-campus-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 5456,
+        "requestedWidth": 320
+      },
+      {
+        "file": "/images/responsive/playground-campus-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 16092,
+        "requestedWidth": 640
+      },
+      {
+        "file": "/images/responsive/playground-campus-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 34533,
+        "requestedWidth": 960
+      },
+      {
+        "file": "/images/responsive/playground-campus-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 59009,
+        "requestedWidth": 1280
+      },
+      {
+        "file": "/images/responsive/playground-campus-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 89283,
+        "requestedWidth": 1600
+      }
+    ]
+  },
+  {
+    "source": "/images/value-education-lab.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "file": "/images/responsive/value-education-lab-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 5321,
+        "requestedWidth": 320
+      },
+      {
+        "file": "/images/responsive/value-education-lab-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 12935,
+        "requestedWidth": 640
+      },
+      {
+        "file": "/images/responsive/value-education-lab-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 25295,
+        "requestedWidth": 960
+      },
+      {
+        "file": "/images/responsive/value-education-lab-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 38410,
+        "requestedWidth": 1280
+      },
+      {
+        "file": "/images/responsive/value-education-lab-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 53207,
+        "requestedWidth": 1600
+      }
+    ]
+  },
+  {
+    "source": "/images/robotics-lab.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "file": "/images/responsive/robotics-lab-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 4543,
+        "requestedWidth": 320
+      },
+      {
+        "file": "/images/responsive/robotics-lab-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 11983,
+        "requestedWidth": 640
+      },
+      {
+        "file": "/images/responsive/robotics-lab-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 22788,
+        "requestedWidth": 960
+      },
+      {
+        "file": "/images/responsive/robotics-lab-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 34386,
+        "requestedWidth": 1280
+      },
+      {
+        "file": "/images/responsive/robotics-lab-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 45676,
+        "requestedWidth": 1600
+      }
+    ]
+  },
+  {
+    "source": "/images/robotics-workstations.avif",
+    "width": 2000,
+    "height": 1339,
+    "variants": [
+      {
+        "file": "/images/responsive/robotics-workstations-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 4845,
+        "requestedWidth": 320
+      },
+      {
+        "file": "/images/responsive/robotics-workstations-640.avif",
+        "width": 640,
+        "height": 428,
+        "bytes": 12642,
+        "requestedWidth": 640
+      },
+      {
+        "file": "/images/responsive/robotics-workstations-960.avif",
+        "width": 960,
+        "height": 643,
+        "bytes": 24554,
+        "requestedWidth": 960
+      },
+      {
+        "file": "/images/responsive/robotics-workstations-1280.avif",
+        "width": 1280,
+        "height": 857,
+        "bytes": 40198,
+        "requestedWidth": 1280
+      },
+      {
+        "file": "/images/responsive/robotics-workstations-1600.avif",
+        "width": 1600,
+        "height": 1071,
+        "bytes": 54931,
+        "requestedWidth": 1600
+      }
+    ]
+  },
+  {
+    "source": "/images/biophilic-atrium.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/biophilic-atrium-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 5695
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/biophilic-atrium-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 20680
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/biophilic-atrium-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 49549
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/biophilic-atrium-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 92155
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/biophilic-atrium-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 148809
+      }
+    ]
+  },
+  {
+    "source": "/images/sports-basketball.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "file": "/images/responsive/sports-basketball-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 4590,
+        "requestedWidth": 320
+      },
+      {
+        "file": "/images/responsive/sports-basketball-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 13167,
+        "requestedWidth": 640
+      },
+      {
+        "file": "/images/responsive/sports-basketball-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 27822,
+        "requestedWidth": 960
+      },
+      {
+        "file": "/images/responsive/sports-basketball-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 44948,
+        "requestedWidth": 1280
+      },
+      {
+        "file": "/images/responsive/sports-basketball-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 66146,
+        "requestedWidth": 1600
+      }
+    ]
+  },
+  {
+    "source": "/images/robotics-rover.avif",
+    "width": 1992,
+    "height": 2976,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/robotics-rover-320.avif",
+        "width": 320,
+        "height": 478,
+        "bytes": 7276
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/robotics-rover-640.avif",
+        "width": 640,
+        "height": 956,
+        "bytes": 15758
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/robotics-rover-960.avif",
+        "width": 960,
+        "height": 1434,
+        "bytes": 29059
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/robotics-rover-1280.avif",
+        "width": 1280,
+        "height": 1912,
+        "bytes": 43560
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/robotics-rover-1600.avif",
+        "width": 1600,
+        "height": 2390,
+        "bytes": 59235
+      }
+    ]
+  },
+  {
+    "source": "/images/robotics-zoop.avif",
+    "width": 1992,
+    "height": 2976,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/robotics-zoop-320.avif",
+        "width": 320,
+        "height": 478,
+        "bytes": 3891
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/robotics-zoop-640.avif",
+        "width": 640,
+        "height": 956,
+        "bytes": 8614
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/robotics-zoop-960.avif",
+        "width": 960,
+        "height": 1434,
+        "bytes": 16515
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/robotics-zoop-1280.avif",
+        "width": 1280,
+        "height": 1912,
+        "bytes": 25309
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/robotics-zoop-1600.avif",
+        "width": 1600,
+        "height": 2390,
+        "bytes": 34782
+      }
+    ]
+  },
+  {
+    "source": "/images/robotics-spidy.avif",
+    "width": 2000,
+    "height": 1339,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/robotics-spidy-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 5815
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/robotics-spidy-640.avif",
+        "width": 640,
+        "height": 428,
+        "bytes": 15021
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/robotics-spidy-960.avif",
+        "width": 960,
+        "height": 643,
+        "bytes": 26364
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/robotics-spidy-1280.avif",
+        "width": 1280,
+        "height": 857,
+        "bytes": 40414
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/robotics-spidy-1600.avif",
+        "width": 1600,
+        "height": 1071,
+        "bytes": 53386
+      }
+    ]
+  },
+  {
+    "source": "/images/atrium-courtyard.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/atrium-courtyard-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 6424
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/atrium-courtyard-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 23599
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/atrium-courtyard-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 60507
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/atrium-courtyard-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 88920
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/atrium-courtyard-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 139077
+      }
+    ]
+  },
+  {
+    "source": "/images/sports-track-field.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/sports-track-field-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 3845
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/sports-track-field-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 11150
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/sports-track-field-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 24560
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/sports-track-field-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 40710
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/sports-track-field-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 61398
+      }
+    ]
+  },
+  {
+    "source": "/images/sports-track-lanes.avif",
+    "width": 2000,
+    "height": 1336,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/sports-track-lanes-320.avif",
+        "width": 320,
+        "height": 214,
+        "bytes": 4442
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/sports-track-lanes-640.avif",
+        "width": 640,
+        "height": 427,
+        "bytes": 12833
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/sports-track-lanes-960.avif",
+        "width": 960,
+        "height": 641,
+        "bytes": 30469
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/sports-track-lanes-1280.avif",
+        "width": 1280,
+        "height": 855,
+        "bytes": 51638
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/sports-track-lanes-1600.avif",
+        "width": 1600,
+        "height": 1069,
+        "bytes": 80951
+      }
+    ]
   }
 ]

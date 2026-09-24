@@ -87,12 +87,12 @@ export const disclosureGeneral: DisclosureRow[] = [
   {
     sno: 2,
     info: "AFFILIATION NO. (IF APPLICABLE)",
-    detail: { kind: "text", value: "-" },
+    detail: { kind: "text", value: "NA" },
   },
   {
     sno: 3,
     info: "SCHOOL CODE (IF APPLICABLE)",
-    detail: { kind: "text", value: "-" },
+    detail: { kind: "text", value: "NA" },
   },
   {
     sno: 4,
@@ -209,7 +209,7 @@ export const disclosureResultsAcademics: DisclosureRow[] = [
   {
     sno: 5,
     info: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
-    detail: { kind: "text", value: "-" },
+    detail: { kind: "text", value: "NA" },
   },
 ];
 

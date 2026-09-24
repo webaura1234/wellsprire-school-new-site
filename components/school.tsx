@@ -252,7 +252,7 @@ export default function School() {
       quote:
         "Podcast studio: articulation, storytelling, listening, and responsible digital communication.",
       by: "Learning Beyond Classrooms",
-      image: photos.storytellers,
+      image: photos.podcast,
     },
     {
       label: "CAMPUS ENVIRONMENT",

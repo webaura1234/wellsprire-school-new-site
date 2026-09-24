@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { CampusFacilitiesSection } from "@/components/campus-facilities";
+import { CampusGallerySection } from "@/components/campus-gallery";
 import { Heading } from "@/components/heading";
 import { MobileChrome } from "@/components/mobile-chrome";
 import {
@@ -61,18 +62,22 @@ function SubpageIntro({
   titleEm,
   deck,
   className,
+  backHref = "/",
+  backLabel = "Back to home",
 }: {
   eyebrow: string;
   title: string;
   titleEm: string;
   deck: string;
   className?: string;
+  backHref?: string;
+  backLabel?: string;
 }) {
   return (
     <div className={`mobile-subpage-intro${className ? ` ${className}` : ""}`}>
-      <Link className="collection-back" href="/">
+      <Link className="collection-back" href={backHref}>
         <ArrowLeft size={16} strokeWidth={1.75} aria-hidden="true" />
-        Back to home
+        {backLabel}
       </Link>
       <div className="mobile-subpage-intro-main">
         <div className="mobile-subpage-intro-title">
@@ -151,6 +156,23 @@ export function CampusLifeMobilePage() {
       />
       <BiophilicLearningSection />
       <EnquiryDialog {...dialogState} />
+    </MobileChrome>
+  );
+}
+
+/** Campus Gallery — /campus-gallery */
+export function CampusGalleryPage() {
+  return (
+    <MobileChrome activeMatch="/campus-life">
+      <SubpageIntro
+        eyebrow="CAMPUS GALLERY"
+        title="A closer look at"
+        titleEm="our campus."
+        deck="Exterior grounds, sports facilities, specialised labs, and indoor learning spaces — browse by category or open any photo."
+        backHref="/campus-life#campus"
+        backLabel="Back to Campus & Facilities"
+      />
+      <CampusGallerySection standalone />
     </MobileChrome>
   );
 }

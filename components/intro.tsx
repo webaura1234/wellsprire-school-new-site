@@ -1,18 +1,18 @@
 "use client";
 
-import { Crest } from "./brand";
+import Image from "next/image";
 
-const DRAW_END = 2380;
-const BREATHE_END = DRAW_END + 370;
-const SETTLE_DURATION = 900;
-const SETTLE_START = BREATHE_END;
-const WORD_DELAY = SETTLE_START + 300;
-const MARKER_DELAY = SETTLE_START + 950;
-const MARKER_DURATION = 400;
+const DRAW_END = 1500;
+const BREATHE_END = DRAW_END + 250;
+const MARKER_DELAY = BREATHE_END + 150;
+const MARKER_DURATION = 300;
 const SETTLED_AT = MARKER_DELAY + MARKER_DURATION;
-/** Hold the settled crest frame briefly, then open into the homepage. */
-const IDLE_BEFORE_HOME = 2000;
+/** Hold the settled logo briefly, then open into the homepage (~4s total). */
+const IDLE_BEFORE_HOME = 900;
+const EXIT_DURATION = 900;
 const INTRO_SEEN_KEY = "wellspire-intro";
+/** Full-color lockup on cream — same draw motion as the former navy phase. */
+const LOGO_SRC = "/images/wellspire-intro-logo-color.png?v=2";
 
 function markIntroSeen() {
   try {
@@ -31,7 +31,7 @@ function hasSeenIntro() {
 let activeStop: (() => void) | null = null;
 
 /**
- * Play the crest intro, then after a short idle automatically open the homepage.
+ * Play the logo intro on cream, then after a short idle open the homepage.
  * Scroll / keys still skip early. Safe to call from School's useEffect.
  */
 export function startCrestIntro(): () => void {
@@ -68,9 +68,9 @@ export function startCrestIntro(): () => void {
   }
 
   const counter = panel.querySelector<HTMLElement>(".intro-counter");
-  const word = panel.querySelector<HTMLElement>(".intro-word");
   const marker = panel.querySelector<HTMLElement>(".intro-marker");
-  if (!counter || !word || !marker) return () => {};
+  const logo = panel.querySelector<HTMLElement>(".intro-logo");
+  if (!counter || !marker || !logo) return () => {};
 
   panel.dataset.playing = "true";
   document.documentElement.dataset.intro = "playing";
@@ -94,39 +94,16 @@ export function startCrestIntro(): () => void {
   const EASE_DRAW = "cubic-bezier(.16,1,.3,1)";
   const EASE_OUT = "cubic-bezier(.22,1,.36,1)";
 
-  // Phase A — the crest draws itself in.
-  panel.querySelectorAll(".crest-laurel path").forEach((el) =>
-    run(
-      el,
-      [
-        { strokeDasharray: "1", strokeDashoffset: "1" },
-        { strokeDasharray: "1", strokeDashoffset: "0" },
-      ],
-      { duration: 1300, easing: EASE_DRAW },
-    ),
-  );
+  // Same draw / breathe motion as before — on cream with the color lockup.
   run(
-    panel.querySelector(".crest-shield"),
+    logo,
     [
-      { opacity: 0, transform: "scale(.94)" },
-      { opacity: 1, transform: "scale(1)" },
+      { opacity: 0, transform: "scale(0.88)", offset: 0 },
+      { opacity: 1, transform: "scale(1)", offset: 0.58 },
+      { transform: "scale(1.035)", offset: 0.8 },
+      { opacity: 1, transform: "scale(1)", offset: 1 },
     ],
-    { delay: 1200, duration: 150 },
-  );
-  panel.querySelectorAll(".crest-quadrant").forEach((el, i) =>
-    run(
-      el,
-      [{ clipPath: "inset(100% 0 0 0)" }, { clipPath: "inset(0 0 0 0)" }],
-      { delay: 1320 + i * 160, duration: 260, easing: EASE_DRAW },
-    ),
-  );
-  run(
-    panel.querySelector(".crest-sun"),
-    [
-      { opacity: 0, transform: "scale(.7)" },
-      { opacity: 1, transform: "scale(1)" },
-    ],
-    { delay: 2060, duration: 320, easing: EASE_DRAW },
+    { duration: DRAW_END, easing: EASE_DRAW },
   );
 
   let raf = 0;
@@ -139,33 +116,10 @@ export function startCrestIntro(): () => void {
   };
   raf = requestAnimationFrame(tick);
   run(counter, [{ opacity: 1 }, { opacity: 0 }], {
-    delay: DRAW_END - 60,
-    duration: 220,
+    delay: DRAW_END - 40,
+    duration: 160,
   });
 
-  // Phase B — the field drains to cream, and the name surfaces.
-  run(
-    panel.querySelector(".intro-field"),
-    [{ backgroundColor: "#1c3b7e" }, { backgroundColor: "#faf8f4" }],
-    { delay: SETTLE_START, duration: SETTLE_DURATION, easing: "ease" },
-  );
-  run(
-    panel.querySelector(".intro-crest"),
-    [{ color: "#faf8f4" }, { color: "#1c3b7e" }],
-    { delay: SETTLE_START, duration: SETTLE_DURATION, easing: "ease" },
-  );
-  run(word, [{ color: "#faf8f4" }, { color: "#1c3b7e" }], {
-    delay: SETTLE_START,
-    duration: SETTLE_DURATION,
-    easing: "ease",
-  });
-  word.querySelectorAll(".intro-word-line").forEach((el, i) =>
-    run(
-      el,
-      [{ transform: "translateY(110%)" }, { transform: "translateY(0)" }],
-      { delay: WORD_DELAY + i * 150, duration: 650, easing: EASE_DRAW },
-    ),
-  );
   run(marker, [{ opacity: 0 }, { opacity: 1 }], {
     delay: MARKER_DELAY,
     duration: MARKER_DURATION,
@@ -175,7 +129,6 @@ export function startCrestIntro(): () => void {
   let advanceTimer = 0;
   let doneTimer = 0;
 
-  // Phase C — the shield opens into the homepage (scroll still works as skip).
   const breakApart = () => {
     if (state !== "settled") return;
     state = "breaking";
@@ -184,61 +137,21 @@ export function startCrestIntro(): () => void {
     window.removeEventListener("touchstart", onTouchStart);
     window.removeEventListener("touchmove", onTouchMove);
     window.removeEventListener("keydown", onKey);
-    const corners: [number, number][] = [
-      [-58, -52],
-      [58, -52],
-      [-58, 52],
-      [58, 52],
-    ];
-    const origins: [number, number, string][] = [
-      [33, 37, ".6"],
-      [63, 37, ".6"],
-      [34, 73, ".57"],
-      [63, 73, ".57"],
-    ];
-    panel.querySelectorAll(".crest-quadrant").forEach((el, i) => {
-      const [tx, ty, scale] = origins[i];
-      const [dx, dy] = corners[i];
-      run(
-        el,
-        [
-          {
-            transform: `translate(${tx}px,${ty}px) scale(${scale})`,
-            opacity: 1,
-          },
-          {
-            transform: `translate(${tx + dx}px,${ty + dy}px) scale(${scale})`,
-            opacity: 0,
-          },
-        ],
-        { delay: i * 70, duration: 620, easing: EASE_OUT },
-      );
-    });
-    run(panel.querySelector(".crest-shield"), [{ opacity: 1 }, { opacity: 0 }], {
-      delay: 60,
-      duration: 700,
-      easing: EASE_OUT,
-    });
-    run(panel.querySelector(".crest-sun"), [{ opacity: 1 }, { opacity: 0 }], {
-      delay: 40,
-      duration: 500,
-      easing: EASE_OUT,
-    });
+
     run(
-      panel.querySelector(".crest-laurel"),
+      logo,
       [
         { transform: "scale(1)", opacity: 1, offset: 0 },
-        { transform: "scale(1.05)", opacity: 1, offset: 0.7 },
-        { transform: "scale(1.06)", opacity: 0, offset: 1 },
+        { transform: "scale(1.08)", opacity: 1, offset: 0.55 },
+        { transform: "scale(1.18)", opacity: 0, offset: 1 },
       ],
-      { duration: 950, easing: EASE_OUT },
+      { duration: 700, easing: EASE_OUT },
     );
-    run(word, [{ opacity: 1 }, { opacity: 0 }], { duration: 220 });
-    run(marker, [{ opacity: 1 }, { opacity: 0 }], { duration: 180 });
+    run(marker, [{ opacity: 1 }, { opacity: 0 }], { duration: 140 });
     run(
       panel.querySelector(".intro-field"),
       [{ opacity: 1 }, { opacity: 0 }],
-      { delay: 120, duration: 700, easing: EASE_OUT },
+      { delay: 80, duration: 550, easing: EASE_OUT },
     );
     doneTimer = window.setTimeout(() => {
       state = "done";
@@ -248,7 +161,7 @@ export function startCrestIntro(): () => void {
       gateEvent(false);
       markIntroSeen();
       if (activeStop === stop) activeStop = null;
-    }, 1000);
+    }, EXIT_DURATION);
   };
 
   const onWheel = (e: WheelEvent) => {
@@ -316,8 +229,6 @@ export function startCrestIntro(): () => void {
   window.addEventListener("touchmove", onTouchMove, { passive: true });
   window.addEventListener("keydown", onKey);
 
-  // After the crest settles idle, wait briefly then open the homepage
-  // without requiring the visitor to scroll.
   settleTimer = window.setTimeout(() => {
     state = "settled";
     advanceTimer = window.setTimeout(() => {
@@ -329,25 +240,23 @@ export function startCrestIntro(): () => void {
   return stop;
 }
 
-/** Presentational crest intro shell — playback is started from School. */
+/** Presentational logo intro shell — playback is started from School. */
 export default function CrestIntro() {
   return (
     <div className="crest-intro" aria-hidden="true">
       <div className="intro-field" />
       <div className="intro-crest">
-        <Crest />
+        <Image
+          src={LOGO_SRC}
+          alt=""
+          width={320}
+          height={280}
+          className="intro-logo"
+          unoptimized
+          priority
+        />
       </div>
       <span className="intro-counter">0</span>
-      <div className="intro-word">
-        <span className="intro-word-mask">
-          <span className="intro-word-line intro-name">wellspire</span>
-        </span>
-        <span className="intro-word-mask">
-          <span className="intro-word-line intro-tagline">
-            Inspiring Lifelong Learners
-          </span>
-        </span>
-      </div>
       <span className="intro-marker">
         <span className="intro-marker-dot" />
       </span>

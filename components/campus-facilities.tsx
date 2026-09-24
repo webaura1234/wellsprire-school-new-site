@@ -13,8 +13,10 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 export function CampusFacilitiesSection({
   exploreHref = "/campus-life#campus-life",
+  galleryHref = "/campus-gallery",
 }: {
   exploreHref?: string;
+  galleryHref?: string;
 }) {
   const [facility, setFacility] = useState(0);
   const active = campusFacilities[facility];
@@ -30,9 +32,14 @@ export function CampusFacilitiesSection({
             <em>supports learning.</em>
           </Heading>
         </div>
-        <Link className="text-link" href={exploreHref}>
-          Explore campus life <ArrowUpRight size={18} />
-        </Link>
+        <div className="campus-heading-links">
+          <Link className="text-link" href={galleryHref}>
+            View campus gallery <ArrowUpRight size={18} />
+          </Link>
+          <Link className="text-link text-link--muted" href={exploreHref}>
+            Explore campus life <ArrowUpRight size={18} />
+          </Link>
+        </div>
       </div>
       <p className="campus-facilities-header">{facilitiesHeader}</p>
       <div

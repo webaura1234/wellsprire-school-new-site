@@ -17,7 +17,7 @@ import {
 
 function DocLink({ href, label }: { href: string; label: string }) {
   if (!href) {
-    return <span className="mpd-empty">-</span>;
+    return <span className="mpd-empty">NA</span>;
   }
   return (
     <a
@@ -36,10 +36,10 @@ function Cell({ cell }: { cell: DisclosureCell }) {
     return <DocLink href={cell.link.href} label={cell.link.label} />;
   }
   if (cell.kind === "na") {
-    return <span className="mpd-empty">{cell.value?.trim() || "-"}</span>;
+    return <span className="mpd-empty">{cell.value?.trim() || "NA"}</span>;
   }
   const value = cell.value?.trim();
-  return <>{value || "-"}</>;
+  return <>{value || "NA"}</>;
 }
 
 function DisclosureTable({

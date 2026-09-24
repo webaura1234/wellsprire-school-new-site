@@ -60,6 +60,7 @@ export function SiteFooter({
           <a href="/leadership#leadership">Principal&apos;s Message</a>
           <a href="/curriculum">Curriculum</a>
           <a href="/campus-life#campus">Campus &amp; Facilities</a>
+          <a href="/campus-gallery">Campus gallery</a>
           <a href="/campus-life#campus-life">Campus Life</a>
           <a href="/learning-beyond">Learning Beyond</a>
           <a href="/admissions">Admissions</a>

@@ -18,7 +18,7 @@ const chapters = [
     name: "Campus",
     word: "grounds",
     image: photos.campus,
-    alt: "Wellspire School campus building and green lawn",
+    alt: "Wellspire School main building with playground and outdoor sports court",
     note: "A campus where children thrive.",
     detail: "10 acres. Green, safe, and child-friendly.",
   },
@@ -34,7 +34,7 @@ const chapters = [
     name: "Val-Ed Lab",
     word: "values",
     image: photos.storytellers,
-    alt: "Value Education Lab for ethics, empathy, and leadership",
+    alt: "Value Education Lab with balance scales and empathy wall displays",
     note: "Values, lived — not lectured.",
     detail: "Ethics, empathy, and leadership through real-life situations.",
   },
@@ -42,7 +42,7 @@ const chapters = [
     name: "Computer Lab",
     word: "innovation",
     image: photos.computerLab,
-    alt: "Computer lab with digital workstations and technology teaching stations",
+    alt: "AI and Robotics Lab with workstations and a bot-testing track",
     note: "Code, create, and think ahead.",
     detail: "AI, robotics, and digital literacy — hands-on.",
   },
@@ -62,15 +62,15 @@ const detailPanels = [
   },
   {
     image: photos.earlyYears,
-    alt: "Early years learning room",
+    alt: "Outdoor playground and climbing frames beside the school building",
   },
   {
-    image: photos.earlyYears,
-    alt: "A calm space for values and conversation",
+    image: photos.storytellers,
+    alt: "Value Education Lab space for values and conversation",
   },
   {
-    image: photos.classroom,
-    alt: "Connected classroom learning alongside the computer lab",
+    image: photos.computerLab,
+    alt: "Robotics lab workstations for hands-on technology learning",
   },
 ];
 

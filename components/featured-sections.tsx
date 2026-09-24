@@ -731,7 +731,7 @@ export function GlobalHorizons() {
             <div className="global-card-image">
               <Image
                 src={card.image}
-                alt={card.title}
+                alt={card.alt}
                 fill
                 sizes="(max-width:768px) 90vw, (max-width:1200px) 45vw, 24vw"
               />
