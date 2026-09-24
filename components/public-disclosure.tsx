@@ -17,11 +17,7 @@ import {
 
 function DocLink({ href, label }: { href: string; label: string }) {
   if (!href) {
-    return (
-      <span className="mpd-link mpd-link--pending" title="PDF link coming soon">
-        {label}
-      </span>
-    );
+    return <span className="mpd-empty">-</span>;
   }
   return (
     <a
@@ -40,9 +36,10 @@ function Cell({ cell }: { cell: DisclosureCell }) {
     return <DocLink href={cell.link.href} label={cell.link.label} />;
   }
   if (cell.kind === "na") {
-    return <strong className="mpd-na">{cell.value ?? "NOT APPLICABLE"}</strong>;
+    return <span className="mpd-empty">{cell.value?.trim() || "-"}</span>;
   }
-  return <>{cell.value}</>;
+  const value = cell.value?.trim();
+  return <>{value || "-"}</>;
 }
 
 function DisclosureTable({

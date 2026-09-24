@@ -7,7 +7,7 @@ export const curriculumOverviewDoc = {
     "Conceptual understanding (not memorisation)",
     "Strong literacy and numeracy",
     "Inquiry-based learning",
-    "Global awareness",
+    "Social awareness",
     "Indian cultural grounding",
   ],
 };
@@ -15,7 +15,7 @@ export const curriculumOverviewDoc = {
 export const curriculumOverview = {
   heading: "A CBSE-Aligned Curriculum for Holistic Learning",
   intro:
-    "At Wellspire International School (WIS), our curriculum is thoughtfully aligned with the CBSE framework, while being enriched through engaging pedagogy, experiential learning, technology integration, and strong Indian values.",
+    "At Wellspire School, our curriculum is thoughtfully aligned with the CBSE framework, while being enriched through engaging pedagogy, experiential learning, technology integration, and strong Indian values.",
   bullets: [
     "Strong academic foundations",
     "Conceptual understanding",
@@ -68,7 +68,7 @@ export const threePillars = [
 
 export const academicProgramsIntro = {
   heading: "Academic Programs",
-  text: "At Wellspire International School, our academic programme is thoughtfully aligned with the CBSE framework and the National Curriculum Framework for School Education (NCF-SE) 2023. We follow a structured 5+3+3+4 curricular approach, focusing on age-appropriate learning, competency development, conceptual understanding and the holistic development of every learner.",
+  text: "At Wellspire School, our academic programme is thoughtfully aligned with the CBSE framework and the National Curriculum Framework for School Education (NCF-SE) 2023. We follow a structured 5+3+3+4 curricular approach, focusing on age-appropriate learning, competency development, conceptual understanding and the holistic development of every learner.",
   outro:
     "Our approach moves progressively from play and exploration to understanding, application, analysis and independent learning.",
 };

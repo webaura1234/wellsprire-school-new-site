@@ -27,7 +27,7 @@ export function TrustSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const recognitions = [
     {
-      title: "Global Curriculum",
+      title: "CBSE Curriculum",
       icon: GraduationCap,
     },
     {
@@ -204,7 +204,7 @@ export function AboutWellspireSection({
         <div className="about-block">
           <span className="about-block-label">Mission</span>
           <p>
-            At Wellspire International School, we empower every child to
+            At Wellspire School, we empower every child to
             learn deeply, live fully, and lead with purpose through a
             balanced education that values academics, arts, sports, and
             character equally.
@@ -216,7 +216,7 @@ export function AboutWellspireSection({
           <p className="side-note">
             Integrity · Wellness · Innovation
             <br />
-            Inspiration · Global Citizenship · Excellence
+            Inspiration · Responsible Citizenship · Excellence
           </p>
         </div>
 

@@ -6723,9 +6723,10 @@ h1 {
   cursor: default;
   opacity: 0.85;
 }
-.mpd-na {
+.mpd-na,
+.mpd-empty {
   color: var(--navy);
-  letter-spacing: 0.04em;
+  font-weight: 600;
 }
 .mpd-note {
   margin: 16px 0 0;

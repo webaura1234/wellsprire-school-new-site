@@ -232,7 +232,7 @@ export function CurriculumMobilePage() {
               "Strong literacy and numeracy",
               "Inquiry-based learning",
               "Competency-based learning",
-              "Global awareness",
+              "Social awareness",
               "Indian cultural grounding",
               "Holistic development",
               "Values and life skills",

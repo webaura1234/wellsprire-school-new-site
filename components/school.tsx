@@ -464,7 +464,7 @@ export default function School() {
               </div>
             </div>
             <p className="curriculum-outcomes">
-              Strong Academics · Conceptual Clarity · Global Exposure ·
+              Strong Academics · Conceptual Clarity · Applied Learning ·
               Cultural Grounding
             </p>
             <Link className="text-link" href="/curriculum">

@@ -1,5 +1,6 @@
 /** CBSE Mandatory Public Disclosure — hardcoded register.
  *  Document hrefs point at files in /public/disclosure when available.
+ *  Text values are taken only from school-provided certificates / confirmed details.
  */
 export type DisclosureLink = {
   label: string;
@@ -24,9 +25,11 @@ export type StaffTeacherBreakdown = {
   link: DisclosureLink;
 };
 
+/** From building-safety / recognition / fire certificates + principal confirmation. */
 export const disclosureSchool = {
   name: "Wellspire School",
   city: "Hyderabad, Telangana",
+  /** Recognition certificate + building-safety certificate address */
   address:
     "Sy. No. 45p, 45/b3/a, Muneerabad Rd., Kandlakoya (v), Medchal Mandal, Medchal–Malkajgiri District, Telangana",
   phone: "+91 9988331711",
@@ -36,10 +39,29 @@ export const disclosureSchool = {
   principalAdminExp: "8 Years",
   principalTeachingExp: "8 Years",
   board: "CBSE",
+  /** Building-safety certificate — Total Land Area */
   campusAreaSqM: "8093.54",
-  classrooms:
-    "30 classrooms — each 46.45 sq. mtr (500 sq ft) and above",
+  /**
+   * classrooms,washrooms & lab data.pdf — total classrooms 44.
+   * Building-safety certificate — size 46.45 sq. mtr (500 sq ft) and above.
+   * Display kept short (CBSE-style one-line format).
+   */
+  classrooms: "Class Room – 44 & Size – 46.45 (IN SQ MTR)",
   builtUpAreaSqM: "6729.78",
+  /**
+   * classrooms,washrooms & lab data.pdf — 6 labs
+   * (Composite, Robotics, Math, Computer, Value Ed, Art Studio).
+   * Display kept short (CBSE-style one-line format).
+   */
+  laboratories: "LABS – 6 & Size – 66.42–118.39 (IN SQ MTR)",
+  /** classrooms,washrooms & lab data.pdf — total 48 */
+  girlsToilets: "48",
+  /** classrooms,washrooms & lab data.pdf — total 48 */
+  boysToilets: "48",
+  /** Recognition certificate — opening permission year / classes */
+  recognitionClasses: "Pre-Primary to VIII (E.M)",
+  recognitionYear: "2026-2027",
+  societyName: "S Cube Educational Society",
 } as const;
 
 const click = (href = ""): DisclosureLink => ({
@@ -65,12 +87,12 @@ export const disclosureGeneral: DisclosureRow[] = [
   {
     sno: 2,
     info: "AFFILIATION NO. (IF APPLICABLE)",
-    detail: { kind: "text", value: "Awaiting CBSE affiliation confirmation" },
+    detail: { kind: "text", value: "-" },
   },
   {
     sno: 3,
     info: "SCHOOL CODE (IF APPLICABLE)",
-    detail: { kind: "text", value: "Awaiting school code confirmation" },
+    detail: { kind: "text", value: "-" },
   },
   {
     sno: 4,
@@ -187,17 +209,17 @@ export const disclosureResultsAcademics: DisclosureRow[] = [
   {
     sno: 5,
     info: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
-    detail: { kind: "na", value: "NOT APPLICABLE" },
+    detail: { kind: "text", value: "-" },
   },
 ];
 
 export const disclosureStaff = {
   principal: `${disclosureSchool.principal} — Administrative Exp: ${disclosureSchool.principalAdminExp}; Teaching Exp: ${disclosureSchool.principalTeachingExp}`,
-  totalTeachers: "—",
+  totalTeachers: "15",
   teachers: [] as StaffTeacherBreakdown[],
-  teacherSectionRatio: "Awaiting confirmation",
-  specialEducator: "Awaiting confirmation",
-  counsellor: "Awaiting confirmation",
+  teacherSectionRatio: "1:20",
+  specialEducator: "Ms. Rajashree B.A, B.Ed in Special Education",
+  counsellor: "Ms. Bhavya Rathore, Masters in counselling Psychology",
 };
 
 export const disclosureInfrastructure: DisclosureRow[] = [
@@ -214,7 +236,7 @@ export const disclosureInfrastructure: DisclosureRow[] = [
   {
     sno: 3,
     info: "NO. AND SIZE OF LABORATORIES INCLUDING COMPUTER LABS (IN SQUARE MTR)",
-    detail: { kind: "text", value: "Awaiting confirmation" },
+    detail: { kind: "text", value: disclosureSchool.laboratories },
   },
   {
     sno: 4,
@@ -224,12 +246,12 @@ export const disclosureInfrastructure: DisclosureRow[] = [
   {
     sno: 5,
     info: "NO. OF GIRLS TOILETS",
-    detail: { kind: "text", value: "Awaiting confirmation" },
+    detail: { kind: "text", value: disclosureSchool.girlsToilets },
   },
   {
     sno: 6,
     info: "NO. OF BOYS TOILETS",
-    detail: { kind: "text", value: "Awaiting confirmation" },
+    detail: { kind: "text", value: disclosureSchool.boysToilets },
   },
   {
     sno: 7,
