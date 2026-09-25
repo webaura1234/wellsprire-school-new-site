@@ -1258,5 +1258,131 @@
         "bytes": 80951
       }
     ]
+  },
+  {
+    "source": "/images/computer-lab-desks.avif",
+    "width": 1280,
+    "height": 963,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/computer-lab-desks-320.avif",
+        "width": 320,
+        "height": 241,
+        "bytes": 7323
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/computer-lab-desks-640.avif",
+        "width": 640,
+        "height": 482,
+        "bytes": 20171
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/computer-lab-desks-960.avif",
+        "width": 960,
+        "height": 722,
+        "bytes": 37297
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/computer-lab-desks-1280.avif",
+        "width": 1280,
+        "height": 963,
+        "bytes": 65968
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/computer-lab-desks-1600.avif",
+        "width": 1280,
+        "height": 963,
+        "bytes": 65968
+      }
+    ]
+  },
+  {
+    "source": "/images/classroom-desks.avif",
+    "width": 1280,
+    "height": 963,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/classroom-desks-320.avif",
+        "width": 320,
+        "height": 241,
+        "bytes": 5422
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/classroom-desks-640.avif",
+        "width": 640,
+        "height": 482,
+        "bytes": 13917
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/classroom-desks-960.avif",
+        "width": 960,
+        "height": 722,
+        "bytes": 25284
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/classroom-desks-1280.avif",
+        "width": 1280,
+        "height": 963,
+        "bytes": 43493
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/classroom-desks-1600.avif",
+        "width": 1280,
+        "height": 963,
+        "bytes": 43493
+      }
+    ]
+  },
+  {
+    "source": "/images/early-years-room.avif",
+    "width": 1280,
+    "height": 963,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/early-years-room-320.avif",
+        "width": 320,
+        "height": 241,
+        "bytes": 6890
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/early-years-room-640.avif",
+        "width": 640,
+        "height": 482,
+        "bytes": 17029
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/early-years-room-960.avif",
+        "width": 960,
+        "height": 722,
+        "bytes": 29698
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/early-years-room-1280.avif",
+        "width": 1280,
+        "height": 963,
+        "bytes": 50559
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/early-years-room-1600.avif",
+        "width": 1280,
+        "height": 963,
+        "bytes": 50559
+      }
+    ]
   }
 ]

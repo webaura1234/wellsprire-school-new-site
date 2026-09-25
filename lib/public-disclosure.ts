@@ -76,6 +76,14 @@ export const disclosureDocs = {
   buildingSafety: "/disclosure/building-safety-certificate.jpg",
   fireSafety: "/disclosure/fire-safety-certificate.pdf",
   waterHealthSanitation: "/disclosure/water-health-sanitation-certificate.pdf",
+  /** WIS-Academic Calendar- 2026-27 — PDF so Click Here opens in-browser */
+  annualAcademicCalendar: "/disclosure/annual-academic-calendar-2026-27.pdf",
+  /** LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS */
+  ptaMembers: "/disclosure/pta-members.pdf",
+  /** Fee Structure of WIS.doc — RESULTS & ACADEMICS sno 1 */
+  feeStructure: "/disclosure/fee-structure.pdf",
+  /** SMC affidavit + School Management Committee Members (3 pages) */
+  smcMembers: "/disclosure/smc-members.pdf",
 } as const;
 
 export const disclosureGeneral: DisclosureRow[] = [
@@ -189,22 +197,34 @@ export const disclosureResultsAcademics: DisclosureRow[] = [
   {
     sno: 1,
     info: "FEE STRUCTURE OF THE SCHOOL",
-    detail: { kind: "link", link: click() },
+    detail: {
+      kind: "link",
+      link: click(disclosureDocs.feeStructure),
+    },
   },
   {
     sno: 2,
     info: "ANNUAL ACADEMIC CALENDER",
-    detail: { kind: "link", link: click() },
+    detail: {
+      kind: "link",
+      link: click(disclosureDocs.annualAcademicCalendar),
+    },
   },
   {
     sno: 3,
     info: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)",
-    detail: { kind: "link", link: click() },
+    detail: {
+      kind: "link",
+      link: click(disclosureDocs.smcMembers),
+    },
   },
   {
     sno: 4,
     info: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS",
-    detail: { kind: "link", link: click() },
+    detail: {
+      kind: "link",
+      link: click(disclosureDocs.ptaMembers),
+    },
   },
   {
     sno: 5,
@@ -215,7 +235,7 @@ export const disclosureResultsAcademics: DisclosureRow[] = [
 
 export const disclosureStaff = {
   principal: `${disclosureSchool.principal} — Administrative Exp: ${disclosureSchool.principalAdminExp}; Teaching Exp: ${disclosureSchool.principalTeachingExp}`,
-  totalTeachers: "15",
+  totalTeachers: "20",
   teachers: [] as StaffTeacherBreakdown[],
   teacherSectionRatio: "1:20",
   specialEducator: "Ms. Rajashree B.A, B.Ed in Special Education",

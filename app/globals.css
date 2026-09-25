@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 :root {
@@ -2000,11 +2000,11 @@ textarea {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid rgba(24, 53, 112, 0.08);
+  border-bottom: 1px solid #d8d4cc;
   border-radius: 0 0 24px 24px;
-  box-shadow: 0 4px 24px -4px rgba(24, 53, 112, 0.06);
+  box-shadow: none;
   gap: clamp(10px, 1.6vw, 32px);
-  padding: 0 var(--gutter);
+  padding: 0 max(14px, calc(var(--gutter) * 0.5)) 0 var(--gutter);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -2026,7 +2026,7 @@ textarea {
   background: rgba(250, 248, 244, 0.92);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(24, 53, 112, 0.12);
+  border-bottom: 1px solid #d8d4cc;
   border-radius: 0 0 28px 28px;
   box-shadow:
     0 12px 36px -6px rgba(24, 53, 112, 0.1),
@@ -2144,7 +2144,7 @@ textarea {
   gap: 4px;
   padding: 8px 12px;
   border-radius: 9999px;
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--navy);
@@ -2279,7 +2279,7 @@ textarea {
 }
 .header.is-scrolled .nav-dock-link {
   padding: 6px 11px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
 }
 .nav-dock-link:hover,
@@ -2370,13 +2370,13 @@ textarea {
   }
   .nav-dock-link {
     padding: 7px 10px;
-    font-size: 10px;
+    font-size: 11.5px;
     font-weight: 700;
     letter-spacing: 0.03em;
   }
   .header.is-scrolled .nav-dock-link {
     padding: 5px 9px;
-    font-size: 9.5px;
+    font-size: 10.5px;
     font-weight: 700;
   }
   .header .nav-apply {
@@ -2394,7 +2394,7 @@ textarea {
 @media (max-width: 1439px) and (min-width: 1280px) {
   .header {
     gap: 10px;
-    padding: 0 var(--gutter);
+    padding: 0 max(14px, calc(var(--gutter) * 0.5)) 0 var(--gutter);
   }
   .header-nav-dock {
     gap: 2px;
@@ -2402,13 +2402,13 @@ textarea {
   }
   .nav-dock-link {
     padding: 7px 9px;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.02em;
   }
   .header.is-scrolled .nav-dock-link {
     padding: 5px 8px;
-    font-size: 9.5px;
+    font-size: 10.5px;
     font-weight: 700;
   }
   .header .nav-apply .nav-apply-label-full {
@@ -2672,6 +2672,10 @@ h1 {
   letter-spacing: 0.18em;
   color: var(--gold);
   font-variant-numeric: tabular-nums;
+  /* Keep counter in the DOM for timing logic; do not show it */
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
 }
 .intro-word {
   position: absolute;
@@ -3571,10 +3575,10 @@ h1 {
   position: sticky;
   top: var(--hero-sticky-top, 106px);
   height: calc(100svh - var(--hero-sticky-top, 106px));
-  max-height: 880px;
+  max-height: 900px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow: hidden;
   z-index: 10;
 }
@@ -3582,19 +3586,30 @@ h1 {
 .hero-scroll-track .hero-composition {
   flex: 1;
   min-height: 0;
-  align-content: center;
+  align-content: stretch;
   padding-top: 6px;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 }
 
 .hero-scroll-track .hero-architecture {
   height: 100%;
-  max-height: 480px;
-  min-height: 260px;
+  max-height: none;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+}
+.hero-scroll-track .hero-photo-window {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}
+.hero-scroll-track .arch-outline {
+  height: auto;
+  bottom: 52px;
 }
 
 .hero-scroll-track .hero-detail-image {
-  height: clamp(80px, 15vh, 145px);
+  height: clamp(72px, 14vh, 130px);
 }
 
 @media (max-width: 767px) {
@@ -3607,17 +3622,39 @@ h1 {
     max-height: none;
   }
   .hero-scroll-track .hero-architecture {
-    max-height: 420px;
-    min-height: 220px;
+    max-height: 400px;
+    min-height: 200px;
   }
   .hero-scroll-track .hero-detail-image {
-    height: clamp(72px, 14vh, 110px);
+    height: clamp(68px, 13vh, 100px);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-chapters--scroll-only {
+    position: absolute;
+    right: var(--gutter);
+    bottom: 10px;
+    z-index: 12;
+    margin: 0;
+    padding: 0;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .hero-scroll-track {
-    height: 265vh;
+  .hero-composition {
+    column-gap: 20px;
+    row-gap: 14px;
+  }
+  .prospectus-hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+  }
+  .hero-architecture {
+    min-height: clamp(320px, 52vh, 480px);
+  }
+  .pillar-tab {
+    min-height: 56px;
+    padding: 8px 10px;
   }
 }
 
@@ -3632,12 +3669,13 @@ h1 {
   padding: 0 var(--gutter);
   overflow: hidden;
   border-bottom: 1px solid var(--line);
+  position: relative;
 }
 .hero-edition {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0 0;
+  padding: 10px 0 0;
   gap: 30px;
   font-size: 8px;
   font-weight: var(--text-weight);
@@ -3659,20 +3697,57 @@ h1 {
 .hero-composition {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.05fr) minmax(100px, 0.32fr);
-  column-gap: clamp(24px, 3.5vw, 56px);
-  min-height: 520px;
-  padding-top: 18px;
-  padding-bottom: 18px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  column-gap: clamp(24px, 3.5vw, 48px);
+  min-height: 0;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  align-items: stretch;
+}
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+  min-width: 0;
+  align-self: stretch;
+  width: 100%;
+  max-width: 540px;
+  padding-top: clamp(18px, 3.2vh, 36px);
+  padding-bottom: 8px;
+  box-sizing: border-box;
+}
+.hero-content {
+  min-width: 0;
+  width: 100%;
+}
+.hero-feature-grid {
+  width: 100%;
+  max-width: 100%;
+  pointer-events: auto;
+  flex-shrink: 0;
+}
+.hero-architecture {
+  height: 100%;
+  min-height: clamp(380px, 62vh, 620px);
+  position: relative;
+  align-self: stretch;
+  padding: 2px 2px 0;
+  isolation: isolate;
+  width: 100%;
+  max-width: 100%;
+}
+.hero-marginalia {
+  display: none !important;
 }
 .prospectus-hero .hero-content {
   padding: 0;
-  padding-right: clamp(8px, 1.5vw, 20px);
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   z-index: 2;
-  align-self: center;
+  align-self: stretch;
   min-width: 0;
   max-width: 100%;
   overflow: visible;
@@ -3684,25 +3759,77 @@ h1 {
 }
 .hero-kicker {
   font-size: 8px;
-  letter-spacing: 0.17em;
+  letter-spacing: 0.14em;
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
   color: var(--navy);
+  font-weight: 700;
 }
 .prospectus-hero .hero-content > p.hero-kicker {
   color: var(--navy);
-  margin: 0 0 25px;
+  margin: 0 0 8px;
 }
-.hero-kicker > span {
+.hero-introduction {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  width: 90%;
+  max-width: 340px;
+  margin-top: 6px;
+}
+.intro-rule {
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: var(--gold);
+  flex: none;
+  margin-top: 3px;
+}
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.pillar-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(28, 59, 126, 0.12);
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  text-align: left;
+  min-height: 56px;
+}
+.hero-kicker-rule {
+  width: 18px;
+  height: 1px;
+  background: var(--gold);
+  flex: none;
+}
+.hero-kicker-years,
+.hero-kicker-tag {
+  white-space: nowrap;
+}
+.hero-kicker > span:not(.hero-kicker-rule):not(.hero-kicker-years):not(.hero-kicker-tag) {
   width: 25px;
   height: 1px;
   background: var(--gold);
 }
 .prospectus-hero h1 {
-  font-size: clamp(48px, 5.4vw, 88px);
-  line-height: 1.02;
+  font-size: clamp(34px, 3.8vw, 58px);
+  line-height: 1.05;
   letter-spacing: -0.02em;
   margin: 0;
   width: 100%;
@@ -3724,21 +3851,6 @@ h1 {
   margin: 19px 0 8px;
   letter-spacing: -0.015em;
 }
-.hero-introduction {
-  display: flex;
-  gap: 16px;
-  align-items: start;
-  width: 80%;
-  max-width: 330px;
-}
-.intro-rule {
-  display: block;
-  width: 1px;
-  height: 56px;
-  background: var(--gold);
-  flex: none;
-  margin-top: 5px;
-}
 .hero-introduction > p {
   font-size: 12px;
   line-height: 1.85;
@@ -3746,7 +3858,8 @@ h1 {
 }
 .hero-headline-rotator {
   display: inline-block;
-  animation: hero-headline-fade 0.6s ease;
+  opacity: 1;
+  animation: hero-headline-fade 0.6s ease both;
 }
 @keyframes hero-headline-fade {
   from {
@@ -3763,13 +3876,6 @@ h1 {
     animation: none;
   }
 }
-.hero-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  margin-top: 22px;
-}
 .hero-cta-row .button.ghost {
   background: transparent;
   border: 1px solid var(--line);
@@ -3779,23 +3885,23 @@ h1 {
   background: var(--navy);
   color: var(--paper);
 }
-.hero-architecture {
-  height: 480px;
-  position: relative;
-  align-self: center;
-  padding: 10px;
-  isolation: isolate;
-}
 .arch-outline {
   position: absolute;
-  inset: 0 0 44px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 52px;
+  height: auto;
   border: 1px solid var(--gold);
   border-radius: 50% 50% 0 0 / 42% 42% 0 0;
   pointer-events: none;
+  z-index: 4;
 }
 .hero-photo-window {
   position: relative;
-  height: calc(100% - 44px);
+  flex: 1 1 auto;
+  height: calc(100% - 52px);
+  min-height: 300px;
   overflow: hidden;
   border-radius: 50% 50% 0 0 / 42% 42% 0 0;
   background: var(--navy);
@@ -3832,24 +3938,30 @@ h1 {
   color: var(--paper);
   font-size: 7px;
   letter-spacing: 0.18em;
-  padding: 14px 20px;
+  padding: 10px 16px;
   text-align: center;
   z-index: 3;
 }
 .hero-annotation {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   display: flex;
   align-items: baseline;
-  gap: 14px;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 0 4px;
 }
 .annotation-number {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 28px;
   color: var(--gold);
   line-height: 1;
+}
+.annotation-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(24, 53, 112, 0.28);
+  flex: none;
+  align-self: center;
 }
 .hero-annotation p {
   font-size: 13px;
@@ -3860,11 +3972,11 @@ h1 {
 
 .hero-marginalia {
   position: relative;
-  display: flex;
+  display: none !important;
   flex-direction: column;
   justify-content: flex-end;
-  height: 480px;
-  padding-bottom: 10px;
+  height: 440px;
+  padding-bottom: 8px;
 }
 .margin-label {
   font-size: 8px;
@@ -3874,10 +3986,10 @@ h1 {
   writing-mode: vertical-rl;
   display: block;
   margin-left: auto;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 .hero-detail-image {
-  height: 145px;
+  height: 130px;
   position: relative;
   overflow: hidden;
 }
@@ -3901,14 +4013,14 @@ h1 {
   font-size: 6px;
   letter-spacing: 0.16em;
   line-height: 1.8;
-  margin: 12px 0 20px;
+  margin: 8px 0 12px;
 }
 .margin-rule {
   display: block;
   height: 1px;
   width: 28px;
   background: var(--gold);
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 .hero-marginalia > p {
   font-size: 10px;
@@ -3917,21 +4029,27 @@ h1 {
 }
 
 .hero-chapters {
-  border-top: 1px solid rgba(200, 161, 90, 0.35);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(250, 248, 244, 0.98) 100%
-  );
-  backdrop-filter: blur(16px);
-  box-shadow: 0 -10px 30px -10px rgba(28, 59, 126, 0.08);
-  display: grid;
-  grid-template-columns: 210px 1fr auto;
+  border-top: none;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  gap: 24px;
-  min-height: 96px;
-  margin: 0 calc(-1 * var(--gutter));
-  padding: 12px var(--gutter);
+  gap: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0 0 8px;
+}
+.hero-chapters--scroll-only .scroll-button-wrap {
+  opacity: 0.7;
+}
+.chapter-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
 }
 .chapter-kicker {
   display: inline-flex;
@@ -3963,27 +4081,6 @@ h1 {
   font-size: 19px;
   display: block;
 }
-.chapter-tabs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-self: stretch;
-  align-items: center;
-  gap: 12px;
-}
-.pillar-tab {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(28, 59, 126, 0.12);
-  background: rgba(255, 255, 255, 0.55);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s var(--ease);
-  text-align: left;
-}
 .pillar-tab:hover {
   background: #ffffff;
   border-color: rgba(200, 161, 90, 0.5);
@@ -3994,10 +4091,10 @@ h1 {
   background: #ffffff;
   border-color: var(--navy);
   border-width: 1.5px;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow:
-    0 12px 28px -5px rgba(28, 59, 126, 0.16),
-    0 0 0 2px rgba(200, 161, 90, 0.25);
+    0 10px 24px -5px rgba(28, 59, 126, 0.14),
+    0 0 0 2px rgba(200, 161, 90, 0.22);
 }
 .tab-accent-line {
   position: absolute;
@@ -4072,6 +4169,127 @@ h1 {
   color: var(--gold);
   font-weight: 600;
 }
+
+/* Desktop only: scale hero left content to fill available height.
+   Placed after base hero/tab rules so these overrides win the cascade. */
+@media (min-width: 1024px) {
+  .hero-left {
+    justify-content: center;
+    gap: clamp(16px, 2vh, 26px);
+    height: 100%;
+    min-height: 0;
+    max-width: min(100%, 600px);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .prospectus-hero .hero-content {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    min-height: 0;
+    margin-top: 0;
+  }
+
+  .hero-feature-grid {
+    margin-top: 0;
+    flex: 0 0 auto;
+  }
+
+  .hero-kicker,
+  .prospectus-hero .hero-content > p.hero-kicker {
+    font-size: clamp(9px, 0.72vw, 11px);
+    letter-spacing: 0.15em;
+    gap: clamp(10px, 0.9vw, 14px);
+    margin: 0 0 clamp(10px, 1.3vh, 16px);
+  }
+
+  .hero-kicker-rule {
+    width: clamp(18px, 1.4vw, 24px);
+  }
+
+  .prospectus-hero h1 {
+    font-size: clamp(46px, 5.2vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    max-width: 100%;
+  }
+
+  /* Keep each headline part on a single line (lead + accent = 2 lines max) */
+  .prospectus-hero h1 .heading-line {
+    white-space: nowrap;
+  }
+
+  .prospectus-hero h1 .hero-headline-rotator {
+    max-width: 100%;
+  }
+
+  .hero-introduction {
+    margin-top: clamp(10px, 1.4vh, 18px);
+    max-width: min(100%, 400px);
+    gap: 14px;
+  }
+
+  .hero-introduction > p {
+    font-size: clamp(13px, 0.95vw, 15px);
+    line-height: 1.65;
+  }
+
+  .intro-rule {
+    height: clamp(36px, 4.5vh, 48px);
+  }
+
+  .hero-cta-row {
+    margin-top: clamp(14px, 1.8vh, 22px);
+    gap: 12px;
+  }
+
+  .hero-cta-row .button {
+    min-height: clamp(48px, 5.2vh, 56px);
+    padding: clamp(14px, 1.5vh, 18px) clamp(22px, 1.8vw, 28px);
+    font-size: clamp(11px, 0.8vw, 13px);
+    gap: 18px;
+  }
+
+  .hero-feature-grid .chapter-tabs {
+    gap: clamp(10px, 1.1vh, 14px);
+  }
+
+  .hero-feature-grid .pillar-tab {
+    min-height: clamp(64px, 7.2vh, 78px);
+    padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1vw, 16px);
+    gap: 12px;
+    border-radius: 14px;
+  }
+
+  .hero-feature-grid .tab-num {
+    font-size: clamp(8px, 0.65vw, 10px);
+    padding: 3px 6px;
+  }
+
+  .hero-feature-grid .tab-icon {
+    width: clamp(28px, 2.2vw, 34px);
+    height: clamp(28px, 2.2vw, 34px);
+  }
+
+  .hero-feature-grid .tab-title {
+    font-size: clamp(14px, 1.05vw, 16px);
+  }
+
+  .hero-feature-grid .tab-sub {
+    font-size: clamp(9px, 0.7vw, 11px);
+    letter-spacing: 0.09em;
+  }
+
+  /* Slightly shorten the campus image; keep it vertically centered */
+  .hero-scroll-track .hero-architecture,
+  .hero-architecture {
+    align-self: center;
+    height: calc(100% - clamp(24px, 3.2vh, 36px));
+    max-height: calc(100% - clamp(24px, 3.2vh, 36px));
+    min-height: 0;
+  }
+}
+
 .scroll-button-wrap {
   display: flex;
   flex-direction: column;
@@ -5381,6 +5599,10 @@ h1 {
     position: relative !important;
   }
   
+  .hero-left {
+    display: contents !important;
+  }
+
   .prospectus-hero .hero-content {
     order: 1 !important;
     display: flex !important;
@@ -5395,13 +5617,25 @@ h1 {
     position: relative !important;
     z-index: 2 !important;
   }
+
+  .hero-feature-grid {
+    order: 3 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    align-self: stretch !important;
+  }
   
   .prospectus-hero .hero-kicker {
-    font-size: 8px !important;
-    letter-spacing: 0.14em !important;
+    font-size: 7.5px !important;
+    letter-spacing: 0.12em !important;
     margin-bottom: 4px !important;
     justify-content: center !important;
     color: var(--navy) !important;
+    gap: 6px !important;
+  }
+
+  .hero-kicker-rule {
+    width: 12px !important;
   }
   
   .prospectus-hero h1 {
@@ -5443,8 +5677,8 @@ h1 {
     order: 2 !important;
     height: 100% !important;
     flex: 1 1 0% !important;
-    min-height: 220px !important;
-    max-height: min(52svh, 440px) !important;
+    min-height: 200px !important;
+    max-height: min(48svh, 400px) !important;
     width: 100% !important;
     max-width: min(100%, 420px) !important;
     margin: 0 auto !important;
@@ -5473,7 +5707,7 @@ h1 {
   }
   
   .arch-outline {
-    inset: 0 0 28px 0 !important;
+    inset: 0 !important;
     position: absolute !important;
     z-index: 5 !important;
   }
@@ -5481,22 +5715,17 @@ h1 {
   .arch-footnote {
     display: none !important;
   }
-  
+
   .hero-annotation {
     position: relative !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
-    margin-top: 22px !important;
+    margin-top: 10px !important;
     margin-bottom: 4px !important;
     padding: 0 8px !important;
     text-align: center !important;
-    transform: none !important;
-    left: auto !important;
-    bottom: auto !important;
-    height: auto !important;
-    min-height: 20px !important;
     width: 100% !important;
     z-index: 2 !important;
     box-sizing: border-box !important;
@@ -5521,11 +5750,12 @@ h1 {
   }
 
   .hero-chapters {
-    order: 3 !important;
+    order: 4 !important;
     display: flex !important;
-    flex-direction: column !important;
-    gap: 8px !important;
-    padding: 8px 0 12px !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 4px 0 8px !important;
     margin: 0 !important;
     min-height: 0 !important;
     flex-shrink: 0 !important;
@@ -5542,6 +5772,7 @@ h1 {
   .chapter-invitation {
     display: none !important;
   }
+  .hero-feature-grid .chapter-tabs,
   .chapter-tabs {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -5559,9 +5790,9 @@ h1 {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    min-height: 52px !important;
+    min-height: 48px !important;
     height: 100% !important;
-    padding: 10px 10px !important;
+    padding: 8px 10px !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;

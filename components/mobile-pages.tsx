@@ -39,20 +39,40 @@ function useHashScroll() {
     const aliases: Record<string, string> = {
       "campus-experience": "campus-life",
       placements: "campus-life",
+      management: "team",
     };
+    let attempts = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
     const scrollToHash = () => {
       const raw = window.location.hash.replace(/^#/, "");
       if (!raw) return;
       const id = aliases[raw] || raw;
       const el = document.getElementById(id);
-      if (!el) return;
+      if (!el) {
+        if (attempts < 12) {
+          attempts += 1;
+          timer = setTimeout(scrollToHash, 50);
+        }
+        return;
+      }
+      attempts = 0;
       requestAnimationFrame(() => {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     };
+
+    const onHashChange = () => {
+      attempts = 0;
+      scrollToHash();
+    };
+
     scrollToHash();
-    window.addEventListener("hashchange", scrollToHash);
-    return () => window.removeEventListener("hashchange", scrollToHash);
+    window.addEventListener("hashchange", onHashChange);
+    return () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("hashchange", onHashChange);
+    };
   }, []);
 }
 

@@ -26,7 +26,7 @@ export const homeLearningHighlights = [
   {
     title: "STEM & Experiential Learning",
     badge: "STEAM",
-    image: photos.computerLab,
+    image: photos.roboticsLab,
     tag: "Grade 1 onwards",
     alt: "STEM robotics lab with white workstations and a central bot-testing track",
   },
@@ -54,7 +54,7 @@ export const homeLearningHighlights = [
   {
     title: "Mini Library (Classroom Libraries)",
     badge: "READING",
-    image: photos.classroom,
+    image: photos.library,
     tag: "Till Grade 5",
     alt: "Classroom space with books and learning materials for mini libraries",
   },

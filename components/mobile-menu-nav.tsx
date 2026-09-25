@@ -143,8 +143,8 @@ export function MobileMenuNav({
             </button>
             {expanded && (
               <div className="mobile-menu-submenu" role="group">
-                {item.href && item.href !== "/" && (
-                  <a
+                {item.href && (
+                  <Link
                     href={item.href}
                     className="mobile-menu-sublink"
                     onClick={() => {
@@ -159,8 +159,8 @@ export function MobileMenuNav({
                       onNavigate?.();
                     }}
                   >
-                    <span>{item.label} (Reach Campus)</span>
-                  </a>
+                    <span>{item.shortLabel ?? item.label}</span>
+                  </Link>
                 )}
                 {item.children!.map((child) => (
                   <Link
@@ -175,6 +175,19 @@ export function MobileMenuNav({
                       ) {
                         const id = hashOnly(child.href);
                         if (id) onHashClick?.(id);
+                      } else {
+                        const id = hashOnly(child.href);
+                        const path = pathOnly(child.href);
+                        if (id && pathname === path) {
+                          requestAnimationFrame(() => {
+                            document
+                              .getElementById(id)
+                              ?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                              });
+                          });
+                        }
                       }
                       onNavigate?.();
                     }}

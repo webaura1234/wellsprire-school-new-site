@@ -153,6 +153,18 @@ export function DesktopNavDock({
                       ) {
                         const id = hashOnly(child.href);
                         if (id) onHashClick?.(id);
+                        return;
+                      }
+                      const id = hashOnly(child.href);
+                      const path = pathOnly(child.href);
+                      if (id && pathname === path) {
+                        // Same-page hash: ensure smooth scroll even if the
+                        // router soft-navigates without a hashchange event.
+                        requestAnimationFrame(() => {
+                          document
+                            .getElementById(id)
+                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        });
                       }
                     }}
                   >

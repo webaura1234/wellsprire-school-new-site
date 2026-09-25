@@ -26,7 +26,7 @@ const chapters = [
     name: "Classrooms",
     word: "learning",
     image: photos.classroom,
-    alt: "Bright modern classroom with natural light and student workstations",
+    alt: "Modern classroom with orange-framed student desks, natural light, and ceiling fans",
     note: "Smart, sunlit classrooms.",
     detail: "Air-conditioned rooms made for inquiry.",
   },
@@ -42,7 +42,7 @@ const chapters = [
     name: "Computer Lab",
     word: "innovation",
     image: photos.computerLab,
-    alt: "AI and Robotics Lab with workstations and a bot-testing track",
+    alt: "Computer lab with rows of desktop workstations, keyboards, and ergonomic chairs",
     note: "Code, create, and think ahead.",
     detail: "AI, robotics, and digital literacy — hands-on.",
   },
@@ -58,11 +58,11 @@ const heroHeadlines = [
 const detailPanels = [
   {
     image: photos.classroom,
-    alt: "A classroom inside the Wellspire campus",
+    alt: "Bright classroom with orange student desks and cubby storage under the window",
   },
   {
     image: photos.earlyYears,
-    alt: "Outdoor playground and climbing frames beside the school building",
+    alt: "Early years room with alphabet rugs, soft play toys, and child-sized tables",
   },
   {
     image: photos.storytellers,
@@ -70,7 +70,7 @@ const detailPanels = [
   },
   {
     image: photos.computerLab,
-    alt: "Robotics lab workstations for hands-on technology learning",
+    alt: "Computer lab workstations with monitors and chairs ready for digital learning",
   },
 ];
 
@@ -304,49 +304,101 @@ export default function Hero({
         className="hero prospectus-hero"
         aria-label="Welcome to Wellspire School"
       >
-        <div className="hero-edition">
-          <span>THE WELLSPIRE YEARS</span>
-          <span>
-            NURSERY — GRADE 7 <i /> MIND · BODY · SPIRIT
-          </span>
-        </div>
         <div className="hero-composition">
-          <div className="hero-content">
-            <p className="hero-kicker">
-              <span /> INSPIRING LIFELONG LEARNERS
-            </p>
-            <Heading as="h1">
-              <span
-                className="hero-headline-rotator"
-                aria-live="polite"
-                key={headline}
-              >
-                {heroHeadlines[headline].lead}
-                <br />
-                <em>{heroHeadlines[headline].accent}</em>
-              </span>
-            </Heading>
-            <div className="hero-introduction">
-              <span className="intro-rule" />
-              <p>Preparing children for life, not just exams.</p>
+          <div className="hero-left">
+            <div className="hero-content">
+              <p className="hero-kicker">
+                <span className="hero-kicker-years">THE WELLSPIRE YEARS</span>
+                <span className="hero-kicker-rule" aria-hidden="true" />
+                <span className="hero-kicker-tag">INSPIRING LIFELONG LEARNERS</span>
+              </p>
+              <Heading as="h1">
+                <span
+                  className="hero-headline-rotator"
+                  aria-live="polite"
+                  key={headline}
+                >
+                  {heroHeadlines[headline].lead}
+                  <br />
+                  <em>{heroHeadlines[headline].accent}</em>
+                </span>
+              </Heading>
+              <div className="hero-introduction">
+                <span className="intro-rule" />
+                <p>Preparing children for life, not just exams.</p>
+              </div>
+              <div className="hero-cta-row">
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => onEnquire?.()}
+                >
+                  Enquire Now
+                </button>
+                <button
+                  type="button"
+                  className="button ghost"
+                  onClick={() => onVisit?.()}
+                >
+                  Book a Campus Visit
+                </button>
+              </div>
             </div>
-            <div className="hero-cta-row">
-              <button
-                type="button"
-                className="button"
-                onClick={() => onEnquire?.()}
+
+            <div className="hero-feature-grid">
+              <div
+                className="chapter-tabs"
+                role="tablist"
+                aria-label="Explore campus, classrooms, Val-Ed Lab, and Computer Lab"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               >
-                Enquire Now
-              </button>
-              <button
-                type="button"
-                className="button ghost"
-                onClick={() => onVisit?.()}
-              >
-                Book a Campus Visit
-              </button>
+                {chapters.map((item, i) => (
+                  <button
+                    key={item.name}
+                    id={`hero-tab-${i}`}
+                    role="tab"
+                    type="button"
+                    className={`pillar-tab ${chapter === i ? "is-active" : ""}`}
+                    aria-selected={chapter === i}
+                    aria-controls="hero-chapter"
+                    tabIndex={chapter === i ? 0 : -1}
+                    onClick={() => handleTabClick(i)}
+                    onKeyDown={(e) => {
+                      if (
+                        !["ArrowLeft", "ArrowRight", "Home", "End"].includes(
+                          e.key,
+                        )
+                      )
+                        return;
+                      e.preventDefault();
+                      const total = chapters.length;
+                      const next =
+                        e.key === "Home"
+                          ? 0
+                          : e.key === "End"
+                            ? total - 1
+                            : (i + (e.key === "ArrowRight" ? 1 : total - 1)) %
+                              total;
+                      handleTabClick(next);
+                      document.getElementById(`hero-tab-${next}`)?.focus();
+                    }}
+                  >
+                    <span className="tab-accent-line" />
+                    <div className="tab-icon-wrap">
+                      <span className="tab-num">0{i + 1}</span>
+                      <QuadrantIcon kind={i} className="tab-icon" />
+                    </div>
+                    <div className="tab-meta">
+                      <span className="tab-title">{item.name}</span>
+                      <span className="tab-sub">{item.word}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
+
           <div className="hero-architecture">
             <div className="arch-outline" aria-hidden="true" />
             <div
@@ -370,7 +422,7 @@ export default function Hero({
                     fill
                     priority
                     fetchPriority={i === 0 ? "high" : "auto"}
-                    sizes="(max-width:767px) 86vw, 42vw"
+                    sizes="(max-width:767px) 92vw, 48vw"
                     className="hero-photo"
                   />
                 </div>
@@ -381,10 +433,13 @@ export default function Hero({
             </div>
             <div className="hero-annotation" aria-live="polite">
               <span className="annotation-number">0{chapter + 1}</span>
+              <span className="annotation-divider" aria-hidden="true" />
               <p>{current.note}</p>
             </div>
           </div>
-          <div className="hero-marginalia">
+
+          {/* Kept in DOM (hidden) so detail-panel assets remain available if reused */}
+          <div className="hero-marginalia" aria-hidden="true">
             <span className="margin-label">
               ROOM FOR {current.word.toUpperCase()}
             </span>
@@ -413,62 +468,8 @@ export default function Hero({
             <p>{current.detail}</p>
           </div>
         </div>
-        <div className="hero-chapters">
-          <div className="chapter-invitation">
-            <span className="chapter-kicker">
-              <span className="kicker-dot" /> FOUR SPACES
-            </span>
-            <p>
-              Rooted in values.
-              <br />
-              <em>Ready for the world.</em>
-            </p>
-          </div>
-          <div
-            className="chapter-tabs"
-            role="tablist"
-            aria-label="Explore campus, classrooms, Val-Ed Lab, and Computer Lab"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            {chapters.map((item, i) => (
-              <button
-                key={item.name}
-                id={`hero-tab-${i}`}
-                role="tab"
-                type="button"
-                className={`pillar-tab ${chapter === i ? "is-active" : ""}`}
-                aria-selected={chapter === i}
-                aria-controls="hero-chapter"
-                tabIndex={chapter === i ? 0 : -1}
-                onClick={() => handleTabClick(i)}
-                onKeyDown={(e) => {
-                  if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key))
-                    return;
-                  e.preventDefault();
-                  const total = chapters.length;
-                  const next =
-                    e.key === "Home"
-                      ? 0
-                      : e.key === "End"
-                        ? total - 1
-                        : (i + (e.key === "ArrowRight" ? 1 : total - 1)) % total;
-                  handleTabClick(next);
-                  document.getElementById(`hero-tab-${next}`)?.focus();
-                }}
-              >
-                <span className="tab-accent-line" />
-                <div className="tab-icon-wrap">
-                  <span className="tab-num">0{i + 1}</span>
-                  <QuadrantIcon kind={i} className="tab-icon" />
-                </div>
-                <div className="tab-meta">
-                  <span className="tab-title">{item.name}</span>
-                  <span className="tab-sub">{item.word}</span>
-                </div>
-              </button>
-            ))}
-          </div>
+
+        <div className="hero-chapters hero-chapters--scroll-only">
           <div className="scroll-button-wrap">
             <button
               type="button"

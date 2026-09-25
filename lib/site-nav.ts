@@ -29,9 +29,9 @@ export type SiteNavItem = {
  * Primary navigation — WIS Web Layout & Content.doc, verbatim order:
  * Home · About Wellspire · Our Team - Management - Leadership · Curriculum ·
  * Campus & Facilities · Learning Beyond Classrooms · Admissions · Contact Us.
- * Flat, no dropdowns, matching the doc exactly. (Careers and Public
- * Disclosure aren't doc nav items — both pages still exist and are linked
- * from the footer; Public Disclosure itself is untouched.)
+ * Our Team and Contact Us expose dropdown children. (Careers and Public
+ * Disclosure aren't primary doc nav items — both pages still exist and are
+ * linked from the footer / Contact menu; Public Disclosure itself is untouched.)
  */
 export const siteNavItems: readonly SiteNavItem[] = [
   {
@@ -50,6 +50,16 @@ export const siteNavItems: readonly SiteNavItem[] = [
     shortLabel: "Our Team",
     href: "/leadership",
     Icon: Users,
+    children: [
+      {
+        label: "Management",
+        href: "/leadership#team",
+      },
+      {
+        label: "Leadership",
+        href: "/leadership#leadership",
+      },
+    ],
   },
   {
     label: "Curriculum",
@@ -58,7 +68,6 @@ export const siteNavItems: readonly SiteNavItem[] = [
   },
   {
     label: "Campus & Facilities",
-    shortLabel: "Campus",
     href: "/campus-life#campus",
     Icon: Building2,
   },
