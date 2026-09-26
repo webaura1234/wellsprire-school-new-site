@@ -27,11 +27,10 @@ export type SiteNavItem = {
 
 /**
  * Primary navigation — WIS Web Layout & Content.doc, verbatim order:
- * Home · About Wellspire · Our Team - Management - Leadership · Curriculum ·
+ * Home · About Wellspire · Our Team - Management - Leadership · Academics ·
  * Campus & Facilities · Learning Beyond Classrooms · Admissions · Contact Us.
- * Our Team and Contact Us expose dropdown children. (Careers and Public
- * Disclosure aren't primary doc nav items — both pages still exist and are
- * linked from the footer / Contact menu; Public Disclosure itself is untouched.)
+ * Our Team and Academics expose dropdown children. (Careers still exists and
+ * is linked from the footer; Public Disclosure lives under Academics.)
  */
 export const siteNavItems: readonly SiteNavItem[] = [
   {
@@ -62,9 +61,20 @@ export const siteNavItems: readonly SiteNavItem[] = [
     ],
   },
   {
-    label: "Curriculum",
+    label: "Academics – Curriculum – Public Disclosure",
+    shortLabel: "Academics",
     href: "/curriculum",
     Icon: BookOpen,
+    children: [
+      {
+        label: "Curriculum",
+        href: "/curriculum",
+      },
+      {
+        label: "Public Disclosure",
+        href: "/mandatory-public-disclosure",
+      },
+    ],
   },
   {
     label: "Campus & Facilities",
@@ -88,12 +98,6 @@ export const siteNavItems: readonly SiteNavItem[] = [
     href: "/#contact",
     hashId: "contact",
     Icon: Phone,
-    children: [
-      {
-        label: "Public Disclosure",
-        href: "/mandatory-public-disclosure",
-      },
-    ],
   },
 ];
 

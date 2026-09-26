@@ -35,7 +35,7 @@ export const homeLearningHighlights = [
     badge: "LIFE SKILLS",
     image: photos.farming,
     tag: "Soil to soul",
-    alt: "Outdoor campus grounds used for life-skills and farming learning",
+    alt: "School courtyard with hanging gardens, planters, and open learning space",
   },
   {
     title: "Creative & Sports Excellence",

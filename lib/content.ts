@@ -13,7 +13,7 @@ export const photos = {
   character: "/images/value-education-lab.avif",
   science: "/images/robotics-workstations.avif",
   roboticsLab: "/images/robotics-lab.avif",
-  farming: "/images/building.avif",
+  farming: "/images/farming.avif",
   podcast: "/images/storytellers.avif",
   biophilic: "/images/biophilic-atrium.avif",
 };

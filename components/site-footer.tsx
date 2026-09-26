@@ -18,11 +18,11 @@ export function SiteFooter({
   return (
     <footer id="contact">
       <div className="footer-top">
-        <div>
+        <div className="footer-brand">
           <Brand />
           <p>Join a school that educates the whole child.</p>
         </div>
-        <div>
+        <div className="footer-hello">
           <Eyebrow>COME SAY HELLO</Eyebrow>
           <p>
             {school.city || "Campus location awaiting confirmation"}
@@ -33,51 +33,61 @@ export function SiteFooter({
               "Phone number awaiting school confirmation"
             )}
           </p>
-          <button
-            className="text-link"
-            onClick={() => openDialog("Start an admissions enquiry")}
-          >
-            Enquire Now <ArrowUpRight size={15} />
-          </button>
-          <button
-            className="text-link"
-            onClick={() => openDialog("Plan a campus visit")}
-          >
-            Book a Campus Visit <ArrowUpRight size={15} />
-          </button>
-          <button
-            className="text-link"
-            onClick={() => openDialog("Start an admissions enquiry")}
-          >
-            Speak to Our Admissions Team <ArrowUpRight size={15} />
-          </button>
+          <div className="footer-hello-actions">
+            <button
+              className="text-link"
+              onClick={() => openDialog("Start an admissions enquiry")}
+            >
+              Enquire Now <ArrowUpRight size={15} />
+            </button>
+            <button
+              className="text-link"
+              onClick={() => openDialog("Plan a campus visit")}
+            >
+              Book a Campus Visit <ArrowUpRight size={15} />
+            </button>
+            <button
+              className="text-link"
+              onClick={() => openDialog("Start an admissions enquiry")}
+            >
+              Speak to Our Admissions Team <ArrowUpRight size={15} />
+            </button>
+          </div>
         </div>
-        <div>
+        <div className="footer-look">
           <Eyebrow>TAKE A LOOK AROUND</Eyebrow>
-          <a href="/">Home</a>
-          <a href="/about">About Wellspire</a>
-          <a href="/leadership">Management &amp; Leadership</a>
-          <a href="/leadership#leadership">Principal&apos;s Message</a>
-          <a href="/curriculum">Curriculum</a>
-          <a href="/campus-life#campus">Campus &amp; Facilities</a>
-          <a href="/campus-gallery">Campus gallery</a>
-          <a href="/campus-life#campus-life">Campus Life</a>
-          <a href="/learning-beyond">Learning Beyond</a>
-          <a href="/admissions">Admissions</a>
-          <a href="/careers">Careers</a>
-          <a href="/#contact">Contact</a>
+          <div className="footer-look-cols">
+            <div className="footer-look-col">
+              <a href="/">Home</a>
+              <a href="/about">About Wellspire</a>
+              <a href="/leadership">Management &amp; Leadership</a>
+              <a href="/leadership#leadership">Principal&apos;s Message</a>
+              <a href="/curriculum">Curriculum</a>
+              <a href="/campus-life#campus">Campus &amp; Facilities</a>
+            </div>
+            <div className="footer-look-col">
+              <a href="/campus-gallery">Campus gallery</a>
+              <a href="/campus-life#campus-life">Campus Life</a>
+              <a href="/learning-beyond">Learning Beyond</a>
+              <a href="/admissions">Admissions</a>
+              <a href="/careers">Careers</a>
+              <a href="/#contact">Contact</a>
+            </div>
+          </div>
         </div>
-        <div>
+        <div className="footer-know">
           <Eyebrow>GOOD TO KNOW</Eyebrow>
-          <a href="/mandatory-public-disclosure">
-            Public Disclosure <ArrowUpRight size={13} />
-          </a>
-          <button onClick={() => openDialog("Fee structure")}>
-            Fee structure
-          </button>
-          <button onClick={() => openDialog("Privacy & your data")}>
-            Privacy & your data
-          </button>
+          <div className="footer-know-links">
+            <a href="/mandatory-public-disclosure">
+              Public Disclosure <ArrowUpRight size={13} />
+            </a>
+            <button onClick={() => openDialog("Fee structure")}>
+              Fee structure
+            </button>
+            <button onClick={() => openDialog("Privacy & your data")}>
+              Privacy & your data
+            </button>
+          </div>
         </div>
       </div>
       <div className="footer-wordmark">

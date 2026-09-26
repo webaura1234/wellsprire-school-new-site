@@ -278,9 +278,4 @@ export const disclosureInfrastructure: DisclosureRow[] = [
     info: "LINK OF YOUTUBE VIDEO OF THE INSPECTION OF SCHOOL COVERING THE INFRASTRUCTURE OF THE SCHOOL",
     detail: { kind: "link", link: click() },
   },
-  {
-    sno: 8,
-    info: "BOOK LIST",
-    detail: { kind: "link", link: click() },
-  },
 ];
