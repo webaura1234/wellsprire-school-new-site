@@ -16,93 +16,114 @@ export function SiteFooter({
   openDialog: (value: string) => void;
 }) {
   return (
-    <footer id="contact">
-      <div className="footer-top">
-        <div className="footer-brand">
-          <Brand />
-          <p>Join a school that educates the whole child.</p>
-        </div>
-        <div className="footer-hello">
-          <Eyebrow>COME SAY HELLO</Eyebrow>
-          <p>
-            {school.city || "Campus location awaiting confirmation"}
-            <br />
-            {school.phone ? (
-              <a href={`tel:${school.phone}`}>{school.phone}</a>
-            ) : (
-              "Phone number awaiting school confirmation"
-            )}
-          </p>
-          <div className="footer-hello-actions">
-            <button
-              className="text-link"
-              onClick={() => openDialog("Start an admissions enquiry")}
-            >
-              Enquire Now <ArrowUpRight size={15} />
-            </button>
-            <button
-              className="text-link"
-              onClick={() => openDialog("Plan a campus visit")}
-            >
-              Book a Campus Visit <ArrowUpRight size={15} />
-            </button>
-            <button
-              className="text-link"
-              onClick={() => openDialog("Start an admissions enquiry")}
-            >
-              Speak to Our Admissions Team <ArrowUpRight size={15} />
-            </button>
+    <>
+      <footer id="contact">
+        <div className="footer-top">
+          <div className="footer-brand">
+            <Brand />
+            <p>Join a school that educates the whole child.</p>
           </div>
-        </div>
-        <div className="footer-look">
-          <Eyebrow>TAKE A LOOK AROUND</Eyebrow>
-          <div className="footer-look-cols">
-            <div className="footer-look-col">
-              <a href="/">Home</a>
-              <a href="/about">About Wellspire</a>
-              <a href="/leadership">Management &amp; Leadership</a>
-              <a href="/leadership#leadership">Principal&apos;s Message</a>
-              <a href="/curriculum">Curriculum</a>
-              <a href="/campus-life#campus">Campus &amp; Facilities</a>
-            </div>
-            <div className="footer-look-col">
-              <a href="/campus-gallery">Campus gallery</a>
-              <a href="/campus-life#campus-life">Campus Life</a>
-              <a href="/learning-beyond">Learning Beyond</a>
-              <a href="/admissions">Admissions</a>
-              <a href="/careers">Careers</a>
-              <a href="/#contact">Contact</a>
+          <div className="footer-hello">
+            <Eyebrow>COME SAY HELLO</Eyebrow>
+            <p>
+              {school.city || "Campus location awaiting confirmation"}
+              <br />
+              {school.phone ? (
+                <a href={`tel:${school.phone}`}>{school.phone}</a>
+              ) : (
+                "Phone number awaiting school confirmation"
+              )}
+            </p>
+            <div className="footer-hello-actions">
+              <button
+                className="text-link"
+                onClick={() => openDialog("Start an admissions enquiry")}
+              >
+                Enquire Now <ArrowUpRight size={15} />
+              </button>
+              <button
+                className="text-link"
+                onClick={() => openDialog("Plan a campus visit")}
+              >
+                Book a Campus Visit <ArrowUpRight size={15} />
+              </button>
+              <button
+                className="text-link"
+                onClick={() => openDialog("Start an admissions enquiry")}
+              >
+                Speak to Our Admissions Team <ArrowUpRight size={15} />
+              </button>
             </div>
           </div>
-        </div>
-        <div className="footer-know">
-          <Eyebrow>GOOD TO KNOW</Eyebrow>
-          <div className="footer-know-links">
-            <a href="/mandatory-public-disclosure">
-              Public Disclosure <ArrowUpRight size={13} />
-            </a>
-            <button onClick={() => openDialog("Fee structure")}>
-              Fee structure
-            </button>
-            <button onClick={() => openDialog("Privacy & your data")}>
-              Privacy & your data
-            </button>
+          <div className="footer-look">
+            <Eyebrow>TAKE A LOOK AROUND</Eyebrow>
+            <div className="footer-look-cols">
+              <div className="footer-look-col">
+                <a href="/">Home</a>
+                <a href="/about">About Wellspire</a>
+                <a href="/leadership">Management &amp; Leadership</a>
+                <a href="/leadership#leadership">Principal&apos;s Message</a>
+                <a href="/curriculum">Curriculum</a>
+                <a href="/campus-life#campus">Campus &amp; Facilities</a>
+              </div>
+              <div className="footer-look-col">
+                <a href="/campus-gallery">Campus gallery</a>
+                <a href="/campus-life#campus-life">Campus Life</a>
+                <a href="/learning-beyond">Learning Beyond</a>
+                <a href="/admissions">Admissions</a>
+                <a href="/careers">Careers</a>
+                <a href="/#contact">Contact</a>
+              </div>
+            </div>
+          </div>
+          <div className="footer-know">
+            <Eyebrow>GOOD TO KNOW</Eyebrow>
+            <div className="footer-know-links">
+              <a href="/mandatory-public-disclosure">
+                Public Disclosure <ArrowUpRight size={13} />
+              </a>
+              <button onClick={() => openDialog("Fee structure")}>
+                Fee structure
+              </button>
+              <button onClick={() => openDialog("Privacy & your data")}>
+                Privacy & your data
+              </button>
+            </div>
           </div>
         </div>
+        <div className="footer-wordmark">
+          wellspire<span>↗</span>
+        </div>
+        <div className="footer-bottom">
+          <span>
+            © {new Date().getFullYear()} Wellspire. Educating the whole child.
+          </span>
+          <span>DESIGNED TO INSPIRE.</span>
+        </div>
+        <p className="preview-note">
+          Design preview · School details, affiliations, policies, and
+          admissions dates require verification before publication.
+        </p>
+      </footer>
+      <div className="footer-credit">
+        <a
+          className="footer-credit-link"
+          href="https://piidigitech.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="footer-credit-label">Designed and Developed by</span>
+          <span className="footer-credit-badge">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/pii-digital-technologies-logo.png"
+              alt="Pii Digital Technologies"
+              width={72}
+              height={72}
+            />
+          </span>
+        </a>
       </div>
-      <div className="footer-wordmark">
-        wellspire<span>↗</span>
-      </div>
-      <div className="footer-bottom">
-        <span>
-          © {new Date().getFullYear()} Wellspire. Educating the whole child.
-        </span>
-        <span>DESIGNED TO INSPIRE.</span>
-      </div>
-      <p className="preview-note">
-        Design preview · School details, affiliations, policies, and
-        admissions dates require verification before publication.
-      </p>
-    </footer>
+    </>
   );
 }

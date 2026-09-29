@@ -1552,5 +1552,47 @@
         "bytes": 9668
       }
     ]
+  },
+  {
+    "source": "/images/principal-vijaya-lakshmi.avif",
+    "width": 819,
+    "height": 1024,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/principal-vijaya-lakshmi-320.avif",
+        "width": 320,
+        "height": 400,
+        "bytes": 12388
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/principal-vijaya-lakshmi-640.avif",
+        "width": 640,
+        "height": 800,
+        "bytes": 35146
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/principal-vijaya-lakshmi-960.avif",
+        "width": 819,
+        "height": 1024,
+        "bytes": 50560
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/principal-vijaya-lakshmi-1280.avif",
+        "width": 819,
+        "height": 1024,
+        "bytes": 50560
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/principal-vijaya-lakshmi-1600.avif",
+        "width": 819,
+        "height": 1024,
+        "bytes": 50560
+      }
+    ]
   }
 ]

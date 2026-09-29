@@ -145,7 +145,7 @@ export function LeadershipMobilePage() {
         titleEm="with care."
         deck="Founders, management, and a principal message — one place for leadership."
       />
-      <OurTeamSection onFounder={(name) => dialogState.openDialog(name)} />
+      <OurTeamSection />
       <PrincipalMessage
         onExplore={() =>
           dialogState.openDialog("Message from our Principal")

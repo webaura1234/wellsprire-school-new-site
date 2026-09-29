@@ -13,11 +13,14 @@ import {
   Bus,
   HeartPulse,
   Users,
+  Sparkle,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { Spire } from "./brand";
 import { Heading } from "./heading";
 import { photos } from "@/lib/content";
-import { homeLearningHighlights } from "@/lib/programmes";
+import { founderDialogCopy, homeLearningHighlights } from "@/lib/programmes";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
@@ -583,8 +586,8 @@ export function PrincipalMessage({
           <div className="gold-bracket-frame">
             <div className="principal-photo-wrap">
               <Image
-                src={photos.building}
-                alt="Wellspire School campus"
+                src={photos.principal}
+                alt="Ms. M. Vijaya Lakshmi, Principal of Wellspire School"
                 fill
                 sizes="(max-width: 768px) 88vw, 40vw"
                 className="principal-photo"
@@ -594,8 +597,14 @@ export function PrincipalMessage({
                 <span>LEADERSHIP</span>
               </div>
               <aside className="principal-signature-card">
-                <span className="signature-monogram" aria-hidden="true">
-                  VL
+                <span className="signature-monogram signature-monogram--photo">
+                  <Image
+                    src={photos.principal}
+                    alt=""
+                    fill
+                    sizes="48px"
+                    aria-hidden="true"
+                  />
                 </span>
                 <div className="signature-copy">
                   <div className="signature-header">
@@ -754,52 +763,139 @@ export function GlobalHorizons() {
   );
 }
 
-export function OurTeamSection({
-  onFounder,
-}: {
-  onFounder: (name: string) => void;
-}) {
-  const founders: {
-    name: string;
-    degree?: string;
-    role: string;
-    note: string;
-    image: string;
-    alt?: string;
-  }[] = [
+type FounderProfile = {
+  name: string;
+  degree?: string;
+  titles: string[];
+  image: string;
+  alt?: string;
+  tone: "light" | "navy";
+  photoSide: "left" | "right";
+};
+
+const FOUNDER_VISIBLE_PARAGRAPHS = 2;
+
+function FounderProfileRow({ person }: { person: FounderProfile }) {
+  const [expanded, setExpanded] = useState(false);
+  const moreId = React.useId();
+  const paragraphs = (founderDialogCopy[person.name] ?? "").split("\n\n");
+  const visible = paragraphs.slice(0, FOUNDER_VISIBLE_PARAGRAPHS);
+  const more = paragraphs.slice(FOUNDER_VISIBLE_PARAGRAPHS);
+
+  return (
+    <article
+      className={`team-profile-row team-profile-row--${person.tone} team-profile-row--photo-${person.photoSide}`}
+    >
+      <div className="team-profile-inner">
+        <div className="team-profile-photo">
+          <Image
+            src={person.image}
+            alt={person.alt ?? person.name}
+            fill
+            sizes="(max-width:1023px) min(480px, 90vw), 420px"
+          />
+        </div>
+        <div className="team-profile-copy">
+          <h3>
+            {person.name}
+            {person.degree && (
+              <span className="team-profile-degree">{person.degree}</span>
+            )}
+          </h3>
+          <ul className="team-profile-titles">
+            {person.titles.map((title) => (
+              <li key={title}>
+                <Sparkle size={14} strokeWidth={2} aria-hidden="true" />
+                {title}
+              </li>
+            ))}
+          </ul>
+          <div className="team-profile-bio">
+            {visible.map((para) => (
+              <p key={para}>{para}</p>
+            ))}
+          </div>
+          {more.length > 0 && (
+            <div className="team-profile-more-wrap">
+              <button
+                type="button"
+                className="team-profile-toggle"
+                aria-expanded={expanded}
+                aria-controls={moreId}
+                onClick={() => setExpanded((v) => !v)}
+              >
+                {expanded ? (
+                  <ChevronUp size={16} strokeWidth={2} aria-hidden="true" />
+                ) : (
+                  <ChevronDown size={16} strokeWidth={2} aria-hidden="true" />
+                )}
+                {expanded ? "Read Less" : "Read More"}
+              </button>
+              <div
+                id={moreId}
+                className={`team-profile-more${expanded ? " is-open" : ""}`}
+                aria-hidden={!expanded}
+              >
+                <div className="team-profile-bio">
+                  {more.map((para) => (
+                    <p key={para}>{para}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export function OurTeamSection() {
+  const founders: FounderProfile[] = [
     {
       name: "Mr. Chamakura Bhoopal Reddy",
       degree: "B.Tech, MBA (London)",
-      role: "Co-Founder & Chairperson",
-      note: "Vice Chairman, CMR Engineering College — building Wellspire on decades of educational leadership.",
+      titles: [
+        "Vice Chairman - CMR Engineering College",
+        "Co-Founder & Chairperson – Wellspire International School",
+      ],
       image: "/images/management-bhoopal-reddy.avif",
+      tone: "light",
+      photoSide: "right",
+    },
+    {
+      name: "Mr. Prabhakar Reddy",
+      titles: ["Co-founder, Wellspire International School"],
+      image: "/images/cofounder-prabhakar-reddy.avif",
+      alt: "Mr. Prabhakar Reddy, Co-founder of Wellspire International School",
+      tone: "navy",
+      photoSide: "left",
     },
     {
       name: "Mrs. Shruthi Reddy",
       degree: "M.Tech",
-      role: "Co-Founder & Director",
-      note: "Potential is Limitless — a balanced, holistic learning ecosystem for every child.",
+      titles: ["Co-Founder & Director, Wellspire International School"],
       image: "/images/management-shruthi-reddy.avif",
-    },
-    {
-      name: "Mr. Prabhakar Reddy",
-      role: "Co-founder, Wellspire International School",
-      note: "The foundation of Wellspire is built upon two powerful pillars, a vision for education and the unwavering support of our co-founder Mr. Prabhakar Reddy.",
-      image: "/images/cofounder-prabhakar-reddy.avif",
-      alt: "Mr. Prabhakar Reddy, Co-founder of Wellspire International School",
+      tone: "light",
+      photoSide: "right",
     },
     {
       name: "Mr. Naveen Reddy Gudur",
       degree: "M.Tech",
-      role: "Director, Wellspire International School",
-      note: "Mr. Naveen Reddy brings a unique blend of technological expertise and educational vision to Wellspire International School.",
+      titles: ["Director, Wellspire International School"],
       image: "/images/director-naveen-reddy-gudur.avif",
       alt: "Mr. Naveen Reddy Gudur, Director of Wellspire International School.",
+      tone: "navy",
+      photoSide: "left",
     },
   ];
 
   return (
-    <section className="section team-section" id="team" aria-label="Our team">
+    <section
+      className="section team-section team-profiles-section"
+      id="team"
+      aria-label="Our team"
+    >
       <div className="section-heading">
         <div>
           <Eyebrow>OUR TEAM</Eyebrow>
@@ -814,39 +910,9 @@ export function OurTeamSection({
           care for children.
         </p>
       </div>
-      <div className="team-founder-grid">
+      <div className="team-profile-list">
         {founders.map((person) => (
-          <article className="team-founder-card" key={person.name}>
-            <div className="team-founder-photo">
-              <Image
-                src={person.image}
-                alt={person.alt ?? person.name}
-                fill
-                sizes="(max-width:768px) 90vw, 42vw"
-              />
-            </div>
-            <div className="team-founder-copy">
-              <span className="eyebrow">MANAGEMENT</span>
-              <h3>{person.name}</h3>
-              <p className="team-founder-meta">
-                {person.degree && (
-                  <>
-                    {person.degree}
-                    <br />
-                  </>
-                )}
-                {person.role}
-              </p>
-              <p>{person.note}</p>
-              <button
-                type="button"
-                className="text-link"
-                onClick={() => onFounder(person.name)}
-              >
-                Read profile <ArrowUpRight size={16} />
-              </button>
-            </div>
-          </article>
+          <FounderProfileRow key={person.name} person={person} />
         ))}
       </div>
     </section>

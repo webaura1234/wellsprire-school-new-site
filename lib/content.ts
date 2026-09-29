@@ -16,6 +16,7 @@ export const photos = {
   farming: "/images/farming.avif",
   podcast: "/images/storytellers.avif",
   biophilic: "/images/biophilic-atrium.avif",
+  principal: "/images/principal-vijaya-lakshmi.avif",
 };
 export const stages = [
   {
