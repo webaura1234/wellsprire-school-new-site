@@ -596,28 +596,28 @@ export function PrincipalMessage({
                 <Sparkles size={11} className="text-gold" />
                 <span>LEADERSHIP</span>
               </div>
-              <aside className="principal-signature-card">
-                <span className="signature-monogram signature-monogram--photo">
-                  <Image
-                    src={photos.principal}
-                    alt=""
-                    fill
-                    sizes="48px"
-                    aria-hidden="true"
-                  />
-                </span>
-                <div className="signature-copy">
-                  <div className="signature-header">
-                    <span className="signature-name">Ms. M. Vijaya Lakshmi</span>
-                    <span className="signature-degree">MBA, M.Com, M.Ed</span>
-                  </div>
-                  <p className="signature-title">
-                    Principal, Wellspire School
-                  </p>
-                </div>
-              </aside>
             </div>
           </div>
+          <aside className="principal-signature-card">
+            <span className="signature-monogram signature-monogram--photo">
+              <Image
+                src={photos.principal}
+                alt=""
+                fill
+                sizes="48px"
+                aria-hidden="true"
+              />
+            </span>
+            <div className="signature-copy">
+              <div className="signature-header">
+                <span className="signature-name">Ms. M. Vijaya Lakshmi</span>
+                <span className="signature-degree">MBA, M.Com, M.Ed</span>
+              </div>
+              <p className="signature-title">
+                Principal, Wellspire School
+              </p>
+            </div>
+          </aside>
         </div>
 
         <div className="principal-content">
