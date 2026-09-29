@@ -141,16 +141,24 @@ export const programmeDialogCopy: Record<string, string> = {
 
 /** Full founder profiles — Management.doc, verbatim. Paragraphs separated by "\n\n". */
 export const founderDialogCopy: Record<string, string> = {
-  "Mr Chamakura Bhoopal Reddy": [
+  "Mr. Chamakura Bhoopal Reddy": [
     "For over two decades, Mr Bhoopal Reddy has been a pillar of higher education, serving as the Vice Chairman of CMR Engineering College — an institution distinguished for its academic rigour and spirit of innovation. In this role, he played a pivotal part in shaping the learning journeys of thousands of aspiring engineers, championing holistic development and industry-ready competencies.",
     "His extensive experience in nurturing young adults revealed a profound insight: the seeds of excellence — curiosity, discipline, and character — are sown much earlier. He realised that a strong school-level foundation is the most decisive force in enabling lifelong success.",
     "Guided by this conviction, Mr. Reddy has embarked on a new mission: to build that foundation with intention and purpose. The establishment of Wellspire is the embodiment of this vision — a school rooted in the wisdom of higher education, yet wholly committed to excellence across the entire schooling spectrum.",
     "At Wellspire, we are committed to fostering not only academic proficiency but also critical thinking, creativity, and character. Our philosophy is to create a warm, stimulating environment where young learners are encouraged to explore, question, imagine, and innovate. We strive to build a community where the leaders, problem-solvers, and inventors of tomorrow take their first confident steps today.",
     "With a legacy of educational leadership and a dynamic, future-focused approach, Mr. Reddy is shaping Wellspire into a beacon of holistic, future-ready, and transformative education.",
   ].join("\n\n"),
-  "Ms Shruthi Reddy": [
+  "Mrs. Shruthi Reddy": [
     "An engineer by qualification, a fitness enthusiast by passion, and an educator by purpose — Shruthi Reddy embodies discipline, balance, and a deep commitment to personal growth.",
     "She lives by a powerful belief: Potential is Limitless. After years of dedicating herself to her family, she channelled her discipline into a remarkable personal transformation. Today, she brings that same strength, clarity, and determination to the field of education. She believes that education must prepare children for the world — not just exams — and that every child carries a unique potential waiting to unfold.",
     "As the Co-Founder of Wellspire, she has envisioned and crafted a learning ecosystem that reflects her philosophy — dynamic, balanced, enriching, and rooted in holistic development. Her mission is to ensure that every child discovers their academic, artistic, and athletic strengths, building a strong foundation for a confident, skilled, and successful life.",
+  ].join("\n\n"),
+  "Mr. Prabhakar Reddy":
+    "The foundation of Wellspire is built upon two powerful pillars, a vision for education and the unwavering support of our co-founder Mr. Prabhakar Reddy. He was instrumental in the school's creation, providing the foundational belief, strategic guidance and unwavering support that brought the vision to life. His invaluable contribution as a core partner in this endeavor makes him an integral part of our leadership.",
+  "Mr. Naveen Reddy Gudur": [
+    "Mr. Naveen Reddy brings a unique blend of technological expertise and educational vision to Wellspire International School. With an M.Tech in Computer Science and several years of experience in the IT industry, he has a strong foundation in innovation, strategy, and modern learning approaches.",
+    "Driven by a deeper purpose, he envisioned Wellspire as a place where children learn fearlessly, think creatively, and grow into confident global citizens. Under his leadership, Wellspire has evolved into a nurturing environment that values curiosity, character, and holistic development.",
+    "He ensures that each classroom at Wellspire is vibrant, interactive, and enriched with smart technology and project-based learning. Co-scholastic opportunities — including sports, arts, and clubs — play a key role in helping students discover their strengths.",
+    "Guided by the belief that education must inspire, Mr. Naveen Reddy leads Wellspire with the mission of helping every child truly 'Dare to Dream… Learn to Excel.'",
   ].join("\n\n"),
 };

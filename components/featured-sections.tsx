@@ -759,20 +759,42 @@ export function OurTeamSection({
 }: {
   onFounder: (name: string) => void;
 }) {
-  const founders = [
+  const founders: {
+    name: string;
+    degree?: string;
+    role: string;
+    note: string;
+    image: string;
+    alt?: string;
+  }[] = [
     {
-      name: "Mr Chamakura Bhoopal Reddy",
+      name: "Mr. Chamakura Bhoopal Reddy",
       degree: "B.Tech, MBA (London)",
       role: "Co-Founder & Chairperson",
       note: "Vice Chairman, CMR Engineering College — building Wellspire on decades of educational leadership.",
-      image: photos.building,
+      image: "/images/management-bhoopal-reddy.avif",
     },
     {
-      name: "Ms Shruthi Reddy",
+      name: "Mrs. Shruthi Reddy",
       degree: "M.Tech",
       role: "Co-Founder & Director",
       note: "Potential is Limitless — a balanced, holistic learning ecosystem for every child.",
-      image: photos.campus,
+      image: "/images/management-shruthi-reddy.avif",
+    },
+    {
+      name: "Mr. Prabhakar Reddy",
+      role: "Co-founder, Wellspire International School",
+      note: "The foundation of Wellspire is built upon two powerful pillars, a vision for education and the unwavering support of our co-founder Mr. Prabhakar Reddy.",
+      image: "/images/cofounder-prabhakar-reddy.avif",
+      alt: "Mr. Prabhakar Reddy, Co-founder of Wellspire International School",
+    },
+    {
+      name: "Mr. Naveen Reddy Gudur",
+      degree: "M.Tech",
+      role: "Director, Wellspire International School",
+      note: "Mr. Naveen Reddy brings a unique blend of technological expertise and educational vision to Wellspire International School.",
+      image: "/images/director-naveen-reddy-gudur.avif",
+      alt: "Mr. Naveen Reddy Gudur, Director of Wellspire International School.",
     },
   ];
 
@@ -798,7 +820,7 @@ export function OurTeamSection({
             <div className="team-founder-photo">
               <Image
                 src={person.image}
-                alt={person.name}
+                alt={person.alt ?? person.name}
                 fill
                 sizes="(max-width:768px) 90vw, 42vw"
               />
@@ -807,8 +829,12 @@ export function OurTeamSection({
               <span className="eyebrow">MANAGEMENT</span>
               <h3>{person.name}</h3>
               <p className="team-founder-meta">
-                {person.degree}
-                <br />
+                {person.degree && (
+                  <>
+                    {person.degree}
+                    <br />
+                  </>
+                )}
                 {person.role}
               </p>
               <p>{person.note}</p>

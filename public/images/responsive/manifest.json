@@ -1384,5 +1384,173 @@
         "bytes": 50559
       }
     ]
+  },
+  {
+    "source": "/images/management-bhoopal-reddy.avif",
+    "width": 600,
+    "height": 650,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/management-bhoopal-reddy-320.avif",
+        "width": 320,
+        "height": 347,
+        "bytes": 7408
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/management-bhoopal-reddy-640.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 17521
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/management-bhoopal-reddy-960.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 17521
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/management-bhoopal-reddy-1280.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 17521
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/management-bhoopal-reddy-1600.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 17521
+      }
+    ]
+  },
+  {
+    "source": "/images/management-shruthi-reddy.avif",
+    "width": 600,
+    "height": 650,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/management-shruthi-reddy-320.avif",
+        "width": 320,
+        "height": 347,
+        "bytes": 4775
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/management-shruthi-reddy-640.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 12459
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/management-shruthi-reddy-960.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 12459
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/management-shruthi-reddy-1280.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 12459
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/management-shruthi-reddy-1600.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 12459
+      }
+    ]
+  },
+  {
+    "source": "/images/cofounder-prabhakar-reddy.avif",
+    "width": 600,
+    "height": 650,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/cofounder-prabhakar-reddy-320.avif",
+        "width": 320,
+        "height": 347,
+        "bytes": 3504
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/cofounder-prabhakar-reddy-640.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 7150
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/cofounder-prabhakar-reddy-960.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 7150
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/cofounder-prabhakar-reddy-1280.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 7150
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/cofounder-prabhakar-reddy-1600.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 7150
+      }
+    ]
+  },
+  {
+    "source": "/images/director-naveen-reddy-gudur.avif",
+    "width": 600,
+    "height": 650,
+    "variants": [
+      {
+        "requestedWidth": 320,
+        "file": "/images/responsive/director-naveen-reddy-gudur-320.avif",
+        "width": 320,
+        "height": 347,
+        "bytes": 4324
+      },
+      {
+        "requestedWidth": 640,
+        "file": "/images/responsive/director-naveen-reddy-gudur-640.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 9668
+      },
+      {
+        "requestedWidth": 960,
+        "file": "/images/responsive/director-naveen-reddy-gudur-960.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 9668
+      },
+      {
+        "requestedWidth": 1280,
+        "file": "/images/responsive/director-naveen-reddy-gudur-1280.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 9668
+      },
+      {
+        "requestedWidth": 1600,
+        "file": "/images/responsive/director-naveen-reddy-gudur-1600.avif",
+        "width": 600,
+        "height": 650,
+        "bytes": 9668
+      }
+    ]
   }
 ]
